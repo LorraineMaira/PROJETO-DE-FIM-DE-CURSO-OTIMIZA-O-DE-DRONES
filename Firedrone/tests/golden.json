@@ -1,0 +1,106 @@
+{
+ "0": {
+  "cs": 20,
+  "ok": true,
+  "burned": 1.32,
+  "tactic": "indireto",
+  "litres": 329,
+  "tot": 1134.91
+ },
+ "1": {
+  "cs": 20,
+  "ok": true,
+  "burned": 3.12,
+  "tactic": "indireto",
+  "litres": 1818,
+  "tot": 1106.94
+ },
+ "2": {
+  "cs": 20,
+  "ok": true,
+  "burned": 2.72,
+  "tactic": "indireto",
+  "litres": 1877,
+  "tot": 1151.12
+ },
+ "3": {
+  "cs": 20,
+  "ok": false,
+  "burned": 120.12,
+  "tactic": "cercamento",
+  "litres": 3919,
+  "tot": 1134.8
+ },
+ "4": {
+  "cs": 10,
+  "ok": true,
+  "burned": 0.41,
+  "tactic": "cercamento",
+  "litres": 941,
+  "tot": 1027.83
+ },
+ "5": {
+  "cs": 20,
+  "ok": true,
+  "burned": 2.84,
+  "tactic": "indireto",
+  "litres": 1805,
+  "tot": 1057.57
+ },
+ "6": {
+  "cs": 20,
+  "ok": true,
+  "burned": 1.48,
+  "tactic": "cercamento",
+  "litres": 1068,
+  "tot": 1039.51
+ },
+ "7": {
+  "cs": 10,
+  "ok": true,
+  "burned": 0.36,
+  "tactic": "cercamento",
+  "litres": 1862,
+  "tot": 1663.34
+ },
+ "8": {
+  "cs": 10,
+  "ok": true,
+  "burned": 0.38,
+  "tactic": "indireto",
+  "litres": 1514,
+  "tot": 997.92
+ },
+ "9": {
+  "cs": 10,
+  "ok": true,
+  "burned": 0.56,
+  "tactic": "indireto",
+  "litres": 1843,
+  "tot": 1233.52
+ },
+ "10": {
+  "cs": 10,
+  "ok": true,
+  "burned": 0.63,
+  "tactic": "cercamento",
+  "litres": 1606,
+  "tot": 1804.63
+ },
+ "11": {
+  "cs": 20,
+  "ok": false,
+  "burned": 90.48,
+  "tactic": "indireto",
+  "litres": 3173,
+  "tot": 1169.47
+ },
+ "12": {
+  "cs": 20,
+  "ok": false,
+  "burned": 240.04,
+  "tactic": "indireto",
+  "litres": 2574,
+  "tot": 1355.89
+ }
+}

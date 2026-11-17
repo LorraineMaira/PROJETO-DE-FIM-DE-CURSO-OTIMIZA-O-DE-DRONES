@@ -1,0 +1,6354 @@
+{
+ "0": {
+  "fi": 0,
+  "nome": "1 · Pampa / gramínea curta (NFFL 1)",
+  "cs": 20,
+  "N": 87,
+  "nMax": 60,
+  "t_opt_s": 57.546,
+  "modelo": "DJI FlyCart 30",
+  "nMin": 3,
+  "nRisco": 3,
+  "capped": false,
+  "P": 0.95,
+  "Pci": [
+   0.7638641064874331,
+   0.9911187805671267
+  ],
+  "nBusca": 3,
+  "confirmado": true,
+  "Kconf": 20,
+  "tatica": "indireto",
+  "custoOp": 1148.373922494621,
+  "capex": 51000,
+  "ranking": [
+   {
+    "modelo": "DJI FlyCart 30",
+    "nMin": 3,
+    "nRisco": 3,
+    "P": 0.95,
+    "capped": false,
+    "custoOp": 1148.373922494621,
+    "capex": 51000,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 1.98,
+     "tCont": 7120,
+     "nCont": 10,
+     "tExt": 7420,
+     "nExt": 10,
+     "litres": 769.5726406380544,
+     "flightH": 2.5963888888888893,
+     "drops": 1384.8,
+     "sorties": 85.6,
+     "lineM": 7560.484866444982,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Spider H60-4",
+    "nMin": 3,
+    "nRisco": 4,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 1205.9886380882172,
+    "capex": 56000,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 2.08,
+     "tCont": 7075,
+     "nCont": 10,
+     "tExt": 7280,
+     "nExt": 10,
+     "litres": 643.350323928665,
+     "flightH": 3.5891666666666664,
+     "drops": 1099.7,
+     "sorties": 91.6,
+     "lineM": 6067.491153373843,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Spider H32X",
+    "nMin": 3,
+    "nRisco": 4,
+    "P": 1,
+    "capped": false,
+    "custoOp": 1253.7226011718649,
+    "capex": 32000,
+    "op": {
+     "n": 10,
+     "P": 0.8,
+     "burned": 1.98,
+     "tCont": 6510,
+     "nCont": 8,
+     "tExt": 6660,
+     "nExt": 8,
+     "litres": 1259.7535761554598,
+     "flightH": 6.498055555555557,
+     "drops": 1905.7,
+     "sorties": 129.4,
+     "lineM": 14230.6570612234,
+     "depot": 0,
+     "esc": 2
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Spider H120",
+    "nMin": 2,
+    "nRisco": 5,
+    "P": 1,
+    "capped": false,
+    "custoOp": 1420.460450701735,
+    "capex": 90000,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 1.54,
+     "tCont": 5410,
+     "nCont": 10,
+     "tExt": 5645,
+     "nExt": 10,
+     "litres": 640.9870318758319,
+     "flightH": 3.08,
+     "drops": 921.8,
+     "sorties": 79.5,
+     "lineM": 4744.310224790729,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 2,
+    "nRisco": 2,
+    "P": 0.95,
+    "capped": false,
+    "custoOp": 8453.301061593997,
+    "capex": 3000000,
+    "tripulada": true,
+    "op": {
+     "n": 20,
+     "P": 0.95,
+     "burned": 5.74,
+     "tCont": 6335,
+     "nCont": 20,
+     "tExt": 6520,
+     "nExt": 20,
+     "litres": 3427.7847089925367,
+     "flightH": 1.4045833333333335,
+     "drops": 2981.35,
+     "sorties": 112.6,
+     "lineM": 11810.604959423608,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 2,
+    "nRisco": 2,
+    "P": 1,
+    "capped": false,
+    "custoOp": 18399.746559867563,
+    "capex": 8000000,
+    "tripulada": true,
+    "op": {
+     "n": 20,
+     "P": 1,
+     "burned": 5.76,
+     "tCont": 6395,
+     "nCont": 20,
+     "tExt": 6620,
+     "nExt": 20,
+     "litres": 3041.458047254494,
+     "flightH": 1.23,
+     "drops": 2677.55,
+     "sorties": 98.45,
+     "lineM": 10363.419969105122,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 2,
+    "nRisco": 2,
+    "P": 1,
+    "capped": false,
+    "custoOp": 24791.17297291818,
+    "capex": 9000000,
+    "tripulada": true,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 6.5,
+     "tCont": 7000,
+     "nCont": 10,
+     "tExt": 7150,
+     "nExt": 10,
+     "litres": 3000.247061683303,
+     "flightH": 1.1933333333333334,
+     "drops": 2611.3,
+     "sorties": 103.8,
+     "lineM": 10251.638026511962,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 2,
+    "nRisco": 2,
+    "P": 1,
+    "capped": false,
+    "custoOp": 77247.73181323288,
+    "capex": 30000000,
+    "tripulada": true,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 10.620000000000001,
+     "tCont": 6940,
+     "nCont": 10,
+     "tExt": 7240,
+     "nExt": 10,
+     "litres": 5239.461815162757,
+     "flightH": 1.1883333333333335,
+     "drops": 2993.9,
+     "sorties": 92.6,
+     "lineM": 14246.52537018272,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 20
+   },
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": 3,
+    "nRisco": 60,
+    "P": 0,
+    "capped": true,
+    "custoOp": 367060.61613841756,
+    "capex": 150000000,
+    "tripulada": true,
+    "op": {
+     "n": 10,
+     "P": 0.8,
+     "burned": 17.8,
+     "tCont": 7605,
+     "nCont": 10,
+     "tExt": 7905,
+     "nExt": 10,
+     "litres": 7176.312554011669,
+     "flightH": 4.898611111111111,
+     "drops": 6145.2,
+     "sorties": 454.3,
+     "lineM": 19434.83036744157,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 30
+   }
+  ],
+  "triagem": [
+   {
+    "modelo": "Spider H32X",
+    "nMin": 3,
+    "custoOp": 1102.2577801356379
+   },
+   {
+    "modelo": "Spider H60-4",
+    "nMin": 3,
+    "custoOp": 1112.6456429940297
+   },
+   {
+    "modelo": "Spider H120",
+    "nMin": 2,
+    "custoOp": 1140.071291060476
+   },
+   {
+    "modelo": "DJI FlyCart 30",
+    "nMin": 3,
+    "custoOp": 1164.6153332650517
+   },
+   {
+    "modelo": "Spider H160",
+    "nMin": 3,
+    "custoOp": 1207.7793333574018
+   },
+   {
+    "modelo": "Spider M65",
+    "nMin": 3,
+    "custoOp": 1234.2610407110087
+   },
+   {
+    "modelo": "Spider H40X",
+    "nMin": 3,
+    "custoOp": 1266.745615875537
+   },
+   {
+    "modelo": "Spider H200",
+    "nMin": 3,
+    "custoOp": 1367.7407796963912
+   },
+   {
+    "modelo": "DJI Agras T100",
+    "nMin": 3,
+    "custoOp": 1526.9796355106494
+   },
+   {
+    "modelo": "Spider H300 (100 L)",
+    "nMin": 4,
+    "custoOp": 1751.0107696986365
+   },
+   {
+    "modelo": "Spider M400",
+    "nMin": 3,
+    "custoOp": 1782.4223744459146
+   },
+   {
+    "modelo": "Spider H300 Firefighting (4×25 kg)",
+    "nMin": 4,
+    "custoOp": 1845.21910303197
+   },
+   {
+    "modelo": "DJI Agras T20P",
+    "nMin": 6,
+    "custoOp": 1858.6882892617682
+   },
+   {
+    "modelo": "EAVision EA-30X",
+    "nMin": 4,
+    "custoOp": 1885.07773322674
+   },
+   {
+    "modelo": "XAG P100 Pro",
+    "nMin": 5,
+    "custoOp": 1910.0733944962458
+   },
+   {
+    "modelo": "DJI Agras T10",
+    "nMin": 5,
+    "custoOp": 1972.5441127223373
+   },
+   {
+    "modelo": "DJI Agras T25",
+    "nMin": 6,
+    "custoOp": 2029.5864142617684
+   },
+   {
+    "modelo": "DJI Agras T40",
+    "nMin": 5,
+    "custoOp": 2036.965434333267
+   },
+   {
+    "modelo": "DJI Agras T30",
+    "nMin": 4,
+    "custoOp": 2142.6471776711846
+   },
+   {
+    "modelo": "DJI Agras T50",
+    "nMin": 5,
+    "custoOp": 2358.9756148888227
+   },
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 2,
+    "custoOp": 9198.048980897545
+   },
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": 3,
+    "custoOp": 18444.99050214327
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 2,
+    "custoOp": 19625.43761063699
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 2,
+    "custoOp": 23353.334130302806
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 2,
+    "custoOp": 67117.17121216429
+   }
+  ],
+  "final": {
+   "ok": true,
+   "burnedHa": 1.4,
+   "burnedHaSemDrones": 171,
+   "tCont": 8820,
+   "tExt": 9120,
+   "litres": 470.90338135177996,
+   "flightH": 2.613888888888889,
+   "lineM": 4775.702622122635,
+   "tactic": "indireto",
+   "tot": 1165.4447946845366
+  },
+  "mc": {
+   "K": 24,
+   "P": 0.9166666666666666,
+   "ci": [
+    0.741507847985494,
+    0.9768416721570264
+   ],
+   "burned": {
+    "p10": 1.304,
+    "p50": 1.94,
+    "p90": 6.623999999999997,
+    "max": 176
+   },
+   "cost": {
+    "p10": 1002.1451057262273,
+    "p50": 1155.6853271044092,
+    "p90": 1363.9033931944994
+   },
+   "nExt": 22
+  },
+  "tornado": {
+   "baseN": 3,
+   "rows": [
+    {
+     "lab": "Custo logístico por drone por operação",
+     "lo": 3,
+     "hi": 3,
+     "dLo": -225,
+     "dHi": 225
+    },
+    {
+     "lab": "Velocidade do vento",
+     "lo": 2,
+     "hi": 3,
+     "dLo": -184,
+     "dHi": 0
+    },
+    {
+     "lab": "Carga de combustível",
+     "lo": 2,
+     "hi": 3,
+     "dLo": -184,
+     "dHi": 0
+    },
+    {
+     "lab": "Custo operacional por hora de voo",
+     "lo": 3,
+     "hi": 3,
+     "dLo": -41.20611111111111,
+     "dHi": 41.20611111111111
+    },
+    {
+     "lab": "Preço dos drones (CapEx)",
+     "lo": 3,
+     "hi": 3,
+     "dLo": -25.5,
+     "dHi": 25.5
+    },
+    {
+     "lab": "Custo da água",
+     "lo": 3,
+     "hi": 3,
+     "dLo": -1.4973929962734474,
+     "dHi": 1.4973929962734474
+    }
+   ]
+  },
+  "t_total_s": 106.16,
+  "as350Inviavel": false,
+  "triagemTrip": [
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 2,
+    "custoOp": 9198.048980897545
+   },
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": 3,
+    "custoOp": 18444.99050214327
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 2,
+    "custoOp": 19625.43761063699
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 2,
+    "custoOp": 23353.334130302806
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 2,
+    "custoOp": 67117.17121216429
+   }
+  ]
+ },
+ "1": {
+  "fi": 1,
+  "nome": "2 · Campo rupestre (campo sujo rochoso)",
+  "cs": 20,
+  "N": 100,
+  "nMax": 60,
+  "t_opt_s": 198.243,
+  "modelo": "DJI FlyCart 30",
+  "nMin": 6,
+  "nRisco": 10,
+  "capped": false,
+  "P": 0.9,
+  "Pci": [
+   0.6989617935882066,
+   0.9721341060158467
+  ],
+  "nBusca": 8,
+  "confirmado": true,
+  "Kconf": 20,
+  "tatica": "indireto",
+  "custoOp": 2595.4127188183375,
+  "capex": 170000,
+  "ranking": [
+   {
+    "modelo": "DJI FlyCart 30",
+    "nMin": 6,
+    "nRisco": 10,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 2595.4127188183375,
+    "capex": 170000,
+    "op": {
+     "n": 10,
+     "P": 0.9,
+     "burned": 4.140000000000001,
+     "tCont": 5430,
+     "nCont": 9,
+     "tExt": 5830,
+     "nExt": 9,
+     "litres": 5262.674346244309,
+     "flightH": 10.042222222222223,
+     "drops": 2564.7,
+     "sorties": 259.1,
+     "lineM": 13427.383828825672,
+     "depot": 0,
+     "esc": 1
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Spider H32X",
+    "nMin": 9,
+    "nRisco": 20,
+    "P": 1,
+    "capped": false,
+    "custoOp": 3368.188861355127,
+    "capex": 160000,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 3.6,
+     "tCont": 5190,
+     "nCont": 10,
+     "tExt": 5400,
+     "nExt": 10,
+     "litres": 2562.7287104486736,
+     "flightH": 12.506111111111112,
+     "drops": 2380.2,
+     "sorties": 287.6,
+     "lineM": 8658.098777429164,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Spider H40X",
+    "nMin": 8,
+    "nRisco": 20,
+    "P": 1,
+    "capped": false,
+    "custoOp": 3517.6067288993727,
+    "capex": 200000,
+    "op": {
+     "n": 10,
+     "P": 0.9,
+     "burned": 2.76,
+     "tCont": 5020,
+     "nCont": 10,
+     "tExt": 5420,
+     "nExt": 10,
+     "litres": 4230.164826811083,
+     "flightH": 18.821944444444444,
+     "drops": 3311,
+     "sorties": 363.7,
+     "lineM": 12574.006016665935,
+     "depot": 0,
+     "esc": 1
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Spider H60-4",
+    "nMin": 8,
+    "nRisco": 17,
+    "P": 0.95,
+    "capped": false,
+    "custoOp": 3879.5934948182617,
+    "capex": 238000,
+    "op": {
+     "n": 10,
+     "P": 0.9,
+     "burned": 2.92,
+     "tCont": 5010,
+     "nCont": 9,
+     "tExt": 5280,
+     "nExt": 9,
+     "litres": 5809.804447103279,
+     "flightH": 17.29722222222222,
+     "drops": 3302.9,
+     "sorties": 299.1,
+     "lineM": 14435.606773605667,
+     "depot": 0,
+     "esc": 1
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 2,
+    "nRisco": 2,
+    "P": 0.95,
+    "capped": false,
+    "custoOp": 9604.998421934179,
+    "capex": 3000000,
+    "tripulada": true,
+    "op": {
+     "n": 20,
+     "P": 0.95,
+     "burned": 16.380000000000003,
+     "tCont": 8735,
+     "nCont": 20,
+     "tExt": 9115,
+     "nExt": 20,
+     "litres": 19273.38423641891,
+     "flightH": 1.771388888888889,
+     "drops": 3682.1,
+     "sorties": 120.65,
+     "lineM": 18071.23510018443,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 2,
+    "nRisco": 2,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 18741.037824880186,
+    "capex": 8000000,
+    "tripulada": true,
+    "op": {
+     "n": 20,
+     "P": 0.9,
+     "burned": 13.84,
+     "tCont": 8165,
+     "nCont": 20,
+     "tExt": 8405,
+     "nExt": 20,
+     "litres": 19144.223687388396,
+     "flightH": 1.7591666666666668,
+     "drops": 3720,
+     "sorties": 118.35,
+     "lineM": 17934.947956594027,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 2,
+    "nRisco": 2,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 25931.84519336391,
+    "capex": 9000000,
+    "tripulada": true,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 14.34,
+     "tCont": 7335,
+     "nCont": 10,
+     "tExt": 7735,
+     "nExt": 10,
+     "litres": 17727.283639753263,
+     "flightH": 1.5066666666666666,
+     "drops": 3452,
+     "sorties": 106.2,
+     "lineM": 16646.370187889697,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 3,
+    "nRisco": 4,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 149124.391755161,
+    "capex": 60000000,
+    "tripulada": true,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 18.259999999999998,
+     "tCont": 5950,
+     "nCont": 10,
+     "tExt": 6220,
+     "nExt": 10,
+     "litres": 27014.02198612911,
+     "flightH": 1.8622222222222224,
+     "drops": 4157,
+     "sorties": 122.4,
+     "lineM": 20368.65787020903,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 20
+   }
+  ],
+  "triagem": [
+   {
+    "modelo": "DJI FlyCart 30",
+    "nMin": 6,
+    "custoOp": 1793.192293144807
+   },
+   {
+    "modelo": "Spider H40X",
+    "nMin": 8,
+    "custoOp": 2111.8332149203734
+   },
+   {
+    "modelo": "Spider H32X",
+    "nMin": 9,
+    "custoOp": 2170.029323745157
+   },
+   {
+    "modelo": "Spider H60-4",
+    "nMin": 8,
+    "custoOp": 2263.0521559803046
+   },
+   {
+    "modelo": "Spider M65",
+    "nMin": 8,
+    "custoOp": 2422.6306598185784
+   },
+   {
+    "modelo": "Spider H120",
+    "nMin": 9,
+    "custoOp": 2485.5142184882743
+   },
+   {
+    "modelo": "Spider H160",
+    "nMin": 7,
+    "custoOp": 2544.09892787672
+   },
+   {
+    "modelo": "DJI Agras T100",
+    "nMin": 6,
+    "custoOp": 2673.8645283943933
+   },
+   {
+    "modelo": "Spider H200",
+    "nMin": 9,
+    "custoOp": 3327.3143946117925
+   },
+   {
+    "modelo": "Spider H300 (100 L)",
+    "nMin": 9,
+    "custoOp": 3480.0173580599158
+   },
+   {
+    "modelo": "Spider H300 Firefighting (4×25 kg)",
+    "nMin": 9,
+    "custoOp": 3712.4270802821375
+   },
+   {
+    "modelo": "EAVision EA-30X",
+    "nMin": 19,
+    "custoOp": 4960.994393714205
+   },
+   {
+    "modelo": "DJI Agras T30",
+    "nMin": 19,
+    "custoOp": 5488.529115936427
+   },
+   {
+    "modelo": "XAG P100 Pro",
+    "nMin": 17,
+    "custoOp": 5600.187426035607
+   },
+   {
+    "modelo": "DJI Agras T20P",
+    "nMin": 22,
+    "custoOp": 6105.363872789126
+   },
+   {
+    "modelo": "DJI Agras T40",
+    "nMin": 18,
+    "custoOp": 6179.54152457389
+   },
+   {
+    "modelo": "DJI Agras T25",
+    "nMin": 22,
+    "custoOp": 6957.690671400237
+   },
+   {
+    "modelo": "DJI Agras T50",
+    "nMin": 18,
+    "custoOp": 7388.008434296112
+   },
+   {
+    "modelo": "Spider M400",
+    "nMin": 12,
+    "custoOp": 7457.58562853826
+   },
+   {
+    "modelo": "DJI Agras T10",
+    "nMin": 40,
+    "custoOp": 9659.822887925264
+   },
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 2,
+    "custoOp": 11704.466130177956
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 2,
+    "custoOp": 20133.51077001092
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 2,
+    "custoOp": 23098.38737375536
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 3,
+    "custoOp": 99939.22338276124
+   },
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": null,
+    "custoOp": null
+   }
+  ],
+  "final": {
+   "ok": true,
+   "burnedHa": 3.56,
+   "burnedHaSemDrones": 232.44,
+   "tCont": 4970,
+   "tExt": 5200,
+   "litres": 2450.54198637698,
+   "flightH": 4.611111111111111,
+   "lineM": 6875.819265928632,
+   "tactic": "indireto",
+   "tot": 2548.224932154107
+  },
+  "mc": {
+   "K": 24,
+   "P": 0.9166666666666666,
+   "ci": [
+    0.741507847985494,
+    0.9768416721570264
+   ],
+   "burned": {
+    "p10": 2.48,
+    "p50": 3.58,
+    "p90": 8.479999999999999,
+    "max": 241.68
+   },
+   "cost": {
+    "p10": 2008.2587416415677,
+    "p50": 2579.7408792518836,
+    "p90": 3326.83082606231
+   },
+   "nExt": 22
+  },
+  "tornado": {
+   "baseN": 6,
+   "rows": [
+    {
+     "lab": "Velocidade do vento",
+     "lo": 4,
+     "hi": 9,
+     "dLo": -368.0000000000002,
+     "dHi": 552
+    },
+    {
+     "lab": "Tempo de resposta (detecção+despacho)",
+     "lo": 5,
+     "hi": 9,
+     "dLo": -184.00000000000023,
+     "dHi": 552
+    },
+    {
+     "lab": "Custo logístico por drone por operação",
+     "lo": 6,
+     "hi": 6,
+     "dLo": -450.0000000000002,
+     "dHi": 450
+    },
+    {
+     "lab": "Custo operacional por hora de voo",
+     "lo": 6,
+     "hi": 6,
+     "dLo": -213.65222222222246,
+     "dHi": 213.652222222222
+    },
+    {
+     "lab": "Direção do vento",
+     "lo": 5,
+     "hi": 6,
+     "dLo": -184.00000000000023,
+     "dHi": 0
+    },
+    {
+     "lab": "Umidade relativa",
+     "lo": 5,
+     "hi": 6,
+     "dLo": -184.00000000000023,
+     "dHi": 0
+    }
+   ]
+  },
+  "t_total_s": 279.771,
+  "as350Inviavel": false,
+  "triagemTrip": [
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 2,
+    "custoOp": 11704.466130177956
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 2,
+    "custoOp": 20133.51077001092
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 2,
+    "custoOp": 23098.38737375536
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 3,
+    "custoOp": 99939.22338276124
+   },
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": null,
+    "custoOp": null
+   }
+  ]
+ },
+ "2": {
+  "fi": 2,
+  "nome": "3 · Cerrado campo limpo/sujo (NFFL 3)",
+  "cs": 20,
+  "N": 112,
+  "nMax": 60,
+  "t_opt_s": 144.471,
+  "modelo": "Spider H40X",
+  "nMin": 10,
+  "nRisco": 14,
+  "capped": false,
+  "P": 0.9,
+  "Pci": [
+   0.5958436145024278,
+   0.9821242504842789
+  ],
+  "nBusca": 14,
+  "confirmado": false,
+  "Kconf": null,
+  "tatica": "indireto",
+  "custoOp": 2565.0532733706646,
+  "capex": 140000,
+  "ranking": [
+   {
+    "modelo": "Spider H40X",
+    "nMin": 10,
+    "nRisco": 14,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 2565.0532733706646,
+    "capex": 140000,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 3.46,
+     "tCont": 4240,
+     "nCont": 10,
+     "tExt": 4835,
+     "nExt": 10,
+     "litres": 2231.4760137723542,
+     "flightH": 6.6097222222222225,
+     "drops": 1119.4,
+     "sorties": 181.3,
+     "lineM": 6173.325185321935,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "DJI FlyCart 30",
+    "nMin": 6,
+    "nRisco": 9,
+    "P": 0.95,
+    "capped": false,
+    "custoOp": 2946.5944057565903,
+    "capex": 153000,
+    "op": {
+     "n": 10,
+     "P": 0.9,
+     "burned": 3.78,
+     "tCont": 4510,
+     "nCont": 9,
+     "tExt": 5110,
+     "nExt": 9,
+     "litres": 4818.9218257866105,
+     "flightH": 7.161388888888889,
+     "drops": 1559.8,
+     "sorties": 202.5,
+     "lineM": 10589.301431218333,
+     "depot": 0,
+     "esc": 1
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Spider H120",
+    "nMin": 9,
+    "nRisco": 11,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 3096.6375953187016,
+    "capex": 198000,
+    "op": {
+     "n": 10,
+     "P": 0.8,
+     "burned": 3.2199999999999998,
+     "tCont": 4230,
+     "nCont": 8,
+     "tExt": 4325,
+     "nExt": 8,
+     "litres": 9633.22834909841,
+     "flightH": 13.476111111111113,
+     "drops": 2306,
+     "sorties": 239.4,
+     "lineM": 16961.249620905786,
+     "depot": 0,
+     "esc": 2
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Spider H60-4",
+    "nMin": 9,
+    "nRisco": 13,
+    "P": 0.95,
+    "capped": false,
+    "custoOp": 3126.3871057985875,
+    "capex": 182000,
+    "op": {
+     "n": 10,
+     "P": 0.9,
+     "burned": 3.46,
+     "tCont": 4000,
+     "nCont": 9,
+     "tExt": 4350,
+     "nExt": 9,
+     "litres": 4520.771817957891,
+     "flightH": 10.845,
+     "drops": 1724.8,
+     "sorties": 213.4,
+     "lineM": 11433.033868175584,
+     "depot": 0,
+     "esc": 1
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 2,
+    "nRisco": 2,
+    "P": 1,
+    "capped": false,
+    "custoOp": 8518.873565538956,
+    "capex": 3000000,
+    "tripulada": true,
+    "op": {
+     "n": 20,
+     "P": 1,
+     "burned": 13.7,
+     "tCont": 5405,
+     "nCont": 20,
+     "tExt": 5900,
+     "nExt": 20,
+     "litres": 15590.904056654865,
+     "flightH": 1.0427777777777778,
+     "drops": 1920.95,
+     "sorties": 79.7,
+     "lineM": 12936.730274942392,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 2,
+    "nRisco": 2,
+    "P": 1,
+    "capped": false,
+    "custoOp": 17526.407187053093,
+    "capex": 8000000,
+    "tripulada": true,
+    "op": {
+     "n": 20,
+     "P": 1,
+     "burned": 12.54,
+     "tCont": 4800,
+     "nCont": 20,
+     "tExt": 5330,
+     "nExt": 20,
+     "litres": 15113.700765602069,
+     "flightH": 0.9241666666666667,
+     "drops": 1854.05,
+     "sorties": 67.2,
+     "lineM": 12692.653619053299,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 1,
+    "nRisco": 2,
+    "P": 1,
+    "capped": false,
+    "custoOp": 24256.70698622942,
+    "capex": 9000000,
+    "tripulada": true,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 12.28,
+     "tCont": 4885,
+     "nCont": 10,
+     "tExt": 5355,
+     "nExt": 10,
+     "litres": 15210.131899766566,
+     "flightH": 0.906388888888889,
+     "drops": 1921.9,
+     "sorties": 68.8,
+     "lineM": 12699.888294527831,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 2,
+    "nRisco": 2,
+    "P": 1,
+    "capped": false,
+    "custoOp": 75624.13689875707,
+    "capex": 30000000,
+    "tripulada": true,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 18.86,
+     "tCont": 5825,
+     "nCont": 10,
+     "tExt": 6425,
+     "nExt": 10,
+     "litres": 24801.26045177722,
+     "flightH": 0.8697222222222223,
+     "drops": 2136.1,
+     "sorties": 60,
+     "lineM": 16557.865208262912,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 20
+   }
+  ],
+  "triagem": [
+   {
+    "modelo": "DJI FlyCart 30",
+    "nMin": 6,
+    "custoOp": 1797.184949803402
+   },
+   {
+    "modelo": "Spider H60-4",
+    "nMin": 9,
+    "custoOp": 2315.988330390701
+   },
+   {
+    "modelo": "Spider H120",
+    "nMin": 9,
+    "custoOp": 2381.782575241873
+   },
+   {
+    "modelo": "Spider H40X",
+    "nMin": 10,
+    "custoOp": 2420.7887486564155
+   },
+   {
+    "modelo": "DJI Agras T100",
+    "nMin": 6,
+    "custoOp": 2452.7131316180253
+   },
+   {
+    "modelo": "Spider H160",
+    "nMin": 10,
+    "custoOp": 2884.2819792171204
+   },
+   {
+    "modelo": "Spider M65",
+    "nMin": 11,
+    "custoOp": 2899.9399249148823
+   },
+   {
+    "modelo": "Spider H200",
+    "nMin": 10,
+    "custoOp": 3254.9519595587144
+   },
+   {
+    "modelo": "Spider H300 (100 L)",
+    "nMin": 9,
+    "custoOp": 3255.0238140963347
+   },
+   {
+    "modelo": "Spider H32X",
+    "nMin": 16,
+    "custoOp": 3298.5663088808305
+   },
+   {
+    "modelo": "Spider H300 Firefighting (4×25 kg)",
+    "nMin": 9,
+    "custoOp": 3455.3988140963347
+   },
+   {
+    "modelo": "EAVision EA-30X",
+    "nMin": 16,
+    "custoOp": 3789.743300640675
+   },
+   {
+    "modelo": "DJI Agras T30",
+    "nMin": 16,
+    "custoOp": 4080.8544117517863
+   },
+   {
+    "modelo": "DJI Agras T20P",
+    "nMin": 16,
+    "custoOp": 4086.988636861888
+   },
+   {
+    "modelo": "DJI Agras T40",
+    "nMin": 13,
+    "custoOp": 4316.1688139904745
+   },
+   {
+    "modelo": "XAG P100 Pro",
+    "nMin": 15,
+    "custoOp": 4445.260283288239
+   },
+   {
+    "modelo": "DJI Agras T25",
+    "nMin": 16,
+    "custoOp": 4524.523164639666
+   },
+   {
+    "modelo": "DJI Agras T50",
+    "nMin": 13,
+    "custoOp": 5069.259536212697
+   },
+   {
+    "modelo": "Spider M400",
+    "nMin": 12,
+    "custoOp": 6017.744715848165
+   },
+   {
+    "modelo": "DJI Agras T10",
+    "nMin": 28,
+    "custoOp": 6113.936848836938
+   },
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 2,
+    "custoOp": 8725.672203925216
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 1,
+    "custoOp": 12277.248198403064
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 2,
+    "custoOp": 18634.604689724107
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 2,
+    "custoOp": 64898.53559385588
+   },
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": null,
+    "custoOp": null
+   }
+  ],
+  "final": {
+   "ok": true,
+   "burnedHa": 3.56,
+   "burnedHaSemDrones": 329.96,
+   "tCont": 3790,
+   "tExt": 4390,
+   "litres": 2143.671456630737,
+   "flightH": 5.5777777777777775,
+   "lineM": 6294.955208025948,
+   "tactic": "indireto",
+   "tot": 3030.162801727598
+  },
+  "mc": {
+   "K": 24,
+   "P": 0.9583333333333334,
+   "ci": [
+    0.7975777375115778,
+    0.9926067346451949
+   ],
+   "burned": {
+    "p10": 2.676,
+    "p50": 3.14,
+    "p90": 6.291999999999998,
+    "max": 387.36
+   },
+   "cost": {
+    "p10": 2201.3697332534207,
+    "p50": 3037.805730152344,
+    "p90": 4034.4654376119056
+   },
+   "nExt": 23
+  },
+  "tornado": {
+   "baseN": 9,
+   "rows": [
+    {
+     "lab": "Velocidade do vento",
+     "lo": 6,
+     "hi": 15,
+     "dLo": -510,
+     "dHi": 1020
+    },
+    {
+     "lab": "Custo logístico por drone por operação",
+     "lo": 9,
+     "hi": 9,
+     "dLo": -675,
+     "dHi": 675
+    },
+    {
+     "lab": "Tempo de resposta (detecção+despacho)",
+     "lo": 8,
+     "hi": 12,
+     "dLo": -170,
+     "dHi": 510
+    },
+    {
+     "lab": "Umidade relativa",
+     "lo": 12,
+     "hi": 11,
+     "dLo": 510,
+     "dHi": 340
+    },
+    {
+     "lab": "Carga de combustível",
+     "lo": 8,
+     "hi": 12,
+     "dLo": -170,
+     "dHi": 510
+    },
+    {
+     "lab": "Água por kg de combustível (razão de molhamento)",
+     "lo": 8,
+     "hi": 11,
+     "dLo": -170,
+     "dHi": 340
+    }
+   ]
+  },
+  "t_total_s": 247.672,
+  "as350Inviavel": false,
+  "triagemTrip": [
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 2,
+    "custoOp": 8725.672203925216
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 1,
+    "custoOp": 12277.248198403064
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 2,
+    "custoOp": 18634.604689724107
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 2,
+    "custoOp": 64898.53559385588
+   },
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": null,
+    "custoOp": null
+   }
+  ]
+ },
+ "3": {
+  "fi": 3,
+  "nome": "4 · Cerrado sentido restrito (framework)",
+  "cs": 20,
+  "N": 112,
+  "nMax": 60,
+  "t_opt_s": 178.204,
+  "modelo": "DJI Agras T100",
+  "nMin": 9,
+  "nRisco": 13,
+  "capped": false,
+  "P": 0.9,
+  "Pci": [
+   0.5958436145024278,
+   0.9821242504842789
+  ],
+  "nBusca": 13,
+  "confirmado": false,
+  "Kconf": null,
+  "tatica": "indireto",
+  "custoOp": 4066.072428367714,
+  "capex": 715000,
+  "ranking": [
+   {
+    "modelo": "DJI Agras T100",
+    "nMin": 9,
+    "nRisco": 13,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 4066.072428367714,
+    "capex": 715000,
+    "op": {
+     "n": 10,
+     "P": 0.8,
+     "burned": 7.9,
+     "tCont": 4520,
+     "nCont": 10,
+     "tExt": 5710,
+     "nExt": 10,
+     "litres": 17890.732142835765,
+     "flightH": 6.08611111111111,
+     "drops": 985.9,
+     "sorties": 210.1,
+     "lineM": 11579.763669384327,
+     "depot": 2,
+     "esc": 2
+    },
+    "mobMin": 3
+   },
+   {
+    "modelo": "Spider H60-4",
+    "nMin": 16,
+    "nRisco": 24,
+    "P": 1,
+    "capped": false,
+    "custoOp": 4194.195880802547,
+    "capex": 336000,
+    "op": {
+     "n": 10,
+     "P": 0.9,
+     "burned": 3.2,
+     "tCont": 2430,
+     "nCont": 10,
+     "tExt": 3520,
+     "nExt": 10,
+     "litres": 5834.0469710221505,
+     "flightH": 9.200555555555555,
+     "drops": 806.6,
+     "sorties": 231.9,
+     "lineM": 7665.756591419302,
+     "depot": 1,
+     "esc": 1
+    },
+    "mobMin": 3
+   },
+   {
+    "modelo": "DJI FlyCart 30",
+    "nMin": 12,
+    "nRisco": 20,
+    "P": 0.95,
+    "capped": false,
+    "custoOp": 4455.869408908554,
+    "capex": 340000,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 3.88,
+     "tCont": 2900,
+     "nCont": 10,
+     "tExt": 3925,
+     "nExt": 10,
+     "litres": 3971.49881947829,
+     "flightH": 4.405833333333334,
+     "drops": 638.2,
+     "sorties": 172.2,
+     "lineM": 5435.178202464315,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 3
+   },
+   {
+    "modelo": "Spider H160",
+    "nMin": 14,
+    "nRisco": 20,
+    "P": 1,
+    "capped": false,
+    "custoOp": 4907.345733811353,
+    "capex": 500000,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 3.9400000000000004,
+     "tCont": 2575,
+     "nCont": 10,
+     "tExt": 3520,
+     "nExt": 10,
+     "litres": 6878.690618921818,
+     "flightH": 4.6338888888888885,
+     "drops": 555.8,
+     "sorties": 134.7,
+     "lineM": 5785.15859961754,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 3
+   },
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 2,
+    "nRisco": 3,
+    "P": 1,
+    "capped": false,
+    "custoOp": 11310.818977864044,
+    "capex": 4500000,
+    "tripulada": true,
+    "op": {
+     "n": 20,
+     "P": 1,
+     "burned": 26.240000000000002,
+     "tCont": 4085,
+     "nCont": 20,
+     "tExt": 5495,
+     "nExt": 20,
+     "litres": 34108.22572152808,
+     "flightH": 1.07625,
+     "drops": 1668.35,
+     "sorties": 85.4,
+     "lineM": 16668.21936967523,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 2,
+    "nRisco": 2,
+    "P": 1,
+    "capped": false,
+    "custoOp": 24055.60860120761,
+    "capex": 9000000,
+    "tripulada": true,
+    "op": {
+     "n": 10,
+     "P": 0.9,
+     "burned": 24.48,
+     "tCont": 4280,
+     "nCont": 10,
+     "tExt": 5370,
+     "nExt": 10,
+     "litres": 33549.33553592721,
+     "flightH": 0.7052777777777779,
+     "drops": 1524.7,
+     "sorties": 49.6,
+     "lineM": 16305.355711150138,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 2,
+    "nRisco": 3,
+    "P": 1,
+    "capped": false,
+    "custoOp": 24977.147060975465,
+    "capex": 12000000,
+    "tripulada": true,
+    "op": {
+     "n": 20,
+     "P": 1,
+     "burned": 21.18,
+     "tCont": 3325,
+     "nCont": 20,
+     "tExt": 4825,
+     "nExt": 20,
+     "litres": 29144.324761672196,
+     "flightH": 0.7744444444444445,
+     "drops": 1333.95,
+     "sorties": 59.15,
+     "lineM": 14407.58744199056,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 2,
+    "nRisco": 3,
+    "P": 1,
+    "capped": false,
+    "custoOp": 107904.4251142234,
+    "capex": 45000000,
+    "tripulada": true,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 28.22,
+     "tCont": 3300,
+     "nCont": 10,
+     "tExt": 4720,
+     "nExt": 10,
+     "litres": 45405.41339232987,
+     "flightH": 0.586111111111111,
+     "drops": 1343.2,
+     "sorties": 38,
+     "lineM": 18134.846241188345,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 20
+   }
+  ],
+  "triagem": [
+   {
+    "modelo": "DJI FlyCart 30",
+    "nMin": 12,
+    "custoOp": 2983.2023718523496
+   },
+   {
+    "modelo": "DJI Agras T100",
+    "nMin": 9,
+    "custoOp": 3713.473975174952
+   },
+   {
+    "modelo": "Spider H60-4",
+    "nMin": 16,
+    "custoOp": 3797.1897535608205
+   },
+   {
+    "modelo": "Spider H160",
+    "nMin": 14,
+    "custoOp": 3934.7332667073106
+   },
+   {
+    "modelo": "Spider M65",
+    "nMin": 16,
+    "custoOp": 4008.436492469683
+   },
+   {
+    "modelo": "Spider H120",
+    "nMin": 16,
+    "custoOp": 4124.875204585733
+   },
+   {
+    "modelo": "Spider H40X",
+    "nMin": 21,
+    "custoOp": 4448.81717459846
+   },
+   {
+    "modelo": "Spider H32X",
+    "nMin": 23,
+    "custoOp": 4595.447182961638
+   },
+   {
+    "modelo": "Spider H200",
+    "nMin": 14,
+    "custoOp": 4641.647132479497
+   },
+   {
+    "modelo": "DJI Agras T40",
+    "nMin": 22,
+    "custoOp": 5452.70284385285
+   },
+   {
+    "modelo": "EAVision EA-30X",
+    "nMin": 27,
+    "custoOp": 5662.397514474167
+   },
+   {
+    "modelo": "Spider H300 (100 L)",
+    "nMin": 15,
+    "custoOp": 5846.9544426547345
+   },
+   {
+    "modelo": "XAG P100 Pro",
+    "nMin": 22,
+    "custoOp": 5979.91539063419
+   },
+   {
+    "modelo": "Spider M400",
+    "nMin": 16,
+    "custoOp": 6020.255075977246
+   },
+   {
+    "modelo": "DJI Agras T30",
+    "nMin": 27,
+    "custoOp": 6026.80723669639
+   },
+   {
+    "modelo": "DJI Agras T50",
+    "nMin": 22,
+    "custoOp": 6122.727718852851
+   },
+   {
+    "modelo": "Spider H300 Firefighting (4×25 kg)",
+    "nMin": 15,
+    "custoOp": 6269.725275988068
+   },
+   {
+    "modelo": "DJI Agras T20P",
+    "nMin": 34,
+    "custoOp": 7172.633627338147
+   },
+   {
+    "modelo": "DJI Agras T25",
+    "nMin": 34,
+    "custoOp": 7755.100363449258
+   },
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 2,
+    "custoOp": 9628.129883273818
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 2,
+    "custoOp": 18811.508661973887
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 2,
+    "custoOp": 21196.44295761119
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 2,
+    "custoOp": 65159.2692439664
+   },
+   {
+    "modelo": "DJI Agras T10",
+    "nMin": null,
+    "custoOp": null
+   },
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": null,
+    "custoOp": null
+   }
+  ],
+  "final": {
+   "ok": true,
+   "burnedHa": 10.08,
+   "burnedHaSemDrones": 498.2,
+   "tCont": 4380,
+   "tExt": 5620,
+   "litres": 14707.487734660257,
+   "flightH": 3.9583333333333335,
+   "lineM": 10823.640731114423,
+   "tactic": "indireto",
+   "tot": 4497.808272006634
+  },
+  "mc": {
+   "K": 24,
+   "P": 0.8333333333333334,
+   "ci": [
+    0.6414652961213058,
+    0.9332143199927109
+   ],
+   "burned": {
+    "p10": 3.3720000000000003,
+    "p50": 6.2,
+    "p90": 469.764,
+    "max": 488.96
+   },
+   "cost": {
+    "p10": 3716.212692104368,
+    "p50": 4247.976683736753,
+    "p90": 6259.696443360403
+   },
+   "nExt": 24
+  },
+  "tornado": {
+   "baseN": 10,
+   "rows": [
+    {
+     "lab": "Água por kg de combustível (razão de molhamento)",
+     "lo": 9,
+     "hi": 14,
+     "dLo": -260.00000000000045,
+     "dHi": 1040
+    },
+    {
+     "lab": "Largura da faixa molhada por lançamento",
+     "lo": 9,
+     "hi": 14,
+     "dLo": -260.00000000000045,
+     "dHi": 1040
+    },
+    {
+     "lab": "Umidade relativa",
+     "lo": 13,
+     "hi": 11,
+     "dLo": 780,
+     "dHi": 260
+    },
+    {
+     "lab": "Tempo de recarga/troca de bateria",
+     "lo": 9,
+     "hi": 13,
+     "dLo": -260.00000000000045,
+     "dHi": 780
+    },
+    {
+     "lab": "Custo logístico por drone por operação",
+     "lo": 10,
+     "hi": 10,
+     "dLo": -750.0000000000005,
+     "dHi": 750
+    },
+    {
+     "lab": "Velocidade do vento",
+     "lo": 9,
+     "hi": 12,
+     "dLo": -260.00000000000045,
+     "dHi": 520
+    }
+   ]
+  },
+  "t_total_s": 282.133,
+  "as350Inviavel": false,
+  "triagemTrip": [
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 2,
+    "custoOp": 9628.129883273818
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 2,
+    "custoOp": 18811.508661973887
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 2,
+    "custoOp": 21196.44295761119
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 2,
+    "custoOp": 65159.2692439664
+   },
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": null,
+    "custoOp": null
+   }
+  ]
+ },
+ "4": {
+  "fi": 4,
+  "nome": "5 · Cerradão (serapilheira + sub-bosque)",
+  "cs": 10,
+  "N": 200,
+  "nMax": 60,
+  "t_opt_s": 201.776,
+  "modelo": "Spider M65",
+  "nMin": 3,
+  "nRisco": 4,
+  "capped": false,
+  "P": 1,
+  "Pci": [
+   0.7224598312333834,
+   1
+  ],
+  "nBusca": 4,
+  "confirmado": false,
+  "Kconf": null,
+  "tatica": "indireto",
+  "custoOp": 1335.690986630205,
+  "capex": 88000,
+  "ranking": [
+   {
+    "modelo": "Spider M65",
+    "nMin": 3,
+    "nRisco": 4,
+    "P": 1,
+    "capped": false,
+    "custoOp": 1335.690986630205,
+    "capex": 88000,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 0.8049999999999999,
+     "tCont": 7425,
+     "nCont": 10,
+     "tExt": 10370,
+     "nExt": 10,
+     "litres": 2999.544342771912,
+     "flightH": 3.406388888888889,
+     "drops": 1058.4,
+     "sorties": 125.1,
+     "lineM": 3724.3044922931003,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Spider H120",
+    "nMin": 3,
+    "nRisco": 4,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 1377.819517150752,
+    "capex": 72000,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 0.83,
+     "tCont": 6415,
+     "nCont": 10,
+     "tExt": 9800,
+     "nExt": 10,
+     "litres": 2408.1486568698733,
+     "flightH": 3.249444444444444,
+     "drops": 922.2,
+     "sorties": 120.8,
+     "lineM": 3300.71495756925,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "DJI FlyCart 30",
+    "nMin": 3,
+    "nRisco": 4,
+    "P": 0.95,
+    "capped": false,
+    "custoOp": 1418.6522283965649,
+    "capex": 68000,
+    "op": {
+     "n": 10,
+     "P": 0.9,
+     "burned": 1.085,
+     "tCont": 7870,
+     "nCont": 9,
+     "tExt": 11470,
+     "nExt": 9,
+     "litres": 3157.055614894598,
+     "flightH": 3.688888888888889,
+     "drops": 1631,
+     "sorties": 183.6,
+     "lineM": 5059.488230263991,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Spider H160",
+    "nMin": 3,
+    "nRisco": 4,
+    "P": 1,
+    "capped": false,
+    "custoOp": 1421.087703497635,
+    "capex": 100000,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 0.76,
+     "tCont": 7475,
+     "nCont": 10,
+     "tExt": 10410,
+     "nExt": 10,
+     "litres": 3372.892466995884,
+     "flightH": 3.341111111111111,
+     "drops": 1047.3,
+     "sorties": 122.9,
+     "lineM": 3743.3749014066393,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 1,
+    "nRisco": 1,
+    "P": 1,
+    "capped": false,
+    "custoOp": 4464.836399332956,
+    "capex": 1500000,
+    "tripulada": true,
+    "op": {
+     "n": 20,
+     "P": 1,
+     "burned": 0.9450000000000001,
+     "tCont": 4645,
+     "nCont": 20,
+     "tExt": 8075,
+     "nExt": 20,
+     "litres": 5343.227883440322,
+     "flightH": 0.5591666666666666,
+     "drops": 1131.2,
+     "sorties": 70.2,
+     "lineM": 3346.16004456476,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": 1,
+    "nRisco": 1,
+    "P": 1,
+    "capped": false,
+    "custoOp": 6154.607553928865,
+    "capex": 2500000,
+    "tripulada": true,
+    "op": {
+     "n": 20,
+     "P": 1,
+     "burned": 1.76,
+     "tCont": 6220,
+     "nCont": 20,
+     "tExt": 9435,
+     "nExt": 20,
+     "litres": 9869.29840224604,
+     "flightH": 0.2909722222222223,
+     "drops": 1060.9,
+     "sorties": 29.8,
+     "lineM": 5345.958051405618,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 30
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 1,
+    "nRisco": 1,
+    "P": 1,
+    "capped": false,
+    "custoOp": 9207.874514219233,
+    "capex": 4000000,
+    "tripulada": true,
+    "op": {
+     "n": 20,
+     "P": 1,
+     "burned": 0.905,
+     "tCont": 4600,
+     "nCont": 20,
+     "tExt": 8140,
+     "nExt": 20,
+     "litres": 5667.278570990364,
+     "flightH": 0.5972222222222222,
+     "drops": 1329.15,
+     "sorties": 74.75,
+     "lineM": 3500.1083313648387,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 1,
+    "nRisco": 1,
+    "P": 1,
+    "capped": false,
+    "custoOp": 12749.964926699146,
+    "capex": 4500000,
+    "tripulada": true,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 0.87,
+     "tCont": 4490,
+     "nCont": 10,
+     "tExt": 8075,
+     "nExt": 10,
+     "litres": 5383.214626021885,
+     "flightH": 0.5330555555555555,
+     "drops": 1179.7,
+     "sorties": 70.9,
+     "lineM": 3376.916589573393,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 1,
+    "nRisco": 1,
+    "P": 1,
+    "capped": false,
+    "custoOp": 37486.94635196896,
+    "capex": 15000000,
+    "tripulada": true,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 1.0750000000000002,
+     "tCont": 4950,
+     "nCont": 10,
+     "tExt": 8465,
+     "nExt": 10,
+     "litres": 7507.425930639538,
+     "flightH": 0.4455555555555556,
+     "drops": 1168.3,
+     "sorties": 55.5,
+     "lineM": 4075.952884873327,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 20
+   }
+  ],
+  "triagem": [
+   {
+    "modelo": "Spider H120",
+    "nMin": 3,
+    "custoOp": 1174.8399324305478
+   },
+   {
+    "modelo": "Spider M65",
+    "nMin": 3,
+    "custoOp": 1180.9341798216885
+   },
+   {
+    "modelo": "DJI FlyCart 30",
+    "nMin": 3,
+    "custoOp": 1181.1968970851951
+   },
+   {
+    "modelo": "Spider H160",
+    "nMin": 3,
+    "custoOp": 1244.1178695876872
+   },
+   {
+    "modelo": "Spider H32X",
+    "nMin": 4,
+    "custoOp": 1296.0541578175348
+   },
+   {
+    "modelo": "Spider H40X",
+    "nMin": 4,
+    "custoOp": 1309.201594508509
+   },
+   {
+    "modelo": "Spider H60-4",
+    "nMin": 4,
+    "custoOp": 1336.9334595899636
+   },
+   {
+    "modelo": "Spider H200",
+    "nMin": 3,
+    "custoOp": 1376.591026440146
+   },
+   {
+    "modelo": "DJI Agras T100",
+    "nMin": 3,
+    "custoOp": 1477.0062629570796
+   },
+   {
+    "modelo": "EAVision EA-30X",
+    "nMin": 5,
+    "custoOp": 1529.8851639261206
+   },
+   {
+    "modelo": "XAG P100 Pro",
+    "nMin": 4,
+    "custoOp": 1555.5800734813365
+   },
+   {
+    "modelo": "DJI Agras T40",
+    "nMin": 4,
+    "custoOp": 1556.2588782450248
+   },
+   {
+    "modelo": "Spider H300 (100 L)",
+    "nMin": 3,
+    "custoOp": 1564.5211537393816
+   },
+   {
+    "modelo": "DJI Agras T30",
+    "nMin": 5,
+    "custoOp": 1620.4754417038985
+   },
+   {
+    "modelo": "Spider H300 Firefighting (4×25 kg)",
+    "nMin": 3,
+    "custoOp": 1649.7364315171594
+   },
+   {
+    "modelo": "DJI Agras T20P",
+    "nMin": 5,
+    "custoOp": 1711.5009237020495
+   },
+   {
+    "modelo": "DJI Agras T50",
+    "nMin": 4,
+    "custoOp": 1739.0334615783581
+   },
+   {
+    "modelo": "DJI Agras T25",
+    "nMin": 5,
+    "custoOp": 1879.749465368716
+   },
+   {
+    "modelo": "Spider M400",
+    "nMin": 5,
+    "custoOp": 2303.10600975724
+   },
+   {
+    "modelo": "DJI Agras T10",
+    "nMin": 9,
+    "custoOp": 3296.6752188466617
+   },
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 1,
+    "custoOp": 4469.574712529042
+   },
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": 1,
+    "custoOp": 6224.934899450856
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 1,
+    "custoOp": 9424.963356504655
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 1,
+    "custoOp": 10617.343324465472
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 1,
+    "custoOp": 31875.704490620625
+   }
+  ],
+  "final": {
+   "ok": true,
+   "burnedHa": 0.73,
+   "burnedHaSemDrones": 43.16,
+   "tCont": 5850,
+   "tExt": 9450,
+   "litres": 2540.1359422514756,
+   "flightH": 2.9583333333333335,
+   "lineM": 3223.3591470629394,
+   "tactic": "indireto",
+   "tot": 1451.4090130445907
+  },
+  "mc": {
+   "K": 24,
+   "P": 1,
+   "ci": [
+    0.8620194241710247,
+    1
+   ],
+   "burned": {
+    "p10": 0.503,
+    "p50": 0.625,
+    "p90": 1.4229999999999998,
+    "max": 5.77
+   },
+   "cost": {
+    "p10": 1216.2860932945762,
+    "p50": 1419.9510729553745,
+    "p90": 1736.3027822857684
+   },
+   "nExt": 24
+  },
+  "tornado": {
+   "baseN": 3,
+   "rows": [
+    {
+     "lab": "Custo logístico por drone por operação",
+     "lo": 3,
+     "hi": 3,
+     "dLo": -225,
+     "dHi": 225
+    },
+    {
+     "lab": "Carga de combustível",
+     "lo": 3,
+     "hi": 4,
+     "dLo": 0,
+     "dHi": 194
+    },
+    {
+     "lab": "Custo operacional por hora de voo",
+     "lo": 3,
+     "hi": 3,
+     "dLo": -62.834444444444216,
+     "dHi": 62.83444444444467
+    },
+    {
+     "lab": "Preço dos drones (CapEx)",
+     "lo": 3,
+     "hi": 3,
+     "dLo": -33,
+     "dHi": 33
+    },
+    {
+     "lab": "Custo da água",
+     "lo": 3,
+     "hi": 3,
+     "dLo": -7.76054003147533,
+     "dHi": 7.760540031475557
+    },
+    {
+     "lab": "Velocidade do vento",
+     "lo": 3,
+     "hi": 3,
+     "dLo": 0,
+     "dHi": 0
+    }
+   ]
+  },
+  "t_total_s": 398.374,
+  "as350Inviavel": false,
+  "triagemTrip": [
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 1,
+    "custoOp": 4469.574712529042
+   },
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": 1,
+    "custoOp": 6224.934899450856
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 1,
+    "custoOp": 9424.963356504655
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 1,
+    "custoOp": 10617.343324465472
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 1,
+    "custoOp": 31875.704490620625
+   }
+  ]
+ },
+ "5": {
+  "fi": 5,
+  "nome": "6 · Pantanal (capim alto)",
+  "cs": 20,
+  "N": 122,
+  "nMax": 60,
+  "t_opt_s": 150.296,
+  "modelo": "Spider M65",
+  "nMin": 7,
+  "nRisco": 11,
+  "capped": false,
+  "P": 1,
+  "Pci": [
+   0.7224598312333834,
+   1
+  ],
+  "nBusca": 11,
+  "confirmado": false,
+  "Kconf": null,
+  "tatica": "indireto",
+  "custoOp": 2643.567836664613,
+  "capex": 242000,
+  "ranking": [
+   {
+    "modelo": "Spider M65",
+    "nMin": 7,
+    "nRisco": 11,
+    "P": 1,
+    "capped": false,
+    "custoOp": 2643.567836664613,
+    "capex": 242000,
+    "op": {
+     "n": 10,
+     "P": 0.7,
+     "burned": 4.26,
+     "tCont": 3650,
+     "nCont": 7,
+     "tExt": 4320,
+     "nExt": 7,
+     "litres": 15705.769436715083,
+     "flightH": 17.626944444444444,
+     "drops": 2569.9,
+     "sorties": 292.4,
+     "lineM": 20684.50403973553,
+     "depot": 0,
+     "esc": 3
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Spider H60-4",
+    "nMin": 9,
+    "nRisco": 13,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 2686.7493547752238,
+    "capex": 182000,
+    "op": {
+     "n": 10,
+     "P": 0.7,
+     "burned": 4.68,
+     "tCont": 5140,
+     "nCont": 7,
+     "tExt": 6040,
+     "nExt": 7,
+     "litres": 10288.372493165592,
+     "flightH": 23.23416666666667,
+     "drops": 2873.9,
+     "sorties": 389.4,
+     "lineM": 19993.66977033022,
+     "depot": 0,
+     "esc": 3
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "DJI FlyCart 30",
+    "nMin": 9,
+    "nRisco": 11,
+    "P": 0.95,
+    "capped": false,
+    "custoOp": 2889.9582831828743,
+    "capex": 187000,
+    "op": {
+     "n": 10,
+     "P": 0.8,
+     "burned": 5.26,
+     "tCont": 5530,
+     "nCont": 8,
+     "tExt": 6430,
+     "nExt": 8,
+     "litres": 8866.642119639355,
+     "flightH": 14.451111111111112,
+     "drops": 2383.5,
+     "sorties": 351.6,
+     "lineM": 16147.268627535475,
+     "depot": 0,
+     "esc": 2
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Spider H120",
+    "nMin": 9,
+    "nRisco": 13,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 3529.910868629742,
+    "capex": 234000,
+    "op": {
+     "n": 10,
+     "P": 0.7,
+     "burned": 3.38,
+     "tCont": 5000,
+     "nCont": 7,
+     "tExt": 5390,
+     "nExt": 7,
+     "litres": 15145.096890731704,
+     "flightH": 21.84333333333333,
+     "drops": 2943.6,
+     "sorties": 366.4,
+     "lineM": 20875.923422008942,
+     "depot": 0,
+     "esc": 3
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 2,
+    "nRisco": 2,
+    "P": 1,
+    "capped": false,
+    "custoOp": 8159.921918656032,
+    "capex": 3000000,
+    "tripulada": true,
+    "op": {
+     "n": 20,
+     "P": 1,
+     "burned": 13.5,
+     "tCont": 5425,
+     "nCont": 20,
+     "tExt": 6130,
+     "nExt": 20,
+     "litres": 18512.295994571898,
+     "flightH": 1.1469444444444445,
+     "drops": 1845.15,
+     "sorties": 77.8,
+     "lineM": 12866.360054902962,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 2,
+    "nRisco": 2,
+    "P": 1,
+    "capped": false,
+    "custoOp": 17732.174663320355,
+    "capex": 8000000,
+    "tripulada": true,
+    "op": {
+     "n": 20,
+     "P": 1,
+     "burned": 12.06,
+     "tCont": 5170,
+     "nCont": 20,
+     "tExt": 5815,
+     "nExt": 20,
+     "litres": 17713.67916312279,
+     "flightH": 1.1073611111111112,
+     "drops": 1764.25,
+     "sorties": 71.65,
+     "lineM": 12349.116581855307,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 2,
+    "nRisco": 2,
+    "P": 1,
+    "capped": false,
+    "custoOp": 24471.259911103727,
+    "capex": 9000000,
+    "tripulada": true,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 11.760000000000002,
+     "tCont": 5240,
+     "nCont": 10,
+     "tExt": 5690,
+     "nExt": 10,
+     "litres": 16905.481068204186,
+     "flightH": 0.9630555555555554,
+     "drops": 1786.5,
+     "sorties": 67.4,
+     "lineM": 11867.908451108455,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": 4,
+    "nRisco": 5,
+    "P": 1,
+    "capped": false,
+    "custoOp": 33853.604243117275,
+    "capex": 12500000,
+    "tripulada": true,
+    "op": {
+     "n": 10,
+     "P": 0.9,
+     "burned": 30.86,
+     "tCont": 5740,
+     "nCont": 10,
+     "tExt": 6620,
+     "nExt": 10,
+     "litres": 40504.63423832434,
+     "flightH": 1.0241666666666664,
+     "drops": 2134.2,
+     "sorties": 63.1,
+     "lineM": 22737.935211813176,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 30
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 2,
+    "nRisco": 2,
+    "P": 1,
+    "capped": false,
+    "custoOp": 75561.00312906642,
+    "capex": 30000000,
+    "tripulada": true,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 18.18,
+     "tCont": 5905,
+     "nCont": 10,
+     "tExt": 6805,
+     "nExt": 10,
+     "litres": 29420.928518132714,
+     "flightH": 0.9858333333333335,
+     "drops": 2087,
+     "sorties": 65.1,
+     "lineM": 16755.43481861393,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 20
+   }
+  ],
+  "triagem": [
+   {
+    "modelo": "Spider M65",
+    "nMin": 7,
+    "custoOp": 2197.6133955387163
+   },
+   {
+    "modelo": "Spider H120",
+    "nMin": 9,
+    "custoOp": 2403.2778095381723
+   },
+   {
+    "modelo": "Spider H60-4",
+    "nMin": 9,
+    "custoOp": 2477.893883547037
+   },
+   {
+    "modelo": "DJI FlyCart 30",
+    "nMin": 9,
+    "custoOp": 2498.3686911643863
+   },
+   {
+    "modelo": "Spider H160",
+    "nMin": 9,
+    "custoOp": 2597.486452459202
+   },
+   {
+    "modelo": "Spider H40X",
+    "nMin": 12,
+    "custoOp": 2810.7925278259263
+   },
+   {
+    "modelo": "DJI Agras T100",
+    "nMin": 7,
+    "custoOp": 3122.781724962499
+   },
+   {
+    "modelo": "Spider H32X",
+    "nMin": 16,
+    "custoOp": 3363.1742322066866
+   },
+   {
+    "modelo": "Spider H300 (100 L)",
+    "nMin": 12,
+    "custoOp": 3997.335459363848
+   },
+   {
+    "modelo": "Spider H200",
+    "nMin": 10,
+    "custoOp": 4162.384963614478
+   },
+   {
+    "modelo": "Spider H300 Firefighting (4×25 kg)",
+    "nMin": 12,
+    "custoOp": 4240.3910149194035
+   },
+   {
+    "modelo": "XAG P100 Pro",
+    "nMin": 16,
+    "custoOp": 4321.027800486965
+   },
+   {
+    "modelo": "DJI Agras T40",
+    "nMin": 15,
+    "custoOp": 4370.667482854084
+   },
+   {
+    "modelo": "DJI Agras T50",
+    "nMin": 15,
+    "custoOp": 5027.764399520751
+   },
+   {
+    "modelo": "EAVision EA-30X",
+    "nMin": 19,
+    "custoOp": 5079.704285495013
+   },
+   {
+    "modelo": "DJI Agras T20P",
+    "nMin": 24,
+    "custoOp": 5432.598102575734
+   },
+   {
+    "modelo": "DJI Agras T30",
+    "nMin": 19,
+    "custoOp": 5642.030674383902
+   },
+   {
+    "modelo": "DJI Agras T25",
+    "nMin": 24,
+    "custoOp": 5926.657074797957
+   },
+   {
+    "modelo": "DJI Agras T10",
+    "nMin": 36,
+    "custoOp": 8188.605146119668
+   },
+   {
+    "modelo": "Spider M400",
+    "nMin": 17,
+    "custoOp": 8396.157809019493
+   },
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 2,
+    "custoOp": 8842.73752815011
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 2,
+    "custoOp": 19095.055564670172
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 2,
+    "custoOp": 21731.672616289132
+   },
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": 4,
+    "custoOp": 24675.892333612795
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 2,
+    "custoOp": 66232.59331080511
+   }
+  ],
+  "final": {
+   "ok": true,
+   "burnedHa": 3.52,
+   "burnedHaSemDrones": 402.64,
+   "tCont": 3390,
+   "tExt": 3610,
+   "litres": 3836.62920636606,
+   "flightH": 4.086111111111111,
+   "lineM": 5477.143110961122,
+   "tactic": "indireto",
+   "tot": 2877.919257142941
+  },
+  "mc": {
+   "K": 24,
+   "P": 0.9166666666666666,
+   "ci": [
+    0.741507847985494,
+    0.9768416721570264
+   ],
+   "burned": {
+    "p10": 2.8400000000000003,
+    "p50": 4.02,
+    "p90": 10.935999999999998,
+    "max": 457.72
+   },
+   "cost": {
+    "p10": 2333.909234048231,
+    "p50": 2931.6222648033363,
+    "p90": 3906.7181414376946
+   },
+   "nExt": 22
+  },
+  "tornado": {
+   "baseN": 8,
+   "rows": [
+    {
+     "lab": "Custo logístico por drone por operação",
+     "lo": 8,
+     "hi": 8,
+     "dLo": -600,
+     "dHi": 600
+    },
+    {
+     "lab": "Tempo de resposta (detecção+despacho)",
+     "lo": 7,
+     "hi": 11,
+     "dLo": -194,
+     "dHi": 582
+    },
+    {
+     "lab": "Tempo de recarga/troca de bateria",
+     "lo": 7,
+     "hi": 11,
+     "dLo": -194,
+     "dHi": 582
+    },
+    {
+     "lab": "Velocidade do vento",
+     "lo": 6,
+     "hi": 10,
+     "dLo": -388,
+     "dHi": 388
+    },
+    {
+     "lab": "Água por kg de combustível (razão de molhamento)",
+     "lo": 7,
+     "hi": 10,
+     "dLo": -194,
+     "dHi": 388
+    },
+    {
+     "lab": "Largura da faixa molhada por lançamento",
+     "lo": 7,
+     "hi": 10,
+     "dLo": -194,
+     "dHi": 388
+    }
+   ]
+  },
+  "t_total_s": 242.428,
+  "as350Inviavel": false,
+  "triagemTrip": [
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 2,
+    "custoOp": 8842.73752815011
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 2,
+    "custoOp": 19095.055564670172
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 2,
+    "custoOp": 21731.672616289132
+   },
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": 4,
+    "custoOp": 24675.892333612795
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 2,
+    "custoOp": 66232.59331080511
+   }
+  ]
+ },
+ "6": {
+  "fi": 6,
+  "nome": "7 · Caatinga arbustiva (NFFL 5)",
+  "cs": 20,
+  "N": 112,
+  "nMax": 60,
+  "t_opt_s": 147.817,
+  "modelo": "Spider H32X",
+  "nMin": 6,
+  "nRisco": 8,
+  "capped": false,
+  "P": 0.9,
+  "Pci": [
+   0.5958436145024278,
+   0.9821242504842789
+  ],
+  "nBusca": 8,
+  "confirmado": false,
+  "Kconf": null,
+  "tatica": "indireto",
+  "custoOp": 1687.975293165123,
+  "capex": 64000,
+  "ranking": [
+   {
+    "modelo": "Spider H32X",
+    "nMin": 6,
+    "nRisco": 8,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 1687.975293165123,
+    "capex": 64000,
+    "op": {
+     "n": 10,
+     "P": 0.7,
+     "burned": 5.28,
+     "tCont": 4640,
+     "nCont": 7,
+     "tExt": 5540,
+     "nExt": 7,
+     "litres": 4560.91491427798,
+     "flightH": 14.512777777777776,
+     "drops": 1828.7,
+     "sorties": 309.9,
+     "lineM": 14315.081607374426,
+     "depot": 2,
+     "esc": 3
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Spider H40X",
+    "nMin": 5,
+    "nRisco": 9,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 1911.115655523119,
+    "capex": 90000,
+    "op": {
+     "n": 10,
+     "P": 0.9,
+     "burned": 3.16,
+     "tCont": 4610,
+     "nCont": 9,
+     "tExt": 5510,
+     "nExt": 9,
+     "litres": 3339.047802701837,
+     "flightH": 9.542222222222222,
+     "drops": 1365.8,
+     "sorties": 205.6,
+     "lineM": 9804.452688871363,
+     "depot": 0,
+     "esc": 1
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "DJI FlyCart 30",
+    "nMin": 4,
+    "nRisco": 7,
+    "P": 1,
+    "capped": false,
+    "custoOp": 1949.4846837021269,
+    "capex": 119000,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 3.08,
+     "tCont": 4500,
+     "nCont": 10,
+     "tExt": 4970,
+     "nExt": 10,
+     "litres": 2787.626779009418,
+     "flightH": 3.738055555555556,
+     "drops": 930.6,
+     "sorties": 129.3,
+     "lineM": 6938.7275474643175,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Spider H60-4",
+    "nMin": 5,
+    "nRisco": 10,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 2496.748209583222,
+    "capex": 140000,
+    "op": {
+     "n": 10,
+     "P": 0.9,
+     "burned": 2.94,
+     "tCont": 4085,
+     "nCont": 10,
+     "tExt": 4435,
+     "nExt": 10,
+     "litres": 4036.6271280353567,
+     "flightH": 8.966944444444445,
+     "drops": 1462.2,
+     "sorties": 187.4,
+     "lineM": 10155.204543434527,
+     "depot": 0,
+     "esc": 1
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 2,
+    "nRisco": 2,
+    "P": 1,
+    "capped": false,
+    "custoOp": 7837.995060696005,
+    "capex": 3000000,
+    "tripulada": true,
+    "op": {
+     "n": 20,
+     "P": 1,
+     "burned": 7.08,
+     "tCont": 4135,
+     "nCont": 20,
+     "tExt": 4945,
+     "nExt": 20,
+     "litres": 9242.12116262747,
+     "flightH": 0.7593055555555557,
+     "drops": 1262,
+     "sorties": 57.7,
+     "lineM": 8648.646779076314,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 1,
+    "nRisco": 2,
+    "P": 1,
+    "capped": false,
+    "custoOp": 17139.808052825345,
+    "capex": 8000000,
+    "tripulada": true,
+    "op": {
+     "n": 20,
+     "P": 1,
+     "burned": 6.58,
+     "tCont": 3910,
+     "nCont": 20,
+     "tExt": 4615,
+     "nExt": 20,
+     "litres": 9016.243375909382,
+     "flightH": 0.7322222222222224,
+     "drops": 1250.2,
+     "sorties": 56.1,
+     "lineM": 8404.5316656783,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": 2,
+    "nRisco": 3,
+    "P": 1,
+    "capped": false,
+    "custoOp": 20161.368460034388,
+    "capex": 7500000,
+    "tripulada": true,
+    "op": {
+     "n": 10,
+     "P": 0.9,
+     "burned": 20.98,
+     "tCont": 6355,
+     "nCont": 10,
+     "tExt": 7115,
+     "nExt": 10,
+     "litres": 25486.60044707933,
+     "flightH": 0.7483333333333334,
+     "drops": 1825.2,
+     "sorties": 48.1,
+     "lineM": 19308.442772829883,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 30
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 2,
+    "nRisco": 2,
+    "P": 1,
+    "capped": false,
+    "custoOp": 23725.008597578126,
+    "capex": 9000000,
+    "tripulada": true,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 6.66,
+     "tCont": 4365,
+     "nCont": 10,
+     "tExt": 5265,
+     "nExt": 10,
+     "litres": 9294.849925309838,
+     "flightH": 0.7775,
+     "drops": 1349.5,
+     "sorties": 64.7,
+     "lineM": 8663.473952662143,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 2,
+    "nRisco": 2,
+    "P": 1,
+    "capped": false,
+    "custoOp": 73475.88510553322,
+    "capex": 30000000,
+    "tripulada": true,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 10.42,
+     "tCont": 5625,
+     "nCont": 10,
+     "tExt": 6450,
+     "nExt": 10,
+     "litres": 15815.018203300308,
+     "flightH": 0.75,
+     "drops": 1545.2,
+     "sorties": 58.1,
+     "lineM": 11899.407480358808,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 20
+   }
+  ],
+  "triagem": [
+   {
+    "modelo": "DJI FlyCart 30",
+    "nMin": 4,
+    "custoOp": 1412.150178060241
+   },
+   {
+    "modelo": "Spider H40X",
+    "nMin": 5,
+    "custoOp": 1563.131714475492
+   },
+   {
+    "modelo": "Spider H60-4",
+    "nMin": 5,
+    "custoOp": 1612.5429037811414
+   },
+   {
+    "modelo": "Spider H32X",
+    "nMin": 6,
+    "custoOp": 1632.4134197996752
+   },
+   {
+    "modelo": "Spider H160",
+    "nMin": 5,
+    "custoOp": 1850.7008527611506
+   },
+   {
+    "modelo": "Spider H120",
+    "nMin": 7,
+    "custoOp": 1950.7009629387057
+   },
+   {
+    "modelo": "DJI Agras T100",
+    "nMin": 4,
+    "custoOp": 2095.5364998344967
+   },
+   {
+    "modelo": "Spider M65",
+    "nMin": 6,
+    "custoOp": 2101.793865364995
+   },
+   {
+    "modelo": "EAVision EA-30X",
+    "nMin": 11,
+    "custoOp": 3076.3365691957492
+   },
+   {
+    "modelo": "Spider H300 (100 L)",
+    "nMin": 8,
+    "custoOp": 3241.5363138591283
+   },
+   {
+    "modelo": "DJI Agras T30",
+    "nMin": 11,
+    "custoOp": 3377.7949025290827
+   },
+   {
+    "modelo": "Spider H300 Firefighting (4×25 kg)",
+    "nMin": 8,
+    "custoOp": 3460.2863138591283
+   },
+   {
+    "modelo": "Spider H200",
+    "nMin": 8,
+    "custoOp": 3545.6441726021667
+   },
+   {
+    "modelo": "DJI Agras T40",
+    "nMin": 13,
+    "custoOp": 4013.9137208674906
+   },
+   {
+    "modelo": "DJI Agras T20P",
+    "nMin": 15,
+    "custoOp": 4298.171378018195
+   },
+   {
+    "modelo": "DJI Agras T50",
+    "nMin": 13,
+    "custoOp": 4648.052366700824
+   },
+   {
+    "modelo": "Spider M400",
+    "nMin": 9,
+    "custoOp": 4721.7138189606285
+   },
+   {
+    "modelo": "DJI Agras T25",
+    "nMin": 15,
+    "custoOp": 4866.948600240417
+   },
+   {
+    "modelo": "XAG P100 Pro",
+    "nMin": 16,
+    "custoOp": 5010.225584397052
+   },
+   {
+    "modelo": "DJI Agras T10",
+    "nMin": 22,
+    "custoOp": 5233.7582805399015
+   },
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 2,
+    "custoOp": 8365.152242997618
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 1,
+    "custoOp": 11612.330221190325
+   },
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": 2,
+    "custoOp": 12497.42600423639
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 2,
+    "custoOp": 20890.91253666385
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 2,
+    "custoOp": 63892.33714210833
+   }
+  ],
+  "final": {
+   "ok": true,
+   "burnedHa": 3.88,
+   "burnedHaSemDrones": 355.04,
+   "tCont": 4780,
+   "tExt": 5680,
+   "litres": 1588.6578146964798,
+   "flightH": 4.836111111111111,
+   "lineM": 5623.965642510904,
+   "tactic": "indireto",
+   "tot": 1932.6655112957046
+  },
+  "mc": {
+   "K": 24,
+   "P": 0.7083333333333334,
+   "ci": [
+    0.5083193634129031,
+    0.8508553966583573
+   ],
+   "burned": {
+    "p10": 3.012,
+    "p50": 7,
+    "p90": 445.152,
+    "max": 462.24
+   },
+   "cost": {
+    "p10": 1510.1592289443697,
+    "p50": 2082.2726809578407,
+    "p90": 2830.846154651886
+   },
+   "nExt": 17
+  },
+  "tornado": {
+   "baseN": 6,
+   "rows": [
+    {
+     "lab": "Velocidade do vento",
+     "lo": 5,
+     "hi": 9,
+     "dLo": -166,
+     "dHi": 498
+    },
+    {
+     "lab": "Umidade relativa",
+     "lo": 9,
+     "hi": 6,
+     "dLo": 498,
+     "dHi": 0
+    },
+    {
+     "lab": "Custo logístico por drone por operação",
+     "lo": 6,
+     "hi": 6,
+     "dLo": -450,
+     "dHi": 450
+    },
+    {
+     "lab": "Carga de combustível",
+     "lo": 7,
+     "hi": 8,
+     "dLo": 166,
+     "dHi": 332
+    },
+    {
+     "lab": "Tempo de recarga/troca de bateria",
+     "lo": 6,
+     "hi": 8,
+     "dLo": 0,
+     "dHi": 332
+    },
+    {
+     "lab": "Direção do vento",
+     "lo": 7,
+     "hi": 7,
+     "dLo": 166,
+     "dHi": 166
+    }
+   ]
+  },
+  "t_total_s": 237.624,
+  "as350Inviavel": false,
+  "triagemTrip": [
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 2,
+    "custoOp": 8365.152242997618
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 1,
+    "custoOp": 11612.330221190325
+   },
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": 2,
+    "custoOp": 12497.42600423639
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 2,
+    "custoOp": 20890.91253666385
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 2,
+    "custoOp": 63892.33714210833
+   }
+  ]
+ },
+ "7": {
+  "fi": 7,
+  "nome": "8 · Mata Atlântica estacional (serapilheira)",
+  "cs": 10,
+  "N": 173,
+  "nMax": 60,
+  "t_opt_s": 224.728,
+  "modelo": "Spider H120",
+  "nMin": 2,
+  "nRisco": 3,
+  "capped": false,
+  "P": 1,
+  "Pci": [
+   0.7224598312333834,
+   1
+  ],
+  "nBusca": 3,
+  "confirmado": false,
+  "Kconf": null,
+  "tatica": "cercamento",
+  "custoOp": 1294.6881355871972,
+  "capex": 54000,
+  "ranking": [
+   {
+    "modelo": "Spider H120",
+    "nMin": 2,
+    "nRisco": 3,
+    "P": 1,
+    "capped": false,
+    "custoOp": 1294.6881355871972,
+    "capex": 54000,
+    "op": {
+     "n": 10,
+     "P": 0.8,
+     "burned": 0.41000000000000003,
+     "tCont": 22235,
+     "nCont": 8,
+     "tExt": 25740,
+     "nExt": 8,
+     "litres": 2809.339034837246,
+     "flightH": 7.268055555555554,
+     "drops": 3682.9,
+     "sorties": 242.9,
+     "lineM": 5418.576463202649,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "DJI FlyCart 30",
+    "nMin": 2,
+    "nRisco": 3,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 1326.3772064460766,
+    "capex": 51000,
+    "op": {
+     "n": 10,
+     "P": 0.8,
+     "burned": 0.39,
+     "tCont": 23480,
+     "nCont": 9,
+     "tExt": 25945,
+     "nExt": 8,
+     "litres": 2048.4407929098406,
+     "flightH": 6.600555555555556,
+     "drops": 4063.3,
+     "sorties": 294.4,
+     "lineM": 5284.817152554745,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Spider M65",
+    "nMin": 2,
+    "nRisco": 3,
+    "P": 1,
+    "capped": false,
+    "custoOp": 1362.8481032762838,
+    "capex": 66000,
+    "op": {
+     "n": 10,
+     "P": 0.8,
+     "burned": 0.42,
+     "tCont": 22235,
+     "nCont": 8,
+     "tExt": 25755,
+     "nExt": 8,
+     "litres": 3218.6813670889856,
+     "flightH": 7.429166666666665,
+     "drops": 3740.7,
+     "sorties": 247.5,
+     "lineM": 5700.947649731382,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Spider H60-4",
+    "nMin": 2,
+    "nRisco": 7,
+    "P": 0.95,
+    "capped": false,
+    "custoOp": 2259.323541737954,
+    "capex": 98000,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 0.375,
+     "tCont": 22100,
+     "nCont": 10,
+     "tExt": 25700,
+     "nExt": 10,
+     "litres": 1935.1200944907062,
+     "flightH": 15.111944444444443,
+     "drops": 4687.8,
+     "sorties": 543.9,
+     "lineM": 5080.084267977417,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 2,
+    "nRisco": 2,
+    "P": 0.95,
+    "capped": false,
+    "custoOp": 10977.387873812791,
+    "capex": 3000000,
+    "tripulada": true,
+    "op": {
+     "n": 20,
+     "P": 0.95,
+     "burned": 0.41,
+     "tCont": 23905,
+     "nCont": 20,
+     "tExt": 24600,
+     "nExt": 19,
+     "litres": 4985.396497956599,
+     "flightH": 2.4825,
+     "drops": 2830.4,
+     "sorties": 379.35,
+     "lineM": 4335.006526231241,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 1,
+    "nRisco": 1,
+    "P": 1,
+    "capped": false,
+    "custoOp": 15058.267548433389,
+    "capex": 4500000,
+    "tripulada": true,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 0.425,
+     "tCont": 22355,
+     "nCont": 10,
+     "tExt": 25585,
+     "nExt": 10,
+     "litres": 5404.895189128925,
+     "flightH": 1.5777777777777775,
+     "drops": 3366.2,
+     "sorties": 220.3,
+     "lineM": 4742.226911248175,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": 1,
+    "nRisco": 4,
+    "P": 1,
+    "capped": false,
+    "custoOp": 22513.302490466405,
+    "capex": 10000000,
+    "tripulada": true,
+    "op": {
+     "n": 20,
+     "P": 1,
+     "burned": 0.575,
+     "tCont": 23860,
+     "nCont": 20,
+     "tExt": 25860,
+     "nExt": 20,
+     "litres": 7582.750730362229,
+     "flightH": 1.820555555555556,
+     "drops": 3568.15,
+     "sorties": 268.55,
+     "lineM": 5547.582033777466,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 30
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 2,
+    "nRisco": 4,
+    "P": 0.95,
+    "capped": false,
+    "custoOp": 39418.93302390049,
+    "capex": 16000000,
+    "tripulada": true,
+    "op": {
+     "n": 20,
+     "P": 0.95,
+     "burned": 0.405,
+     "tCont": 23980,
+     "nCont": 19,
+     "tExt": 25670,
+     "nExt": 19,
+     "litres": 4999.401223282885,
+     "flightH": 3.3456944444444447,
+     "drops": 2724.9,
+     "sorties": 553.9,
+     "lineM": 4296.517641784909,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 2,
+    "nRisco": 2,
+    "P": 1,
+    "capped": false,
+    "custoOp": 81501.72517830768,
+    "capex": 30000000,
+    "tripulada": true,
+    "op": {
+     "n": 10,
+     "P": 0.9,
+     "burned": 0.49,
+     "tCont": 22680,
+     "nCont": 9,
+     "tExt": 26220,
+     "nExt": 9,
+     "litres": 6697.437451064978,
+     "flightH": 2.1174999999999997,
+     "drops": 3150,
+     "sorties": 335.9,
+     "lineM": 5019.135032614127,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 20
+   }
+  ],
+  "triagem": [
+   {
+    "modelo": "Spider H60-4",
+    "nMin": 2,
+    "custoOp": 1059.0346870604828
+   },
+   {
+    "modelo": "DJI FlyCart 30",
+    "nMin": 2,
+    "custoOp": 1078.8687148942468
+   },
+   {
+    "modelo": "Spider H120",
+    "nMin": 2,
+    "custoOp": 1129.0905072768344
+   },
+   {
+    "modelo": "Spider M65",
+    "nMin": 2,
+    "custoOp": 1164.8678598429544
+   },
+   {
+    "modelo": "Spider H32X",
+    "nMin": 3,
+    "custoOp": 1174.1457218321088
+   },
+   {
+    "modelo": "Spider H160",
+    "nMin": 2,
+    "custoOp": 1201.46204671221
+   },
+   {
+    "modelo": "Spider H40X",
+    "nMin": 3,
+    "custoOp": 1213.234732731926
+   },
+   {
+    "modelo": "Spider H200",
+    "nMin": 2,
+    "custoOp": 1269.3754974331378
+   },
+   {
+    "modelo": "XAG P100 Pro",
+    "nMin": 2,
+    "custoOp": 1292.7909968150445
+   },
+   {
+    "modelo": "DJI Agras T40",
+    "nMin": 2,
+    "custoOp": 1341.9247392079956
+   },
+   {
+    "modelo": "EAVision EA-30X",
+    "nMin": 3,
+    "custoOp": 1418.342037771025
+   },
+   {
+    "modelo": "DJI Agras T20P",
+    "nMin": 3,
+    "custoOp": 1497.3510741548193
+   },
+   {
+    "modelo": "Spider H300 (100 L)",
+    "nMin": 2,
+    "custoOp": 1508.4852069926505
+   },
+   {
+    "modelo": "DJI Agras T50",
+    "nMin": 2,
+    "custoOp": 1559.6939683746623
+   },
+   {
+    "modelo": "DJI Agras T30",
+    "nMin": 3,
+    "custoOp": 1571.189259993247
+   },
+   {
+    "modelo": "Spider H300 Firefighting (4×25 kg)",
+    "nMin": 2,
+    "custoOp": 1608.3324292148727
+   },
+   {
+    "modelo": "DJI Agras T25",
+    "nMin": 3,
+    "custoOp": 1698.6310880437081
+   },
+   {
+    "modelo": "DJI Agras T10",
+    "nMin": 4,
+    "custoOp": 1714.480989942343
+   },
+   {
+    "modelo": "DJI Agras T100",
+    "nMin": 3,
+    "custoOp": 1987.486564566345
+   },
+   {
+    "modelo": "Spider M400",
+    "nMin": 3,
+    "custoOp": 2304.193643900215
+   },
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": 1,
+    "custoOp": 7498.544835002655
+   },
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 2,
+    "custoOp": 14114.876455012582
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 1,
+    "custoOp": 14341.68049010342
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 2,
+    "custoOp": 24557.55424154869
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 2,
+    "custoOp": 74068.02486503689
+   }
+  ],
+  "final": {
+   "ok": true,
+   "burnedHa": 0.4,
+   "burnedHaSemDrones": 2.83,
+   "tCont": 23840,
+   "tExt": 27440,
+   "litres": 2796.1053279284715,
+   "flightH": 7.425,
+   "lineM": 5461.783271337452,
+   "tactic": "indireto",
+   "tot": 1406.1055266396424
+  },
+  "mc": {
+   "K": 24,
+   "P": 0.8333333333333334,
+   "ci": [
+    0.6414652961213058,
+    0.9332143199927109
+   ],
+   "burned": {
+    "p10": 0.38,
+    "p50": 0.4,
+    "p90": 0.457,
+    "max": 0.7
+   },
+   "cost": {
+    "p10": 1228.4701727185022,
+    "p50": 1383.959296576183,
+    "p90": 1636.9949107040056
+   },
+   "nExt": 20
+  },
+  "tornado": {
+   "baseN": 2,
+   "rows": [
+    {
+     "lab": "Velocidade do vento",
+     "lo": 2,
+     "hi": 3,
+     "dLo": 0,
+     "dHi": 186
+    },
+    {
+     "lab": "Tempo de resposta (detecção+despacho)",
+     "lo": 2,
+     "hi": 3,
+     "dLo": 0,
+     "dHi": 186
+    },
+    {
+     "lab": "Custo logístico por drone por operação",
+     "lo": 2,
+     "hi": 2,
+     "dLo": -150.0000000000001,
+     "dHi": 150
+    },
+    {
+     "lab": "Custo operacional por hora de voo",
+     "lo": 2,
+     "hi": 2,
+     "dLo": -90.56000000000017,
+     "dHi": 90.55999999999995
+    },
+    {
+     "lab": "Preço dos drones (CapEx)",
+     "lo": 2,
+     "hi": 2,
+     "dLo": -18,
+     "dHi": 18
+    },
+    {
+     "lab": "Custo da água",
+     "lo": 2,
+     "hi": 2,
+     "dLo": -8.066881141116937,
+     "dHi": 8.066881141116482
+    }
+   ]
+  },
+  "t_total_s": 528.213,
+  "as350Inviavel": false,
+  "triagemTrip": [
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": 1,
+    "custoOp": 7498.544835002655
+   },
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 2,
+    "custoOp": 14114.876455012582
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 1,
+    "custoOp": 14341.68049010342
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 2,
+    "custoOp": 24557.55424154869
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 2,
+    "custoOp": 74068.02486503689
+   }
+  ]
+ },
+ "8": {
+  "fi": 8,
+  "nome": "9 · Amazônia (floresta úmida)",
+  "cs": 10,
+  "N": 173,
+  "nMax": 60,
+  "t_opt_s": 177.935,
+  "modelo": "DJI FlyCart 30",
+  "nMin": 4,
+  "nRisco": 6,
+  "capped": false,
+  "P": 1,
+  "Pci": [
+   0.7224598312333834,
+   1
+  ],
+  "nBusca": 6,
+  "confirmado": false,
+  "Kconf": null,
+  "tatica": "indireto",
+  "custoOp": 1557.7983948879628,
+  "capex": 102000,
+  "ranking": [
+   {
+    "modelo": "DJI FlyCart 30",
+    "nMin": 4,
+    "nRisco": 6,
+    "P": 1,
+    "capped": false,
+    "custoOp": 1557.7983948879628,
+    "capex": 102000,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 1.0750000000000002,
+     "tCont": 6690,
+     "nCont": 10,
+     "tExt": 8420,
+     "nExt": 10,
+     "litres": 3948.1621843540574,
+     "flightH": 3.2380555555555555,
+     "drops": 947.1,
+     "sorties": 177.1,
+     "lineM": 3770.6243741866842,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Spider H120",
+    "nMin": 4,
+    "nRisco": 5,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 1573.4786782517397,
+    "capex": 90000,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 1.345,
+     "tCont": 7875,
+     "nCont": 10,
+     "tExt": 10175,
+     "nExt": 10,
+     "litres": 7083.380030441405,
+     "flightH": 4.004444444444443,
+     "drops": 1148.1,
+     "sorties": 173.6,
+     "lineM": 4905.910008355953,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Spider M65",
+    "nMin": 4,
+    "nRisco": 5,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 1635.0473084790938,
+    "capex": 110000,
+    "op": {
+     "n": 10,
+     "P": 0.9,
+     "burned": 1.275,
+     "tCont": 6590,
+     "nCont": 9,
+     "tExt": 8990,
+     "nExt": 9,
+     "litres": 10001.063207207686,
+     "flightH": 4.581666666666666,
+     "drops": 1471.4,
+     "sorties": 192.4,
+     "lineM": 6099.416339166184,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Spider H160",
+    "nMin": 4,
+    "nRisco": 6,
+    "P": 1,
+    "capped": false,
+    "custoOp": 1698.0013084447821,
+    "capex": 150000,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 0.77,
+     "tCont": 6555,
+     "nCont": 10,
+     "tExt": 7765,
+     "nExt": 10,
+     "litres": 5451.083040575394,
+     "flightH": 2.7780555555555555,
+     "drops": 705.3,
+     "sorties": 112.2,
+     "lineM": 3278.8308196243006,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 1,
+    "nRisco": 1,
+    "P": 1,
+    "capped": false,
+    "custoOp": 3746.813950224419,
+    "capex": 1500000,
+    "tripulada": true,
+    "op": {
+     "n": 20,
+     "P": 1,
+     "burned": 0.75,
+     "tCont": 3925,
+     "nCont": 20,
+     "tExt": 5035,
+     "nExt": 20,
+     "litres": 5765.803723865586,
+     "flightH": 0.17777777777777776,
+     "drops": 279.7,
+     "sorties": 24.35,
+     "lineM": 1979.7888083369435,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": 1,
+    "nRisco": 1,
+    "P": 1,
+    "capped": false,
+    "custoOp": 5616.88104433052,
+    "capex": 2500000,
+    "tripulada": true,
+    "op": {
+     "n": 20,
+     "P": 1,
+     "burned": 1.295,
+     "tCont": 4345,
+     "nCont": 20,
+     "tExt": 6225,
+     "nExt": 20,
+     "litres": 9479.465277039655,
+     "flightH": 0.10013888888888889,
+     "drops": 354.55,
+     "sorties": 11.15,
+     "lineM": 2846.5080389812497,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 30
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 1,
+    "nRisco": 1,
+    "P": 1,
+    "capped": false,
+    "custoOp": 8490.56435807074,
+    "capex": 4000000,
+    "tripulada": true,
+    "op": {
+     "n": 20,
+     "P": 1,
+     "burned": 0.71,
+     "tCont": 3960,
+     "nCont": 20,
+     "tExt": 5400,
+     "nExt": 20,
+     "litres": 5345.355873358447,
+     "flightH": 0.1772222222222222,
+     "drops": 286.8,
+     "sorties": 25.65,
+     "lineM": 1918.7592562682544,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 1,
+    "nRisco": 1,
+    "P": 1,
+    "capped": false,
+    "custoOp": 11560.267415507245,
+    "capex": 4500000,
+    "tripulada": true,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 0.725,
+     "tCont": 2800,
+     "nCont": 10,
+     "tExt": 4835,
+     "nExt": 10,
+     "litres": 4855.998270474145,
+     "flightH": 0.13999999999999999,
+     "drops": 233,
+     "sorties": 20.7,
+     "lineM": 1751.3527046234751,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 1,
+    "nRisco": 1,
+    "P": 1,
+    "capped": false,
+    "custoOp": 36005.705028482604,
+    "capex": 15000000,
+    "tripulada": true,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 0.875,
+     "tCont": 3080,
+     "nCont": 10,
+     "tExt": 5120,
+     "nExt": 10,
+     "litres": 6859.115451723982,
+     "flightH": 0.125,
+     "drops": 330.6,
+     "sorties": 16.2,
+     "lineM": 2106.14381988359,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 20
+   }
+  ],
+  "triagem": [
+   {
+    "modelo": "Spider H120",
+    "nMin": 4,
+    "custoOp": 1444.7104575067456
+   },
+   {
+    "modelo": "DJI FlyCart 30",
+    "nMin": 4,
+    "custoOp": 1483.3666674898354
+   },
+   {
+    "modelo": "Spider H160",
+    "nMin": 4,
+    "custoOp": 1503.0452639426876
+   },
+   {
+    "modelo": "Spider M65",
+    "nMin": 4,
+    "custoOp": 1518.0836788260367
+   },
+   {
+    "modelo": "Spider H40X",
+    "nMin": 5,
+    "custoOp": 1528.9346639818064
+   },
+   {
+    "modelo": "Spider H60-4",
+    "nMin": 5,
+    "custoOp": 1549.053962724743
+   },
+   {
+    "modelo": "Spider H200",
+    "nMin": 4,
+    "custoOp": 1687.2435679650407
+   },
+   {
+    "modelo": "Spider H32X",
+    "nMin": 6,
+    "custoOp": 1696.5753380162073
+   },
+   {
+    "modelo": "EAVision EA-30X",
+    "nMin": 5,
+    "custoOp": 1708.0691787673045
+   },
+   {
+    "modelo": "XAG P100 Pro",
+    "nMin": 5,
+    "custoOp": 1741.9121017667512
+   },
+   {
+    "modelo": "Spider H300 (100 L)",
+    "nMin": 4,
+    "custoOp": 1828.3637105229795
+   },
+   {
+    "modelo": "DJI Agras T30",
+    "nMin": 5,
+    "custoOp": 1851.4372343228601
+   },
+   {
+    "modelo": "DJI Agras T100",
+    "nMin": 4,
+    "custoOp": 1858.9362547115802
+   },
+   {
+    "modelo": "DJI Agras T40",
+    "nMin": 5,
+    "custoOp": 1891.6265052969604
+   },
+   {
+    "modelo": "Spider H300 Firefighting (4×25 kg)",
+    "nMin": 4,
+    "custoOp": 1928.5025994118682
+   },
+   {
+    "modelo": "Spider M400",
+    "nMin": 4,
+    "custoOp": 2069.5884219365153
+   },
+   {
+    "modelo": "DJI Agras T20P",
+    "nMin": 6,
+    "custoOp": 2129.0048987389905
+   },
+   {
+    "modelo": "DJI Agras T50",
+    "nMin": 5,
+    "custoOp": 2146.3964427969604
+   },
+   {
+    "modelo": "DJI Agras T25",
+    "nMin": 6,
+    "custoOp": 2389.9005376278797
+   },
+   {
+    "modelo": "DJI Agras T10",
+    "nMin": 10,
+    "custoOp": 3224.0332564252194
+   },
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 1,
+    "custoOp": 4223.736917192384
+   },
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": 1,
+    "custoOp": 5998.058598055078
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 1,
+    "custoOp": 9237.783186310091
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 1,
+    "custoOp": 10170.34996271818
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 1,
+    "custoOp": 31242.12033912722
+   }
+  ],
+  "final": {
+   "ok": true,
+   "burnedHa": 0.91,
+   "burnedHaSemDrones": 29.18,
+   "tCont": 5930,
+   "tExt": 7650,
+   "litres": 3125.864113589534,
+   "flightH": 2.738888888888889,
+   "lineM": 3288.9984360159197,
+   "tactic": "indireto",
+   "tot": 1736.0320983457254
+  },
+  "mc": {
+   "K": 24,
+   "P": 0.9583333333333334,
+   "ci": [
+    0.7975777375115778,
+    0.9926067346451949
+   ],
+   "burned": {
+    "p10": 0.5660000000000001,
+    "p50": 0.99,
+    "p90": 2.195,
+    "max": 14.71
+   },
+   "cost": {
+    "p10": 1366.5742314165068,
+    "p50": 1715.334024297771,
+    "p90": 2131.2302400760855
+   },
+   "nExt": 23
+  },
+  "tornado": {
+   "baseN": 4,
+   "rows": [
+    {
+     "lab": "Custo logístico por drone por operação",
+     "lo": 4,
+     "hi": 4,
+     "dLo": -300,
+     "dHi": 300
+    },
+    {
+     "lab": "Velocidade do vento",
+     "lo": 4,
+     "hi": 5,
+     "dLo": 0,
+     "dHi": 184
+    },
+    {
+     "lab": "Direção do vento",
+     "lo": 5,
+     "hi": 4,
+     "dLo": 184,
+     "dHi": 0
+    },
+    {
+     "lab": "Água por kg de combustível (razão de molhamento)",
+     "lo": 3,
+     "hi": 5,
+     "dLo": -184,
+     "dHi": 184
+    },
+    {
+     "lab": "Carga de combustível",
+     "lo": 4,
+     "hi": 5,
+     "dLo": 0,
+     "dHi": 184
+    },
+    {
+     "lab": "Tempo de recarga/troca de bateria",
+     "lo": 4,
+     "hi": 5,
+     "dLo": 0,
+     "dHi": 184
+    }
+   ]
+  },
+  "t_total_s": 425.012,
+  "as350Inviavel": false,
+  "triagemTrip": [
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 1,
+    "custoOp": 4223.736917192384
+   },
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": 1,
+    "custoOp": 5998.058598055078
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 1,
+    "custoOp": 9237.783186310091
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 1,
+    "custoOp": 10170.34996271818
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 1,
+    "custoOp": 31242.12033912722
+   }
+  ]
+ },
+ "9": {
+  "fi": 9,
+  "nome": "10 · Eucalipto (serapilheira)",
+  "cs": 10,
+  "N": 200,
+  "nMax": 60,
+  "t_opt_s": 198.521,
+  "modelo": "Spider M65",
+  "nMin": 3,
+  "nRisco": 3,
+  "capped": false,
+  "P": 0.9,
+  "Pci": [
+   0.5958436145024278,
+   0.9821242504842789
+  ],
+  "nBusca": 3,
+  "confirmado": false,
+  "Kconf": null,
+  "tatica": "indireto",
+  "custoOp": 1354.0776325636723,
+  "capex": 66000,
+  "ranking": [
+   {
+    "modelo": "Spider M65",
+    "nMin": 3,
+    "nRisco": 3,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 1354.0776325636723,
+    "capex": 66000,
+    "op": {
+     "n": 10,
+     "P": 0.6,
+     "burned": 1.5,
+     "tCont": 11400,
+     "nCont": 7,
+     "tExt": 14175,
+     "nExt": 6,
+     "litres": 8082.520375003784,
+     "flightH": 6.834444444444445,
+     "drops": 2215.9,
+     "sorties": 181.8,
+     "lineM": 8584.735461779936,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Spider H160",
+    "nMin": 3,
+    "nRisco": 3,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 1427.3346518260278,
+    "capex": 75000,
+    "op": {
+     "n": 10,
+     "P": 0.6,
+     "burned": 1.475,
+     "tCont": 14135,
+     "nCont": 6,
+     "tExt": 17735,
+     "nExt": 6,
+     "litres": 9221.238025074637,
+     "flightH": 6.832222222222223,
+     "drops": 2245,
+     "sorties": 179,
+     "lineM": 9053.161592998013,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Spider H60-4",
+    "nMin": 3,
+    "nRisco": 4,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 1443.67587522792,
+    "capex": 56000,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 1.095,
+     "tCont": 18580,
+     "nCont": 10,
+     "tExt": 20565,
+     "nExt": 10,
+     "litres": 4140.53779856196,
+     "flightH": 8.369444444444444,
+     "drops": 2515.3,
+     "sorties": 249.9,
+     "lineM": 6651.607272140626,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Spider H120",
+    "nMin": 3,
+    "nRisco": 4,
+    "P": 1,
+    "capped": false,
+    "custoOp": 1642.4100341944447,
+    "capex": 72000,
+    "op": {
+     "n": 10,
+     "P": 0.9,
+     "burned": 0.865,
+     "tCont": 11370,
+     "nCont": 10,
+     "tExt": 14700,
+     "nExt": 9,
+     "litres": 4781.595398426017,
+     "flightH": 6.318055555555556,
+     "drops": 2041.9,
+     "sorties": 185.2,
+     "lineM": 5791.480441593204,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 1,
+    "nRisco": 1,
+    "P": 1,
+    "capped": false,
+    "custoOp": 5814.266057212852,
+    "capex": 1500000,
+    "tripulada": true,
+    "op": {
+     "n": 20,
+     "P": 1,
+     "burned": 0.985,
+     "tCont": 9600,
+     "nCont": 20,
+     "tExt": 12925,
+     "nExt": 20,
+     "litres": 8762.522169846423,
+     "flightH": 1.147361111111111,
+     "drops": 2601.05,
+     "sorties": 118.65,
+     "lineM": 4945.832836093222,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": 1,
+    "nRisco": 1,
+    "P": 1,
+    "capped": false,
+    "custoOp": 6713.159461431479,
+    "capex": 2500000,
+    "tripulada": true,
+    "op": {
+     "n": 20,
+     "P": 1,
+     "burned": 1.43,
+     "tCont": 10850,
+     "nCont": 20,
+     "tExt": 13995,
+     "nExt": 20,
+     "litres": 13397.605271062246,
+     "flightH": 0.4715277777777779,
+     "drops": 1701.4,
+     "sorties": 44.95,
+     "lineM": 6514.782607458534,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 30
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 1,
+    "nRisco": 1,
+    "P": 1,
+    "capped": false,
+    "custoOp": 10663.837636960221,
+    "capex": 4000000,
+    "tripulada": true,
+    "op": {
+     "n": 20,
+     "P": 1,
+     "burned": 0.96,
+     "tCont": 9835,
+     "nCont": 20,
+     "tExt": 13225,
+     "nExt": 20,
+     "litres": 9072.246069355442,
+     "flightH": 1.134861111111111,
+     "drops": 2719.05,
+     "sorties": 116.2,
+     "lineM": 5105.037289749828,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 1,
+    "nRisco": 1,
+    "P": 1,
+    "capped": false,
+    "custoOp": 13590.170097968823,
+    "capex": 4500000,
+    "tripulada": true,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 0.96,
+     "tCont": 9445,
+     "nCont": 10,
+     "tExt": 12915,
+     "nExt": 10,
+     "litres": 9029.843858481616,
+     "flightH": 1.1111111111111112,
+     "drops": 2644.5,
+     "sorties": 124.4,
+     "lineM": 5091.521184543386,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 1,
+    "nRisco": 1,
+    "P": 1,
+    "capped": false,
+    "custoOp": 39119.94637889848,
+    "capex": 15000000,
+    "tripulada": true,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 1.06,
+     "tCont": 10955,
+     "nCont": 10,
+     "tExt": 13775,
+     "nExt": 10,
+     "litres": 11714.839341411769,
+     "flightH": 0.8580555555555556,
+     "drops": 2483,
+     "sorties": 95.9,
+     "lineM": 5668.552248648373,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 20
+   }
+  ],
+  "triagem": [
+   {
+    "modelo": "Spider H120",
+    "nMin": 3,
+    "custoOp": 1272.6103818285965
+   },
+   {
+    "modelo": "Spider H60-4",
+    "nMin": 3,
+    "custoOp": 1277.9883230527612
+   },
+   {
+    "modelo": "Spider M65",
+    "nMin": 3,
+    "custoOp": 1309.4378090067012
+   },
+   {
+    "modelo": "Spider H160",
+    "nMin": 3,
+    "custoOp": 1337.8905134305005
+   },
+   {
+    "modelo": "Spider H32X",
+    "nMin": 4,
+    "custoOp": 1370.5836013800786
+   },
+   {
+    "modelo": "DJI FlyCart 30",
+    "nMin": 4,
+    "custoOp": 1395.1007104899177
+   },
+   {
+    "modelo": "Spider H40X",
+    "nMin": 4,
+    "custoOp": 1521.5464512482606
+   },
+   {
+    "modelo": "Spider H200",
+    "nMin": 3,
+    "custoOp": 1528.67084294477
+   },
+   {
+    "modelo": "Spider H300 (100 L)",
+    "nMin": 3,
+    "custoOp": 1786.8206095458581
+   },
+   {
+    "modelo": "EAVision EA-30X",
+    "nMin": 4,
+    "custoOp": 1802.0599619638137
+   },
+   {
+    "modelo": "DJI Agras T100",
+    "nMin": 3,
+    "custoOp": 1898.2832733574287
+   },
+   {
+    "modelo": "Spider H300 Firefighting (4×25 kg)",
+    "nMin": 3,
+    "custoOp": 1902.8553317680803
+   },
+   {
+    "modelo": "DJI Agras T30",
+    "nMin": 4,
+    "custoOp": 2025.1155175193694
+   },
+   {
+    "modelo": "DJI Agras T40",
+    "nMin": 4,
+    "custoOp": 2054.835960852462
+   },
+   {
+    "modelo": "DJI Agras T20P",
+    "nMin": 5,
+    "custoOp": 2148.6656178391127
+   },
+   {
+    "modelo": "XAG P100 Pro",
+    "nMin": 6,
+    "custoOp": 2405.803267234658
+   },
+   {
+    "modelo": "DJI Agras T50",
+    "nMin": 4,
+    "custoOp": 2435.913537241351
+   },
+   {
+    "modelo": "DJI Agras T25",
+    "nMin": 5,
+    "custoOp": 2475.3150831168905
+   },
+   {
+    "modelo": "DJI Agras T10",
+    "nMin": 8,
+    "custoOp": 2959.2697212301955
+   },
+   {
+    "modelo": "Spider M400",
+    "nMin": 7,
+    "custoOp": 3384.930253326504
+   },
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 1,
+    "custoOp": 5306.753081995587
+   },
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": 1,
+    "custoOp": 6653.991722287116
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 1,
+    "custoOp": 10446.858991053896
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 1,
+    "custoOp": 11819.299958477068
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 1,
+    "custoOp": 33838.5070668061
+   }
+  ],
+  "final": {
+   "ok": true,
+   "burnedHa": 1.05,
+   "burnedHaSemDrones": 18.7,
+   "tCont": 12020,
+   "tExt": 15620,
+   "litres": 4197.103039674146,
+   "flightH": 4.55,
+   "lineM": 4793.402283775851,
+   "tactic": "indireto",
+   "tot": 1353.2355151983706
+  },
+  "mc": {
+   "K": 24,
+   "P": 0.7916666666666666,
+   "ci": [
+    0.5952915551476453,
+    0.9075531089521192
+   ],
+   "burned": {
+    "p10": 0.844,
+    "p50": 1.1749999999999998,
+    "p90": 39.46,
+    "max": 52.74
+   },
+   "cost": {
+    "p10": 1189.1805575237327,
+    "p50": 1439.938954464994,
+    "p90": 1755.334731695194
+   },
+   "nExt": 19
+  },
+  "tornado": {
+   "baseN": 3,
+   "rows": [
+    {
+     "lab": "Custo logístico por drone por operação",
+     "lo": 3,
+     "hi": 3,
+     "dLo": -225,
+     "dHi": 225
+    },
+    {
+     "lab": "Custo operacional por hora de voo",
+     "lo": 3,
+     "hi": 3,
+     "dLo": -128.1011111111111,
+     "dHi": 128.1011111111111
+    },
+    {
+     "lab": "Preço dos drones (CapEx)",
+     "lo": 3,
+     "hi": 3,
+     "dLo": -33,
+     "dHi": 33
+    },
+    {
+     "lab": "Custo da água",
+     "lo": 3,
+     "hi": 3,
+     "dLo": -16.84378483951832,
+     "dHi": 16.84378483951832
+    },
+    {
+     "lab": "Direção do vento",
+     "lo": 3,
+     "hi": 3,
+     "dLo": 0,
+     "dHi": 0
+    },
+    {
+     "lab": "Velocidade do vento",
+     "lo": 3,
+     "hi": 3,
+     "dLo": 0,
+     "dHi": 0
+    }
+   ]
+  },
+  "t_total_s": 455.643,
+  "as350Inviavel": false,
+  "triagemTrip": [
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 1,
+    "custoOp": 5306.753081995587
+   },
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": 1,
+    "custoOp": 6653.991722287116
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 1,
+    "custoOp": 10446.858991053896
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 1,
+    "custoOp": 11819.299958477068
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 1,
+    "custoOp": 33838.5070668061
+   }
+  ]
+ },
+ "10": {
+  "fi": 10,
+  "nome": "11 · Pinus (acículas, NFFL 8)",
+  "cs": 10,
+  "N": 200,
+  "nMax": 60,
+  "t_opt_s": 229.902,
+  "modelo": "Spider H60-4",
+  "nMin": 2,
+  "nRisco": 3,
+  "capped": false,
+  "P": 0.9,
+  "Pci": [
+   0.6989617935882066,
+   0.9721341060158467
+  ],
+  "nBusca": 3,
+  "confirmado": true,
+  "Kconf": 20,
+  "tatica": "cercamento",
+  "custoOp": 1373.779908834306,
+  "capex": 42000,
+  "ranking": [
+   {
+    "modelo": "Spider H60-4",
+    "nMin": 2,
+    "nRisco": 3,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 1373.779908834306,
+    "capex": 42000,
+    "op": {
+     "n": 10,
+     "P": 0.8,
+     "burned": 0.655,
+     "tCont": 23090,
+     "nCont": 9,
+     "tExt": 25040,
+     "nExt": 8,
+     "litres": 1825.1876847074388,
+     "flightH": 9.227500000000001,
+     "drops": 4751.7,
+     "sorties": 243.1,
+     "lineM": 6725.171588519486,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "DJI FlyCart 30",
+    "nMin": 2,
+    "nRisco": 3,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 1390.2753884348804,
+    "capex": 51000,
+    "op": {
+     "n": 10,
+     "P": 0.9,
+     "burned": 0.655,
+     "tCont": 23500,
+     "nCont": 10,
+     "tExt": 26830,
+     "nExt": 9,
+     "litres": 1829.0171729836507,
+     "flightH": 7.616944444444444,
+     "drops": 5137.3,
+     "sorties": 275.2,
+     "lineM": 6769.54135094283,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Spider M65",
+    "nMin": 2,
+    "nRisco": 3,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 1434.40020629795,
+    "capex": 66000,
+    "op": {
+     "n": 10,
+     "P": 0.6,
+     "burned": 0.64,
+     "tCont": 22580,
+     "nCont": 7,
+     "tExt": 25425,
+     "nExt": 6,
+     "litres": 2722.956718507604,
+     "flightH": 8.301111111111112,
+     "drops": 3943.8,
+     "sorties": 223.7,
+     "lineM": 6849.081567179041,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Spider H120",
+    "nMin": 2,
+    "nRisco": 4,
+    "P": 1,
+    "capped": false,
+    "custoOp": 1569.9972419505712,
+    "capex": 72000,
+    "op": {
+     "n": 10,
+     "P": 0.8,
+     "burned": 0.64,
+     "tCont": 22160,
+     "nCont": 9,
+     "tExt": 25205,
+     "nExt": 8,
+     "litres": 2327.4065570650546,
+     "flightH": 11.009166666666667,
+     "drops": 5051.9,
+     "sorties": 297.4,
+     "lineM": 6683.394280071001,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 1,
+    "nRisco": 2,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 14208.910196465966,
+    "capex": 3000000,
+    "tripulada": true,
+    "op": {
+     "n": 20,
+     "P": 0.9,
+     "burned": 0.65,
+     "tCont": 23050,
+     "nCont": 18,
+     "tExt": 25785,
+     "nExt": 18,
+     "litres": 5540.072067328575,
+     "flightH": 3.7438888888888884,
+     "drops": 6020.95,
+     "sorties": 436.85,
+     "lineM": 6911.271271784988,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 1,
+    "nRisco": 1,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 15508.744397961966,
+    "capex": 4500000,
+    "tripulada": true,
+    "op": {
+     "n": 10,
+     "P": 0.9,
+     "burned": 0.705,
+     "tCont": 22695,
+     "nCont": 10,
+     "tExt": 25760,
+     "nExt": 9,
+     "litres": 5336.602854824543,
+     "flightH": 2.147222222222222,
+     "drops": 5435.8,
+     "sorties": 235.6,
+     "lineM": 6790.4959902945175,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 1,
+    "nRisco": 3,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 33790.0959755751,
+    "capex": 12000000,
+    "tripulada": true,
+    "op": {
+     "n": 20,
+     "P": 0.9,
+     "burned": 0.65,
+     "tCont": 22830,
+     "nCont": 18,
+     "tExt": 25425,
+     "nExt": 18,
+     "litres": 5100.166864037141,
+     "flightH": 4.659722222222221,
+     "drops": 5326.75,
+     "sorties": 583.6,
+     "lineM": 6422.822421723875,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": 1,
+    "nRisco": 7,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 42142.798811346176,
+    "capex": 17500000,
+    "tripulada": true,
+    "op": {
+     "n": 20,
+     "P": 0.9,
+     "burned": 0.87,
+     "tCont": 22920,
+     "nCont": 18,
+     "tExt": 25240,
+     "nExt": 18,
+     "litres": 5969.047335997655,
+     "flightH": 3.104027777777778,
+     "drops": 4567.25,
+     "sorties": 453.9,
+     "lineM": 6401.3694608976575,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 30
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 1,
+    "nRisco": 1,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 43658.00022914767,
+    "capex": 15000000,
+    "tripulada": true,
+    "op": {
+     "n": 10,
+     "P": 0.9,
+     "burned": 0.815,
+     "tCont": 22160,
+     "nCont": 9,
+     "tExt": 25760,
+     "nExt": 9,
+     "litres": 6449.948784167904,
+     "flightH": 1.6027777777777779,
+     "drops": 4550.2,
+     "sorties": 175.8,
+     "lineM": 6909.936719425942,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 20
+   }
+  ],
+  "triagem": [
+   {
+    "modelo": "DJI FlyCart 30",
+    "nMin": 2,
+    "custoOp": 1081.2072969019111
+   },
+   {
+    "modelo": "Spider H60-4",
+    "nMin": 2,
+    "custoOp": 1090.3253696568
+   },
+   {
+    "modelo": "Spider H120",
+    "nMin": 2,
+    "custoOp": 1103.0424323721925
+   },
+   {
+    "modelo": "Spider M65",
+    "nMin": 2,
+    "custoOp": 1152.8568428504987
+   },
+   {
+    "modelo": "Spider H32X",
+    "nMin": 3,
+    "custoOp": 1171.718597336418
+   },
+   {
+    "modelo": "Spider H160",
+    "nMin": 2,
+    "custoOp": 1195.3702253527945
+   },
+   {
+    "modelo": "Spider H40X",
+    "nMin": 3,
+    "custoOp": 1218.317760442461
+   },
+   {
+    "modelo": "XAG P100 Pro",
+    "nMin": 2,
+    "custoOp": 1379.8156739289398
+   },
+   {
+    "modelo": "EAVision EA-30X",
+    "nMin": 3,
+    "custoOp": 1508.566642128941
+   },
+   {
+    "modelo": "DJI Agras T100",
+    "nMin": 2,
+    "custoOp": 1531.1975409144206
+   },
+   {
+    "modelo": "DJI Agras T30",
+    "nMin": 3,
+    "custoOp": 1691.1708087956079
+   },
+   {
+    "modelo": "Spider H300 (100 L)",
+    "nMin": 2,
+    "custoOp": 1712.691379275701
+   },
+   {
+    "modelo": "DJI Agras T10",
+    "nMin": 4,
+    "custoOp": 1722.8057912831546
+   },
+   {
+    "modelo": "Spider H200",
+    "nMin": 3,
+    "custoOp": 1772.0622556696726
+   },
+   {
+    "modelo": "Spider H300 Firefighting (4×25 kg)",
+    "nMin": 2,
+    "custoOp": 1841.26776816459
+   },
+   {
+    "modelo": "DJI Agras T20P",
+    "nMin": 4,
+    "custoOp": 1850.9377027402284
+   },
+   {
+    "modelo": "DJI Agras T40",
+    "nMin": 3,
+    "custoOp": 1900.4092550650112
+   },
+   {
+    "modelo": "DJI Agras T25",
+    "nMin": 4,
+    "custoOp": 2127.730841629117
+   },
+   {
+    "modelo": "DJI Agras T50",
+    "nMin": 3,
+    "custoOp": 2285.0531647872335
+   },
+   {
+    "modelo": "Spider M400",
+    "nMin": 3,
+    "custoOp": 2353.542915700846
+   },
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": 1,
+    "custoOp": 7463.458638884007
+   },
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 1,
+    "custoOp": 7844.124357517299
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 1,
+    "custoOp": 13592.179518710383
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 1,
+    "custoOp": 15563.60454312761
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 1,
+    "custoOp": 38875.421491776986
+   }
+  ],
+  "final": {
+   "ok": true,
+   "burnedHa": 0.64,
+   "burnedHaSemDrones": 4.83,
+   "tCont": 21150,
+   "tExt": 24750,
+   "litres": 1877.6231650083178,
+   "flightH": 8.588888888888889,
+   "lineM": 7024.40390949619,
+   "tactic": "indireto",
+   "tot": 1343.9992269361528
+  },
+  "mc": {
+   "K": 24,
+   "P": 0.75,
+   "ci": [
+    0.5510017468789357,
+    0.8800079652065768
+   ],
+   "burned": {
+    "p10": 0.613,
+    "p50": 0.635,
+    "p90": 0.6869999999999999,
+    "max": 0.82
+   },
+   "cost": {
+    "p10": 1200.3802889401131,
+    "p50": 1356.5683380022565,
+    "p90": 1586.8740129177008
+   },
+   "nExt": 18
+  },
+  "tornado": {
+   "baseN": 2,
+   "rows": [
+    {
+     "lab": "Velocidade do vento",
+     "lo": 2,
+     "hi": 3,
+     "dLo": 0,
+     "dHi": 178
+    },
+    {
+     "lab": "Carga de combustível",
+     "lo": 2,
+     "hi": 3,
+     "dLo": 0,
+     "dHi": 178
+    },
+    {
+     "lab": "Água por kg de combustível (razão de molhamento)",
+     "lo": 2,
+     "hi": 3,
+     "dLo": 0,
+     "dHi": 178
+    },
+    {
+     "lab": "Velocidade de cruzeiro dos drones",
+     "lo": 3,
+     "hi": 2,
+     "dLo": 178,
+     "dHi": 0
+    },
+    {
+     "lab": "Largura da faixa molhada por lançamento",
+     "lo": 2,
+     "hi": 3,
+     "dLo": 0,
+     "dHi": 178
+    },
+    {
+     "lab": "Custo logístico por drone por operação",
+     "lo": 2,
+     "hi": 2,
+     "dLo": -150,
+     "dHi": 150
+    }
+   ]
+  },
+  "t_total_s": 583.535,
+  "as350Inviavel": false,
+  "triagemTrip": [
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": 1,
+    "custoOp": 7463.458638884007
+   },
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 1,
+    "custoOp": 7844.124357517299
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 1,
+    "custoOp": 13592.179518710383
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 1,
+    "custoOp": 15563.60454312761
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 1,
+    "custoOp": 38875.421491776986
+   }
+  ]
+ },
+ "11": {
+  "fi": 11,
+  "nome": "12 · Pasto de braquiária / capim-gordura",
+  "cs": 20,
+  "N": 112,
+  "nMax": 60,
+  "t_opt_s": 171.365,
+  "modelo": "DJI FlyCart 30",
+  "nMin": 11,
+  "nRisco": 22,
+  "capped": false,
+  "P": 0.95,
+  "Pci": [
+   0.7638641064874331,
+   0.9911187805671267
+  ],
+  "nBusca": 20,
+  "confirmado": true,
+  "Kconf": 20,
+  "tatica": "indireto",
+  "custoOp": 5206.1685953843,
+  "capex": 374000,
+  "ranking": [
+   {
+    "modelo": "DJI FlyCart 30",
+    "nMin": 11,
+    "nRisco": 22,
+    "P": 0.95,
+    "capped": false,
+    "custoOp": 5206.1685953843,
+    "capex": 374000,
+    "op": {
+     "n": 10,
+     "P": 0.8,
+     "burned": 4.4,
+     "tCont": 4330,
+     "nCont": 10,
+     "tExt": 4775,
+     "nExt": 10,
+     "litres": 9008.431388282239,
+     "flightH": 18.849272767752872,
+     "drops": 3601.2,
+     "sorties": 424.9,
+     "lineM": 18643.67390998215,
+     "depot": 0,
+     "esc": 2
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Spider H40X",
+    "nMin": 19,
+    "nRisco": 33,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 5366.651196205976,
+    "capex": 330000,
+    "op": {
+     "n": 10,
+     "P": 0.9,
+     "burned": 4.779999999999999,
+     "tCont": 3785,
+     "nCont": 10,
+     "tExt": 3895,
+     "nExt": 10,
+     "litres": 5713.342115036166,
+     "flightH": 25.06074707362918,
+     "drops": 2947.1,
+     "sorties": 406.6,
+     "lineM": 14194.571494151396,
+     "depot": 0,
+     "esc": 1
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Spider H32X",
+    "nMin": 16,
+    "nRisco": 35,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 5430.303627151254,
+    "capex": 280000,
+    "op": {
+     "n": 10,
+     "P": 0.9,
+     "burned": 5,
+     "tCont": 3845,
+     "nCont": 10,
+     "tExt": 4370,
+     "nExt": 10,
+     "litres": 5564.321739418671,
+     "flightH": 27.968621432671114,
+     "drops": 3181.1,
+     "sorties": 466.7,
+     "lineM": 15087.88754740374,
+     "depot": 0,
+     "esc": 1
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Spider H60-4",
+    "nMin": 14,
+    "nRisco": 30,
+    "P": 0.95,
+    "capped": false,
+    "custoOp": 6781.824911429879,
+    "capex": 420000,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 4.140000000000001,
+     "tCont": 3860,
+     "nCont": 10,
+     "tExt": 4170,
+     "nExt": 10,
+     "litres": 3791.1443268330668,
+     "flightH": 14.023134398729448,
+     "drops": 2096.5,
+     "sorties": 273.9,
+     "lineM": 8692.553289996822,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 3,
+    "nRisco": 4,
+    "P": 0.95,
+    "capped": false,
+    "custoOp": 16153.99403340597,
+    "capex": 6000000,
+    "tripulada": true,
+    "op": {
+     "n": 20,
+     "P": 0.95,
+     "burned": 20.78,
+     "tCont": 5635,
+     "nCont": 20,
+     "tExt": 6225,
+     "nExt": 20,
+     "litres": 26620.730133447512,
+     "flightH": 2.163712801471566,
+     "drops": 3632.4,
+     "sorties": 135.85,
+     "lineM": 21155.293502700973,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 2,
+    "nRisco": 3,
+    "P": 0.95,
+    "capped": false,
+    "custoOp": 27159.16553946756,
+    "capex": 12000000,
+    "tripulada": true,
+    "op": {
+     "n": 20,
+     "P": 0.95,
+     "burned": 22.96,
+     "tCont": 5745,
+     "nCont": 20,
+     "tExt": 6345,
+     "nExt": 20,
+     "litres": 26861.0632662153,
+     "flightH": 1.8348079973776534,
+     "drops": 3342.8,
+     "sorties": 110.65,
+     "lineM": 21454.06149610709,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 2,
+    "nRisco": 3,
+    "P": 1,
+    "capped": false,
+    "custoOp": 36892.68574190098,
+    "capex": 13500000,
+    "tripulada": true,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 18.259999999999998,
+     "tCont": 5465,
+     "nCont": 10,
+     "tExt": 5905,
+     "nExt": 10,
+     "litres": 24828.29941338035,
+     "flightH": 1.6198607910188532,
+     "drops": 3094.3,
+     "sorties": 105.4,
+     "lineM": 19816.20619583571,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 5,
+    "nRisco": 60,
+    "P": 0.75,
+    "capped": true,
+    "custoOp": 2106898.137491779,
+    "capex": 900000000,
+    "tripulada": true,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 25.02,
+     "tCont": 4755,
+     "nCont": 10,
+     "tExt": 5355,
+     "nExt": 10,
+     "litres": 34946.738995636144,
+     "flightH": 4.674372815277071,
+     "drops": 4245.4,
+     "sorties": 359.5,
+     "lineM": 22545.292279121095,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 20
+   }
+  ],
+  "triagem": [
+   {
+    "modelo": "DJI FlyCart 30",
+    "nMin": 11,
+    "custoOp": 2876.251746550699
+   },
+   {
+    "modelo": "Spider H60-4",
+    "nMin": 14,
+    "custoOp": 3254.5459651401825
+   },
+   {
+    "modelo": "Spider H32X",
+    "nMin": 16,
+    "custoOp": 3537.5813166234348
+   },
+   {
+    "modelo": "Spider H40X",
+    "nMin": 19,
+    "custoOp": 4002.4436166228975
+   },
+   {
+    "modelo": "Spider M65",
+    "nMin": 15,
+    "custoOp": 4049.3708290301065
+   },
+   {
+    "modelo": "Spider H160",
+    "nMin": 16,
+    "custoOp": 4502.33867587267
+   },
+   {
+    "modelo": "Spider H120",
+    "nMin": 20,
+    "custoOp": 4635.216112434727
+   },
+   {
+    "modelo": "DJI Agras T100",
+    "nMin": 14,
+    "custoOp": 5287.349715672389
+   },
+   {
+    "modelo": "Spider H200",
+    "nMin": 18,
+    "custoOp": 5382.540799781398
+   },
+   {
+    "modelo": "Spider H300 (100 L)",
+    "nMin": 17,
+    "custoOp": 5680.074218727414
+   },
+   {
+    "modelo": "Spider H300 Firefighting (4×25 kg)",
+    "nMin": 17,
+    "custoOp": 6057.004774282968
+   },
+   {
+    "modelo": "Spider M400",
+    "nMin": 14,
+    "custoOp": 6058.464134892272
+   },
+   {
+    "modelo": "EAVision EA-30X",
+    "nMin": 40,
+    "custoOp": 8742.42292261824
+   },
+   {
+    "modelo": "XAG P100 Pro",
+    "nMin": 37,
+    "custoOp": 9529.710180080321
+   },
+   {
+    "modelo": "DJI Agras T30",
+    "nMin": 40,
+    "custoOp": 9533.65719647193
+   },
+   {
+    "modelo": "DJI Agras T40",
+    "nMin": 36,
+    "custoOp": 10374.134510072532
+   },
+   {
+    "modelo": "DJI Agras T50",
+    "nMin": 36,
+    "custoOp": 12034.53566433192
+   },
+   {
+    "modelo": "DJI Agras T20P",
+    "nMin": 56,
+    "custoOp": 12441.552712831884
+   },
+   {
+    "modelo": "DJI Agras T25",
+    "nMin": 56,
+    "custoOp": 13654.618275127901
+   },
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 3,
+    "custoOp": 14302.771778178445
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 2,
+    "custoOp": 20766.750125936527
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 2,
+    "custoOp": 23382.7450589278
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 5,
+    "custoOp": 160941.84954440148
+   },
+   {
+    "modelo": "DJI Agras T10",
+    "nMin": null,
+    "custoOp": null
+   },
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": null,
+    "custoOp": null
+   }
+  ],
+  "final": {
+   "ok": true,
+   "burnedHa": 4.6,
+   "burnedHaSemDrones": 328.4,
+   "tCont": 2730,
+   "tExt": 3330,
+   "litres": 3076.762721836799,
+   "flightH": 6.25,
+   "lineM": 7399.621745639255,
+   "tactic": "indireto",
+   "tot": 4829.008813609184
+  },
+  "mc": {
+   "K": 24,
+   "P": 0.9583333333333334,
+   "ci": [
+    0.7975777375115778,
+    0.9926067346451949
+   ],
+   "burned": {
+    "p10": 3.196,
+    "p50": 4.92,
+    "p90": 8.319999999999997,
+    "max": 303.28
+   },
+   "cost": {
+    "p10": 3818.447762955214,
+    "p50": 4859.2106699258,
+    "p90": 6425.599280653287
+   },
+   "nExt": 24
+  },
+  "tornado": {
+   "baseN": 12,
+   "rows": [
+    {
+     "lab": "Velocidade do vento",
+     "lo": 9,
+     "hi": 18,
+     "dLo": -552,
+     "dHi": 1104
+    },
+    {
+     "lab": "Direção do vento",
+     "lo": 16,
+     "hi": 18,
+     "dLo": 736,
+     "dHi": 1104
+    },
+    {
+     "lab": "Tempo de recarga/troca de bateria",
+     "lo": 12,
+     "hi": 17,
+     "dLo": 0,
+     "dHi": 920
+    },
+    {
+     "lab": "Custo logístico por drone por operação",
+     "lo": 12,
+     "hi": 12,
+     "dLo": -900,
+     "dHi": 900
+    },
+    {
+     "lab": "Água por kg de combustível (razão de molhamento)",
+     "lo": 10,
+     "hi": 16,
+     "dLo": -368,
+     "dHi": 736
+    },
+    {
+     "lab": "Largura da faixa molhada por lançamento",
+     "lo": 10,
+     "hi": 16,
+     "dLo": -368,
+     "dHi": 736
+    }
+   ]
+  },
+  "t_total_s": 282.535,
+  "as350Inviavel": false,
+  "triagemTrip": [
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 3,
+    "custoOp": 14302.771778178445
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 2,
+    "custoOp": 20766.750125936527
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 2,
+    "custoOp": 23382.7450589278
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 5,
+    "custoOp": 160941.84954440148
+   },
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": null,
+    "custoOp": null
+   }
+  ]
+ },
+ "12": {
+  "fi": 12,
+  "nome": "13 · Serra do Cipó — campo rupestre (REAL ago/2024)",
+  "cs": 20,
+  "N": 141,
+  "nMax": 60,
+  "t_opt_s": 1497.205,
+  "modelo": "DJI FlyCart 30",
+  "nMin": 15,
+  "nRisco": 32,
+  "capped": false,
+  "P": 0.9,
+  "Pci": [
+   0.6989617935882066,
+   0.9721341060158467
+  ],
+  "nBusca": 26,
+  "confirmado": true,
+  "Kconf": 20,
+  "tatica": "indireto",
+  "custoOp": 7378.414412869283,
+  "capex": 544000,
+  "ranking": [
+   {
+    "modelo": "DJI FlyCart 30",
+    "nMin": 15,
+    "nRisco": 32,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 7378.414412869283,
+    "capex": 544000,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 10.32,
+     "tCont": 7055.268538513719,
+     "nCont": 10,
+     "tExt": 7269.807147511099,
+     "nExt": 10,
+     "litres": 6653.633908753817,
+     "flightH": 20.473698626836942,
+     "drops": 6705.3,
+     "sorties": 535.5,
+     "lineM": 18031.758231046635,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "DJI Agras T100",
+    "nMin": 16,
+    "nRisco": 27,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 9306.331620445852,
+    "capex": 1485000,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 11.42,
+     "tCont": 6831.8529317994335,
+     "nCont": 10,
+     "tExt": 7233.172061979727,
+     "nExt": 10,
+     "litres": 16312.900818310576,
+     "flightH": 16.958202133524054,
+     "drops": 6895.4,
+     "sorties": 428.7,
+     "lineM": 20957.25504674855,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Spider H120",
+    "nMin": 31,
+    "nRisco": 58,
+    "P": 1,
+    "capped": false,
+    "custoOp": 11745.035218879077,
+    "capex": 1044000,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 9.379999999999999,
+     "tCont": 6866.077008036456,
+     "nCont": 10,
+     "tExt": 7074.135533025556,
+     "nExt": 10,
+     "litres": 8875.895498272326,
+     "flightH": 40.6834035801721,
+     "drops": 7213.1,
+     "sorties": 670,
+     "lineM": 18253.11243559089,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Spider H40X",
+    "nMin": 30,
+    "nRisco": 60,
+    "P": 0.9,
+    "capped": false,
+    "custoOp": 11864.646521916178,
+    "capex": 600000,
+    "op": {
+     "n": 10,
+     "P": 0.8,
+     "burned": 11.780000000000001,
+     "tCont": 6237.037614501517,
+     "nCont": 8,
+     "tExt": 6245.685189259842,
+     "nExt": 8,
+     "litres": 13107.37199681607,
+     "flightH": 81.37992901411238,
+     "drops": 9890.8,
+     "sorties": 1139.5,
+     "lineM": 40555.04074759529,
+     "depot": 0,
+     "esc": 2
+    },
+    "mobMin": 5
+   },
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 4,
+    "nRisco": 4,
+    "P": 0.95,
+    "capped": false,
+    "custoOp": 20603.457172724655,
+    "capex": 6000000,
+    "tripulada": true,
+    "op": {
+     "n": 20,
+     "P": 0.95,
+     "burned": 40.76,
+     "tCont": 11110.40121982273,
+     "nCont": 19,
+     "tExt": 11513.071086517515,
+     "nExt": 19,
+     "litres": 49185.426293356744,
+     "flightH": 5.458447815808489,
+     "drops": 11383.45,
+     "sorties": 290.2,
+     "lineM": 47252.50145267279,
+     "depot": 0,
+     "esc": 1
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 4,
+    "nRisco": 4,
+    "P": 1,
+    "capped": false,
+    "custoOp": 41335.06035108881,
+    "capex": 16000000,
+    "tripulada": true,
+    "op": {
+     "n": 20,
+     "P": 1,
+     "burned": 39.94,
+     "tCont": 11043.902262299409,
+     "nCont": 20,
+     "tExt": 11343.116737052864,
+     "nExt": 20,
+     "litres": 45304.28205979943,
+     "flightH": 5.091442306970874,
+     "drops": 10799.3,
+     "sorties": 281.75,
+     "lineM": 42848.655138024034,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 4,
+    "nRisco": 4,
+    "P": 1,
+    "capped": false,
+    "custoOp": 56389.65998545035,
+    "capex": 18000000,
+    "tripulada": true,
+    "op": {
+     "n": 10,
+     "P": 1,
+     "burned": 40.379999999999995,
+     "tCont": 10458.960482148246,
+     "nCont": 10,
+     "tExt": 10662.998609494785,
+     "nExt": 10,
+     "litres": 42684.401830533905,
+     "flightH": 4.421007817632208,
+     "drops": 10259.3,
+     "sorties": 269.1,
+     "lineM": 39593.853447428686,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 15
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 5,
+    "nRisco": 5,
+    "P": 1,
+    "capped": false,
+    "custoOp": 203501.56510023345,
+    "capex": 75000000,
+    "tripulada": true,
+    "op": {
+     "n": 10,
+     "P": 0.9,
+     "burned": 59.32,
+     "tCont": 10970.936052296684,
+     "nCont": 10,
+     "tExt": 11372.484322597029,
+     "nExt": 10,
+     "litres": 65459.2185419851,
+     "flightH": 5.037675929022829,
+     "drops": 11872.7,
+     "sorties": 279.1,
+     "lineM": 48360.941115232716,
+     "depot": 0,
+     "esc": 0
+    },
+    "mobMin": 20
+   }
+  ],
+  "triagem": [
+   {
+    "modelo": "DJI FlyCart 30",
+    "nMin": 15,
+    "custoOp": 4003.9624056786442
+   },
+   {
+    "modelo": "Spider H40X",
+    "nMin": 30,
+    "custoOp": 6533.8016122778
+   },
+   {
+    "modelo": "DJI Agras T100",
+    "nMin": 16,
+    "custoOp": 7193.68340088426
+   },
+   {
+    "modelo": "Spider H120",
+    "nMin": 31,
+    "custoOp": 7936.328572243172
+   },
+   {
+    "modelo": "Spider M65",
+    "nMin": 32,
+    "custoOp": 8245.256203264875
+   },
+   {
+    "modelo": "Spider H160",
+    "nMin": 29,
+    "custoOp": 8800.759678056213
+   },
+   {
+    "modelo": "Spider H60-4",
+    "nMin": 37,
+    "custoOp": 8865.0372792774
+   },
+   {
+    "modelo": "Spider H200",
+    "nMin": 34,
+    "custoOp": 11307.920591700142
+   },
+   {
+    "modelo": "Spider H32X",
+    "nMin": 57,
+    "custoOp": 11443.620466756785
+   },
+   {
+    "modelo": "Spider H300 (100 L)",
+    "nMin": 32,
+    "custoOp": 11966.38652951
+   },
+   {
+    "modelo": "Spider H300 Firefighting (4×25 kg)",
+    "nMin": 32,
+    "custoOp": 12923.313642419307
+   },
+   {
+    "modelo": "Spider M400",
+    "nMin": 30,
+    "custoOp": 13789.058961103052
+   },
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 4,
+    "custoOp": 27717.26562278196
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 4,
+    "custoOp": 51828.63488566858
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 4,
+    "custoOp": 51981.47745655509
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 5,
+    "custoOp": 188691.7583775313
+   },
+   {
+    "modelo": "DJI Agras T10",
+    "nMin": null,
+    "custoOp": null
+   },
+   {
+    "modelo": "DJI Agras T20P",
+    "nMin": null,
+    "custoOp": null
+   },
+   {
+    "modelo": "DJI Agras T25",
+    "nMin": null,
+    "custoOp": null
+   },
+   {
+    "modelo": "DJI Agras T30",
+    "nMin": null,
+    "custoOp": null
+   },
+   {
+    "modelo": "DJI Agras T40",
+    "nMin": null,
+    "custoOp": null
+   },
+   {
+    "modelo": "DJI Agras T50",
+    "nMin": null,
+    "custoOp": null
+   },
+   {
+    "modelo": "XAG P100 Pro",
+    "nMin": null,
+    "custoOp": null
+   },
+   {
+    "modelo": "EAVision EA-30X",
+    "nMin": null,
+    "custoOp": null
+   },
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": null,
+    "custoOp": null
+   }
+  ],
+  "final": {
+   "ok": true,
+   "burnedHa": 11.08,
+   "burnedHaSemDrones": 364.92,
+   "tCont": 6049.132199604282,
+   "tExt": 6446.799550273589,
+   "litres": 6322.573241119621,
+   "flightH": 19.435142047404575,
+   "lineM": 17740.104492479637,
+   "tactic": "indireto",
+   "tot": 7245.606403220292
+  },
+  "mc": {
+   "K": 24,
+   "P": 1,
+   "ci": [
+    0.8620194241710247,
+    1
+   ],
+   "burned": {
+    "p10": 7.236000000000001,
+    "p50": 9.74,
+    "p90": 13.343999999999998,
+    "max": 17.4
+   },
+   "cost": {
+    "p10": 5394.144931667383,
+    "p50": 6975.443249372978,
+    "p90": 9414.75727109678
+   },
+   "nExt": 24
+  },
+  "tornado": {
+   "baseN": 15,
+   "rows": [
+    {
+     "lab": "Direção do vento",
+     "lo": 23,
+     "hi": 21,
+     "dLo": 1472,
+     "dHi": 1104
+    },
+    {
+     "lab": "Velocidade do vento",
+     "lo": 14,
+     "hi": 23,
+     "dLo": -184,
+     "dHi": 1472
+    },
+    {
+     "lab": "Umidade relativa",
+     "lo": 23,
+     "hi": 15,
+     "dLo": 1472,
+     "dHi": 0
+    },
+    {
+     "lab": "Custo logístico por drone por operação",
+     "lo": 15,
+     "hi": 15,
+     "dLo": -1125,
+     "dHi": 1125
+    },
+    {
+     "lab": "Tempo de resposta (detecção+despacho)",
+     "lo": 11,
+     "hi": 21,
+     "dLo": -736,
+     "dHi": 1104
+    },
+    {
+     "lab": "Água por kg de combustível (razão de molhamento)",
+     "lo": 11,
+     "hi": 18,
+     "dLo": -736,
+     "dHi": 552
+    }
+   ]
+  },
+  "t_total_s": 2091.592,
+  "as350Inviavel": false,
+  "triagemTrip": [
+   {
+    "modelo": "Aeronave Bell 505 (680 L)",
+    "nMin": 4,
+    "custoOp": 27717.26562278196
+   },
+   {
+    "modelo": "Aeronave Leonardo AW119 (1.200 L)",
+    "nMin": 4,
+    "custoOp": 51828.63488566858
+   },
+   {
+    "modelo": "Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)",
+    "nMin": 4,
+    "custoOp": 51981.47745655509
+   },
+   {
+    "modelo": "Aeronave UH-60 Black Hawk (3.000 L)",
+    "nMin": 5,
+    "custoOp": 188691.7583775313
+   },
+   {
+    "modelo": "Aeronave Air Tractor AT-802 (3.100 L)",
+    "nMin": null,
+    "custoOp": null
+   }
+  ]
+ }
+}

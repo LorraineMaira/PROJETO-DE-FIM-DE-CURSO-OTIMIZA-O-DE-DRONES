@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FireDrone · Simulador de combate a incêndios com enxame de drones</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f6f1e7;--card:#fffdf8;--fg:#2a2b26;--mu:#76786c;--bd:#e6dcc8;--side:#15301f;--sidefg:#d9e6d3;--ac:#e4572e;--ac2:#f4a259;--moss:#4f9d5a;--water:#2f80c9;--in:#fbf6ea}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111a14;--card:#1a261e;--fg:#ece9dc;--mu:#a1ac9b;--bd:#2e4033;--side:#0c1810;--in:#15201a}}
+:root[data-theme="dark"]{--bg:#111a14;--card:#1a261e;--fg:#ece9dc;--mu:#a1ac9b;--bd:#2e4033;--side:#0c1810;--in:#15201a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.app{display:grid;grid-template-columns:240px minmax(0,1fr);min-height:100vh}
+@media(max-width:900px){.app{grid-template-columns:1fr}aside{position:static!important;height:auto!important}#nav{display:none}}
+aside{background:linear-gradient(180deg,var(--side),#1f4a2c);color:var(--sidefg);padding:18px 14px;position:sticky;top:0;height:100vh;overflow:auto;box-sizing:border-box}
+.logo{display:flex;gap:10px;align-items:center;margin-bottom:16px}.logo i{font-style:normal;font-size:34px;filter:drop-shadow(0 0 8px #e4572e)}.logo b{font-size:20px;color:#fff;display:block}.logo small{font-size:11px;opacity:.75}
+#nav button{display:flex;gap:10px;width:100%;align-items:center;background:none;border:0;color:var(--sidefg);padding:8px 10px;border-radius:10px;font:inherit;cursor:pointer;margin:1px 0;text-align:left}
+#nav button.on{background:rgba(244,162,89,.2);color:#ffd7a8;font-weight:700}
+aside h4{margin:16px 0 6px;font-size:12px;text-transform:uppercase;letter-spacing:.06em;opacity:.7}#side div{font-size:12.5px;margin:6px 0}
+.run{width:100%;background:linear-gradient(135deg,#e4572e,#f4a259);color:#fff;border:0;border-radius:12px;padding:12px;font:inherit;font-weight:800;cursor:pointer;margin-top:12px}
+.main{padding:16px 20px;min-width:0}.top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.top small{color:var(--mu)}h1{margin:0;font-size:22px}
+.pills{display:flex;gap:6px;flex-wrap:wrap}.pills button{border:1px solid var(--bd);background:var(--card);color:var(--fg);border-radius:99px;padding:5px 11px;font:inherit;cursor:pointer;display:flex;gap:6px;align-items:center}
+.pills button b{background:var(--bd);border-radius:50%;width:18px;height:18px;font-size:11px;display:inline-flex;align-items:center;justify-content:center}
+.pills button.on{background:var(--ac);color:#fff;border-color:var(--ac)}.pills button.on b{background:#fff;color:var(--ac)}
+#theme{background:var(--card);border:1px solid var(--bd);border-radius:50%;width:36px;height:36px;cursor:pointer;color:var(--fg);font-size:17px;line-height:1;padding:0}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px;margin-bottom:14px}
+.g2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}@media(max-width:1000px){.g2{grid-template-columns:1fr}}
+h2{font-size:15px;margin:0 0 4px}.sub{color:var(--mu);font-size:12.5px;margin:0 0 10px}
+label{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:6px 0;font-size:13px}
+input,select{width:150px;max-width:58%;background:var(--in);color:var(--fg);border:1px solid var(--bd);border-radius:8px;padding:5px 7px;font:inherit}
+select.w{width:100%;max-width:100%}
+.btn{background:linear-gradient(135deg,#2f80c9,#4f9d5a);color:#fff;border:0;border-radius:10px;padding:8px 14px;font:inherit;font-weight:700;cursor:pointer;margin:6px 6px 0 0}.btn.s{background:transparent;color:var(--fg);border:1px solid var(--bd)}
+canvas{width:100%;aspect-ratio:1;border-radius:12px;display:block;border:3px solid var(--bd);background:#243528}
+.leg span{display:inline-flex;gap:4px;align-items:center;margin-right:10px;font-size:12px}.leg i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:9px}.kpi div{background:var(--in);border:1px solid var(--bd);border-radius:12px;padding:9px;display:grid}
+.kpi i{font-style:normal;font-size:17px}.kpi span{font-size:11.5px;color:var(--mu)}.kpi b{font-size:16px}
+.eco{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:9px}.eco div{background:linear-gradient(135deg,#2f80c9,#4f9d5a);color:#fff;border-radius:12px;padding:12px}.eco span{font-size:12px;opacity:.9;display:block}.eco b{font-size:18px}
+.msg{border-radius:10px;padding:10px 12px;margin-top:10px;font-size:13px}.msg.ok{background:#4f9d5a22;border:1px solid #4f9d5a}.msg.bad{background:#e4572e1f;border:1px solid #e4572e}.msg.warn{background:#f4a25922;border:1px solid #f4a259}
+.pill{display:inline-block;border-radius:99px;padding:1px 10px;font-size:11px;font-weight:700;color:#fff}.win{background:#4f9d5a}.lose{background:#dc2626}
+.scroll{overflow:auto;max-height:430px}table{border-collapse:collapse;width:100%;font-size:12.5px}th{position:sticky;top:0;background:var(--card);z-index:1}
+th,td{padding:6px 8px;border-bottom:1px solid var(--bd);text-align:right;white-space:nowrap}th:first-child,td:first-child{text-align:left}
+.best td{background:#4f9d5a22;font-weight:700}.hm{color:#fff;text-align:center;font-weight:700}.note{font-size:12px;color:var(--mu)}
+
+.sb{display:flex;gap:6px;margin-top:8px}.sb button{flex:1;background:rgba(255,255,255,.1);color:var(--sidefg);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:7px 4px;font:inherit;font-size:12px;cursor:pointer}
+.sb button:hover{background:rgba(255,255,255,.2)}#thr{font-size:11px;opacity:.75;margin:6px 0 0}
+.bar{height:6px;background:rgba(255,255,255,.15);border-radius:9px;margin-top:8px;overflow:hidden}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#f4a259,#e4572e);transition:width .25s}
+details{margin:8px 0}summary{cursor:pointer;font-weight:700;font-size:13px}
+.ut input{width:78px;text-align:right}.ut td,.ut th{padding:4px 6px}.ut .src{white-space:normal;text-align:left;font-size:11.5px;color:var(--mu);min-width:220px}
+.tag{display:inline-block;border-radius:6px;padding:0 6px;font-size:10.5px;font-weight:700;color:#fff;background:#8c7b5a}.tag.e{background:#c2410c}.tag.m{background:#2f80c9}
+.ctl{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:8px 0}.ctl input[type=range]{flex:1;min-width:160px;width:auto;max-width:none;padding:0}
+.ctl button{background:var(--card);border:1px solid var(--bd);color:var(--fg);border-radius:10px;padding:6px 12px;font:inherit;cursor:pointer;font-weight:700}
+.stat{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:9px;margin:10px 0}.stat div{background:var(--in);border:1px solid var(--bd);border-radius:12px;padding:9px;display:grid}.stat span{font-size:11.5px;color:var(--mu)}.stat b{font-size:17px}
+@media print{aside,.top,.btn,.ctl,#nav{display:none!important}.app{display:block}.panel{display:block!important}.card{break-inside:avoid;border:1px solid #ccc}body{background:#fff;color:#000}}
+</style></head><body>
+<div class="app">
+<aside><div class="logo"><i>🔥</i><div><b>FireDrone</b><small>Simulador de incêndios com enxame de drones</small></div></div>
+<div id="nav"></div><h4>Informações do cenário</h4><div id="side"></div>
+<button class="run" id="run">▶ Executar simulação</button><div class="bar"><i id="pbar"></i></div><p class="note" id="status" style="color:var(--sidefg)"></p><p id="thr"></p><div class="sb"><button id="bsave" title="Salvar parâmetros, modelos adicionados e incertezas em um arquivo .json">💾 Salvar</button><button id="bload" title="Abrir um cenário salvo">📂 Abrir</button></div><input type="file" id="fload" accept=".json,application/json" hidden></aside>
+<section class="main">
+<div class="top"><div><small>Cenário atual</small><h1 id="ttl">Simulação do Incêndio</h1></div><div class="pills" id="pills"></div><button id="theme" title="Alternar tema claro/escuro">🌓</button></div>
+
+<div class="panel" id="p_cenario"><div class="g2">
+<div class="card"><h2>Parâmetros do cenário</h2><p class="sub">Ao escolher o combustível, os demais campos são preenchidos com condições típicas de ataque inicial daquele cenário (editáveis).</p>
+<label>Combustível / cenário<select id="fuel"></select></label><details><summary>🌦 Importar clima real (Open-Meteo)</summary><p class="note">Preenche vento, direção, umidade e temperatura com a condição atual do ponto. Precisa de internet; o vento vem de onde sopra e é convertido para a convenção do simulador.</p><label>Latitude<input id="lat" type="number" step="0.01" value="-19.28"></label><label>Longitude<input id="lon" type="number" step="0.01" value="-43.55"></label><button class="btn s" id="wx">Buscar clima atual</button><p class="note" id="wxst"></p></details>
+<label>Área da janela (ha)<input id="area" type="number"></label>
+<label>Área inicial do fogo (ha)<input id="a0" type="number" step="0.1"></label>
+<label>Vento a 10 m (m/s)<input id="wind" type="number" step="0.5"></label>
+<label>Vento sopra p/ (°, 0=L 90=N)<input id="wdir" type="number"></label>
+<label>Declividade (°)<input id="slope" type="number" step="0.5"></label>
+<label>Aclive aponta p/ (°)<input id="sdir" type="number"></label>
+<label>Umidade relativa (%)<input id="rh" type="number"></label>
+<label>Temperatura (°C)<input id="temp" type="number"></label>
+<label>Tempo de resposta: detecção + despacho (min)<input id="resp" type="number" step="1"></label>
+<label>Distância base → ignição (m, mín. 300)<input id="bdist" type="number"></label>
+<label>Posição da base<select id="brel"><option value="bar">Barlavento (atrás do fogo)</option><option value="fl">Flanco</option><option value="sot">Sotavento (a favor do vento, risco)</option></select></label>
+<label>Área final máx. aceitável (% da área inicial)<input id="maxloss" type="number" step="100"></label><p class="note" id="maxlossha"></p></div>
+<div class="card"><h2>Mapa do cenário</h2><p class="sub">Taxa de propagação (m/min) por célula, direção da frente, vento, ignição e base.</p><canvas id="cv1" width="640" height="640"></canvas>
+<div class="leg" id="lgmap"></div><div class="msg" id="basemsg"></div></div></div></div>
+
+<div class="panel" id="p_drones" hidden><div class="g2"><div class="card"><h2>Frota e tática</h2>
+<label>Modelo<select id="model"></select></label><label>Nº máx. de drones (busca a menor frota)<input id="n" type="number"></label>
+<label>Tática de ataque<select id="tactic"><option value="auto">Automática (testa todas)</option><option value="direto">Ataque direto (cabeça)</option><option value="flancos">Flancos em pinça</option><option value="indireto">Indireto (barreira à frente)</option><option value="cercamento">Cercamento (perímetro)</option></select></label>
+<label>Objetivo da otimização<select id="obj"><option value="custo">Menor custo por operação</option><option value="capex">Menor CapEx da frota</option><option value="drones">Menor nº de drones</option></select></label>
+<label>Rigor da frota<select id="rigor"><option value="mc" selected>Com risco: Monte Carlo (incerteza explícita)</option><option value="det">Mínimo determinístico (1 réplica)</option></select></label><label>Prob. mínima de contenção (%)<input id="alpha" type="number" value="90" min="50" max="99"></label><label>Réplicas Monte Carlo por teste<input id="kmc" type="number" value="10" min="4" max="40"></label>
+<label>Comparar todos os drones<input id="cmp" type="checkbox" style="width:auto" checked></label>
+<p class="note">Com “Nenhum” ou “Comparar todos”, o simulador escolhe o drone viável de menor CapEx e valida a frota por simulação.</p>
+<details><summary>+ Adicionar modelo</summary><label>Nome<input id="m_name" value="Meu drone"></label><label>Carga (L)<input id="m_pay" type="number" value="30"></label><label>Vel. máx. (m/s)<input id="m_v" type="number" value="15"></label><label>Autonomia c/ carga (min)<input id="m_end" type="number" value="12"></label><label>Recarga (s)<input id="m_rf" type="number" value="240"></label><label>Preço (US$)<input id="m_cx" type="number" value="30000"></label><button class="btn s" id="addm">Adicionar</button></details>
+</div>
+<div class="card"><h2>Catálogo (20 drones e 5 aeronaves tripuladas)</h2><div class="scroll" id="cat"></div>
+<p class="note"><b>V</b> verificado no fabricante · <b>P</b> só capacidade verificada · <b>M</b> aproximado, conferir · <b>A</b> artigo CBA (Lorraine) · <b>U</b> usuário. Preços, recarga (120 s + 1,2 s/L) e OpEx (0,25% do preço/h) são estimativas.</p></div></div></div>
+
+<div class="panel" id="p_simulacao" hidden><div class="g2">
+<div class="card"><h2>Mapa da simulação</h2><canvas id="cv" width="640" height="640"></canvas><div class="leg"><span><i style="background:#4f6b55"></i>vegetação</span><span><i style="background:#e8743b"></i>fogo ativo</span><span><i style="background:#555"></i>queimado</span><span><i style="background:#42a5f5"></i>linha molhada / extinto</span></div></div>
+<div><div class="card"><h2>Resultado <span id="vb"></span></h2><div class="kpi" id="kpi"></div><div class="msg" id="msg"></div></div>
+<div class="card"><h2>Evolução do incêndio</h2><p class="sub">Área atingida ao longo do tempo, com e sem drones.</p><div id="ev"></div></div></div></div></div>
+
+<div class="panel" id="p_ataque" hidden><div class="card"><h2>Rotas do enxame na última rodada de replanejamento</h2><label>Rodada exibida<select id="rsel"><option value="p">Pico do combate (maior frente ativa)</option><option value="f">Última rodada de combate à frente</option><option value="m">Última rodada de rescaldo</option></select></label><p class="sub">Cada polilinha é a rota planejada de um drone (base → alvos na frente de fogo). Alvos incluem barreiras molhadas à frente e extinção direta de células em chamas.</p><canvas id="cva" width="900" height="900" style="max-width:820px;margin:auto"></canvas>
+<div class="leg" id="lga" style="margin-top:8px"></div></div>
+<div class="card"><h2>Animação do combate</h2><p class="sub">Reprodução da simulação final: o fogo, a linha molhada e cada drone (cinza = na base, azul = indo carregado, claro = voltando).</p><canvas id="cvan" width="760" height="760" style="max-width:700px;margin:auto"></canvas><div class="ctl"><button id="aplay">▶ Reproduzir</button><input type="range" id="aseek" min="0" max="0" value="0"><select id="aspd"><option value="0.5">0,5×</option><option value="1" selected>1×</option><option value="2">2×</option><option value="4">4×</option></select><span id="atime" class="note"></span></div><div class="stat" id="astat"></div></div>
+<div class="card"><h2>Manobras e táticas</h2><div class="scroll" id="tacts"></div></div></div>
+
+<div class="panel" id="p_fogodrone" hidden>
+<div class="card"><h2>Fogo: velocidade de propagação e comprimento de chama</h2><p class="sub">Rothermel com vento e declive combinados vetorialmente; ROS por direção (elipse de Anderson). Chama acima do limite do drone obriga ataque indireto.</p><div class="g2"><div><div class="leg" id="lg1"></div><div class="scroll" id="ch1"></div></div><div><div class="leg" id="lg1b"></div><div class="scroll" id="ch1b"></div></div></div><p class="note" id="tx1"></p></div>
+<div class="card"><h2>Fogo × Drone por setor</h2><p class="sub">Demanda do fogo = água (L/s) para fechar a linha molhada no perímetro que cresce; capacidade = carga ÷ ciclo (ida, volta com vento, recarga) × drones do setor.</p><div class="leg" id="lg2"></div><div class="scroll" id="ch2"></div><p class="note" id="tx2"></p></div></div>
+
+<div class="panel" id="p_comparacao" hidden>
+<div class="card"><h2>Comparação de drones: curva de contrapartida</h2><p class="sub">Somente os drones cuja capacidade supera a demanda do fogo (razão ≥ 1) são viáveis. ★ = melhor (menor CapEx).</p><div class="scroll" id="ch3"></div></div>
+<div class="card"><h2>Drones × aeronaves tripuladas (AS350 B3 em destaque)</h2><p class="sub">Mesmo cenário e mesmas restrições (contenção com probabilidade ≥ meta sob incerteza): operação (área, tempos, água, horas de voo) e economia, lado a lado.</p><div id="heli"></div></div>
+<div class="card"><h2>Otimização de frota por simulação</h2><div class="scroll" id="optab"></div></div>
+<div class="g2"><div class="card"><h2>Drones no cenário</h2><div class="scroll" id="rank"></div></div>
+<div class="card"><h2>Drones × cenários</h2><div class="scroll" id="mat"></div></div></div></div>
+
+<div class="panel" id="p_economia" hidden>
+<div class="card"><h2>Economia da configuração</h2><div class="eco" id="eco"></div>
+<div class="g2" style="margin-top:12px"><div><label>Operações/ano<input id="opsyr" type="number" value="100"></label><label>Vida útil (anos)<input id="life" type="number" value="5"></label></div>
+<div><label>Infra fixa/operação (US$)<input id="fixop" type="number" value="500"></label><label>Logística por drone/operação (US$)<input id="logd" type="number" value="150"></label><label>Água+logística (US$/m³)<input id="wcost" type="number" value="5"></label></div></div>
+<div class="card" style="margin-top:12px;background:var(--in)"><h3 style="font-size:13px;margin:0 0 6px">Calibração de custos das aeronaves tripuladas</h3><label>Modo de custo<select id="acmode"><option value="buy" selected>Compra diluída (preço ÷ vida útil × operações/ano)</option><option value="contract">Contrato anual (tudo incluso, sem custo por hora)</option></select></label><label>Operações/ano da aeronave<input id="opsA" type="number" value="100"></label><label>Vida útil da aeronave (anos)<input id="lifeA" type="number" value="5"></label><label>Contrato anual por aeronave (US$)<input id="contractA" type="number" value="561000"></label><label>Logística por aeronave/operação (US$)<input id="logdA" type="number" value="150"></label><label>Fator de preço das aeronaves<input id="cxfA" type="number" step="0.1" value="1"></label><p class="note">Referências públicas: contrato do Ministério da Justiça, R$ 364,5 milhões por 5 anos para 26 helicópteros, 45 h de voo/mês cada ≈ R$ 2,8 milhões por aeronave/ano ≈ <b>US$ 561 mil</b> (a US$ 1 = R$ 5,00; mistura de modelos, não é o AS350). O CBMMG pagou R$ 43,5 milhões (≈ US$ 8,7 milhões) pelo AW119Kx, contra US$ 4,5 milhões na tabela do artigo: use o fator de preço se quiser refletir isso. No modo contrato o custo por aeronave é o contrato anual ÷ operações/ano. Troque pelos números reais do seu caso.</p></div>
+<p class="note">Operações/ano e custos fixos são placeholders: calibre com dados reais.</p></div>
+<div class="card"><h2>Custo por operação dos modelos viáveis (top 6)</h2><div class="leg" id="lg4"></div><div class="scroll" id="ch4"></div></div></div>
+
+<div class="panel" id="p_sensibilidade" hidden><div class="card"><h2>Sensibilidade e robustez</h2><p class="sub">Variação de uma variável por vez (baixa/alta) na configuração atual (modelo, frota e tática vencedora) e 8 réplicas Monte Carlo com ruído de combustível e relevo. Simulações até a contenção; áreas limitadas a 3× o limite aceitável.</p><button class="btn" id="sens">▶ Rodar análise</button><p class="note" id="sensst"></p><div class="leg" id="lgs"></div><div class="scroll" id="sensch"></div><div class="scroll" id="senstab"></div><div id="mcrob"></div></div></div>
+
+<div class="panel" id="p_incerteza" hidden>
+<div class="card"><h2>Incerteza explícita: Monte Carlo e parâmetros incertos</h2><p class="sub">Cada réplica sorteia (hipercubo latino em blocos de 10 réplicas, reprodutível) vento, direção, umidade, tempo de resposta, carga de combustível e parâmetros do modelo e econômicos dentro da faixa ± abaixo, além de um novo campo de ruído de relevo/combustível. As faixas são editáveis. <span class="tag e">E</span> = estimado sem fonte pública (maior incerteza), <span class="tag m">M</span> = medido/documentado.</p>
+<div class="scroll"><table class="ut" id="utab"></table></div>
+<label>Réplicas da distribuição<input id="kdist" type="number" value="24" min="8" max="100"></label>
+<button class="btn" id="mcgo">▶ Rodar Monte Carlo + tornado (modelo e frota atuais)</button><button class="btn s" id="uzero">Zerar faixas</button><button class="btn s" id="udef">Restaurar padrão</button><p class="note" id="mcst"></p></div>
+<div class="card" id="mccard" hidden><h2>Distribuição do resultado</h2><div class="stat" id="mcstat"></div><div class="msg" id="mcmsg"></div><div class="g2"><div><h2 style="font-size:13px">Área queimada nas réplicas (ha)</h2><div class="scroll" id="mchist"></div></div><div><h2 style="font-size:13px">Tempo até a extinção (min)</h2><div class="scroll" id="mcext"></div></div></div></div>
+<div class="card" id="tocard" hidden><h2>Tornado: quais incertezas mais mudam a resposta</h2><p class="sub">Para cada parâmetro nos extremos (−/+) da faixa: frota mínima necessária (maioria de 3 de 5 sementes) e custo por operação recalculado com o consumo da simulação-base. Parâmetros econômicos: efeito analítico no custo. Variações de ±1 drone entre extremos podem ser ruído de simulação (o fogo tem comportamento de limiar).</p><div class="leg" id="lgt"></div><div class="scroll" id="tochart"></div><div class="scroll" id="totab"></div></div></div>
+
+<div class="panel" id="p_resolucao" hidden>
+<div class="card"><h2>Resolução espacial e temporal (definida pelo código)</h2><div class="kpi" id="reskpi"></div>
+<p class="note" id="reswhy"></p>
+<p class="note">A resolução não é um parâmetro de entrada. <b>Piso de 20 m no acoplamento com drones</b> (fogos com ROS ≥ 5 m/min): a deriva e a altura de lançamento dão incerteza de 10–20 m na posição da água, e abaixo disso o resultado do combate passou a oscilar entre malhas sem ganho de realismo. Fogos lentos usam a malha fina. O código testa as células permitidas (de 50 a 10 m) no próprio cenário, sem drones, e escolhe a <b>mais grossa</b> cujo avanço da cabeça fica a ≤ 4% da ROS teórica e cuja área queimada difere ≤ 8% da malha mais fina. Limites: grade ≤ 200×200 e raio do foco inicial ≥ 1,5 células. O Δt segue <b>CFL = 0,5</b> (Δt = 0,5·Δx/ROSmáx, entre 1 e 10 s); a propagação por tempo de chegada (16 vizinhos) não depende do Δt. Sem DEM real nem spotting.</p></div>
+<div class="card"><h2>Teste de convergência da malha (fogo sem drones)</h2><div class="scroll" id="restab"></div><button class="btn s" id="reeval">↻ Reavaliar</button></div>
+<div class="card"><h2>Robustez da malha com o enxame</h2><div class="scroll" id="robtab"></div><p class="note">Mesma frota e tática simuladas em outras células. Resultados que mudam entre malhas indicam sensibilidade do combate à discretização (o ataque direto é o mais sensível, pois depende de a célula ainda estar em chamas à chegada do drone).</p></div></div>
+
+<div class="panel" id="p_resultados" hidden><div class="card"><h2>Resumo</h2><div id="resumo"></div><button class="btn" id="brep">📄 Gerar relatório (HTML imprimível / PDF)</button><button class="btn s" id="bstore">📌 Guardar esta execução para comparar</button><button class="btn s" id="bprint">🖨 Imprimir página</button></div>
+<div class="card" id="real"><h2>Comparação com o evento real</h2><div class="scroll" id="realtab"></div></div></div>
+<div class="panel" id="p_execucoes" hidden><div class="card"><h2>Comparar execuções</h2><p class="sub">Use “📌 Guardar esta execução” na aba Resultados após cada simulação. Aqui você compara cenários, drones e frotas lado a lado.</p><div class="scroll" id="hist"></div><button class="btn s" id="hcsv">⬇ Exportar CSV</button><button class="btn s" id="hclr">Limpar</button></div>
+<div class="card"><h2>Comparação gráfica</h2><div class="leg" id="lgh1"></div><div class="scroll" id="hch1"></div><div class="leg" id="lgh2"></div><div class="scroll" id="hch2"></div></div></div>
+</section></div>
+<script id="core">
+const DR=[['Spider H32X',16,15,7.5,38,15.2,8000,'V'],['Spider H40X',20,15,7.5,44.8,18,10000,'V'],['Spider H60-4',30,15,10,70,28,14000,'P'],['Spider H120',52,15,8,120,40,18000,'P'],['Spider M65',62,15,12.3,111,34,22000,'V'],['Spider H160',72,15,7.5,149,51,25000,'V'],['Spider H200',92,15,9,200,60,38000,'P'],['Spider H300 (100 L)',100,15,11,254,74,48000,'V'],['Spider M400',150,15,10,400,120,70000,'P'],['Spider H300 Firefighting (4×25 kg)',100,15,15,257.8,107.8,55000,'V'],['DJI Agras T10',8,10,8,24.8,13,13999,'V'],['DJI Agras T20P',20,10,7,50,24,17000,'M'],['DJI Agras T25',20,10,7,52,25,23359,'V'],['DJI Agras T30',30,10,8,66.5,26,20000,'M'],['DJI Agras T40',40,10,8,90,38,26000,'M'],['DJI Agras T50',40,10,8,92,40,36699,'V'],['DJI Agras T100',100,20,8,175,75,55000,'P'],['DJI FlyCart 30',30,20,12,95,65,17000,'M'],['XAG P100 Pro',50,10,8,100,45,24000,'M'],['EAVision EA-30X',30,10,8,70,30,15000,'M']];
+let MODELS=DR.map(a=>({name:a[0],pay:a[1],v:a[2],end:a[3],mtow:a[4],empty:a[5],cx:a[6],src:a[7],rf:(typeof process!=="undefined"&&process.env.FD_RFS?+process.env.FD_RFS:1.2)*a[1]+120,ox:Math.max(15,a[6]*.0025)}));
+// Aeronaves tripuladas (kind:'heli') para comparação direta. Fonte: Tabela 2 do artigo CBA: carga (kg, tratada como litros de água), velocidade de solo (m/s; aqui v = valor do artigo / 0,85,
+// porque o motor aplica 0,85 de cruzeiro), mobilização (mob, s: atraso mínimo até a chegada), recarga/reabastecimento (rf, s), OpEx (US$/h) e CapEx (US$).
+// ESTIMADOS por nós (sem dado no artigo): ws (largura da faixa molhada por lançamento, m), lmax (chama máx. p/ ataque direto, m) e autonomia (end, min). A água é captada junto à base.
+const HELI=[
+ {name:'Aeronave Airbus AS350 B3 (Esquilo, 1.100 L)',ref:true,pay:1100,v:65/.85,end:120,mtow:2250,empty:1350,cx:4e6,src:'A',rf:60,ox:2294,kind:'heli',mob:900,ws:8,lmax:8},
+ {name:'Aeronave Bell 505 (680 L)',pay:680,v:64/.85,end:120,mtow:1670,empty:1000,cx:1.5e6,src:'A',rf:60,ox:2068,kind:'heli',mob:900,ws:8,lmax:8},
+ {name:'Aeronave Leonardo AW119 (1.200 L)',pay:1200,v:70/.85,end:120,mtow:2850,empty:1700,cx:4.5e6,src:'A',rf:60,ox:2902,kind:'heli',mob:900,ws:8,lmax:8},
+ {name:'Aeronave UH-60 Black Hawk (3.000 L)',pay:3000,v:75/.85,end:120,mtow:9980,empty:5220,cx:15e6,src:'A',rf:90,ox:5500,kind:'heli',mob:1200,ws:10,lmax:8},
+ {name:'Aeronave Air Tractor AT-802 (3.100 L)',pay:3100,v:80/.85,end:120,mtow:7257,empty:3000,cx:2.5e6,src:'A',rf:240,ox:3000,kind:'heli',mob:1800,ws:10,lmax:8}];
+MODELS.push(...HELI);
+const FM=(w0,delta,sigma,Mx,extra={})=>({w0,delta,sigma,Mx,h:18607,rho_p:512,ST:.0555,SE:.01,...extra});
+// Combustíveis de camada única (estilo NFFL/Anderson 1982, SI). waf = fator de ajuste do vento 10 m -> meia-chama. addMf = umidade extra (fração) p/ combustível vivo/serapilheira.
+// d = condições típicas de ataque inicial: area ha, a0 ha, vento m/s, vento p/ °, declive °, aclive °, UR %, T °C, base m, base rel., resolução m, perda máx ha
+const FUELS=[
+{name:'1 · Pampa / gramínea curta (NFFL 1)',fm:FM(.166,.305,11483,.12),sm:300,waf:.4,addMf:0,d:{resp:300,n:60,area:300,a0:.3,wind:5,wdir:20,slope:2,sdir:0,rh:35,temp:28,bdist:500,brel:'bar',maxloss:20}},
+{name:'2 · Campo rupestre (campo sujo rochoso)',fm:FM(.6,.35,11500,.12),sm:400,waf:.4,addMf:0,d:{resp:300,n:60,area:400,a0:.5,wind:5,wdir:45,slope:12,sdir:45,rh:25,temp:26,bdist:600,brel:'bar',maxloss:25}},
+{name:'3 · Cerrado campo limpo/sujo (NFFL 3)',fm:FM(.673,.76,4921,.25),sm:600,waf:.4,addMf:0,d:{resp:300,n:60,area:500,a0:.5,wind:4,wdir:30,slope:5,sdir:30,rh:30,temp:30,bdist:600,brel:'bar',maxloss:30}},
+{name:'4 · Cerrado sentido restrito (framework)',fm:FM(1.123,1.83,6561.7,.2),sm:1500,waf:.3,addMf:0,d:{resp:180,n:60,area:500,a0:.5,wind:2.5,wdir:45,slope:2,sdir:45,rh:40,temp:30,bdist:700,brel:'bar',maxloss:40}},
+{name:'5 · Cerradão (serapilheira + sub-bosque)',fm:FM(.9,.3,6562,.25),sm:3600,waf:.2,addMf:.03,d:{resp:300,n:60,area:400,a0:.3,wind:3,wdir:60,slope:4,sdir:60,rh:40,temp:28,bdist:500,brel:'bar',maxloss:20}},
+{name:'6 · Pantanal (capim alto)',fm:FM(.8,1.0,4900,.25),sm:900,waf:.4,addMf:.02,d:{resp:300,n:60,area:600,a0:.5,wind:4,wdir:0,slope:.5,sdir:0,rh:45,temp:33,bdist:800,brel:'bar',maxloss:40}},
+{name:'7 · Caatinga arbustiva (NFFL 5)',fm:FM(.6,.6,6562,.2),sm:900,waf:.3,addMf:0,d:{resp:300,n:60,area:500,a0:.5,wind:4,wdir:90,slope:5,sdir:90,rh:25,temp:34,bdist:700,brel:'bar',maxloss:35}},
+{name:'8 · Mata Atlântica estacional (serapilheira)',fm:FM(.65,.06,8202,.25),sm:3600,waf:.15,addMf:.03,d:{resp:300,n:60,area:300,a0:.3,wind:3,wdir:45,slope:15,sdir:45,rh:40,temp:27,bdist:500,brel:'bar',maxloss:15}},
+{name:'9 · Amazônia (floresta úmida)',fm:FM(1.6,2.4,3200,1.8),sm:2400,waf:.1,addMf:.9,d:{resp:300,n:60,area:300,a0:.3,wind:2,wdir:0,slope:2,sdir:0,rh:70,temp:30,bdist:500,brel:'bar',maxloss:15}},
+{name:'10 · Eucalipto (serapilheira)',fm:FM(1.0,.15,5700,.25),sm:3600,waf:.2,addMf:.02,d:{resp:300,n:60,area:400,a0:.5,wind:4,wdir:45,slope:5,sdir:45,rh:35,temp:30,bdist:600,brel:'bar',maxloss:25}},
+{name:'11 · Pinus (acículas, NFFL 8)',fm:FM(.45,.06,6562,.3),sm:3600,waf:.2,addMf:.02,d:{resp:300,n:60,area:400,a0:.5,wind:4,wdir:45,slope:8,sdir:45,rh:40,temp:26,bdist:600,brel:'bar',maxloss:20}},
+{name:'12 · Pasto de braquiária / capim-gordura',fm:FM(.7,.8,5900,.25),sm:600,waf:.4,addMf:0,d:{resp:300,n:60,area:500,a0:.5,wind:5,wdir:45,slope:3,sdir:45,rh:30,temp:32,bdist:700,brel:'bar',maxloss:30}},
+{name:'13 · Serra do Cipó — campo rupestre (REAL ago/2024)',fm:FM(.6,.35,11500,.12),sm:400,waf:.4,addMf:0,d:{resp:300,n:60,area:800,a0:2,wind:7,wdir:45,slope:15,sdir:45,rh:20,temp:28,bdist:500,brel:'bar',maxloss:80}}];
+
+// ================= MOTOR v5: Rothermel + tempo de chegada (16 vizinhos) + combate por linha molhada =================
+const M2FT=3.28084,KG2LB=2.20462,KJ2BTU=0.947817,MS2FTMIN=196.85,TMAX=6*3600,RATIO=.11,ETA=.5,VC=.85,DROPT=.3;
+const K16=[[1,0],[1,1],[0,1],[-1,1],[-1,0],[-1,-1],[0,-1],[1,-1],[2,1],[1,2],[-1,2],[-2,1],[-2,-1],[-1,-2],[1,-2],[2,-1]].map(([a,b])=>[a,b,Math.hypot(a,b),Math.atan2(b,a)]);
+const N8=K16.slice(0,8);
+function rng(s){return()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+// Umidade de equilíbrio (Simard 1968), RH em %, T em °C
+function emc(rh,T){const F=T*1.8+32;let e;if(rh<10)e=.03229+.281073*rh-.000578*rh*F;else if(rh<50)e=2.22749+.160107*rh-.014784*F;else e=21.0606+.005565*rh*rh-.00035*rh*F-.483199*rh;return Math.max(1.5,e)/100}
+// Rothermel (1972), parâmetros em SI -> inglês internamente (mesma estrutura do framework). Qig CORRIGIDO: 250+1116*Mf (Mf adimensional).
+
+// ---- Modelo de energia (Apêndice A): A.1-A.2 massa, A.3 potência de voo pairado, A.4-A.6 bateria (circuito equivalente + Shepherd). ----
+const EP={g:9.81,FM:.7,DL:150,etaC:.9,pav:.03,sag:.05,socMin:.10,rho0:1.184,Ns:12,E0:3.85,K:.015,A:.25,B:15};
+const vocv=s=>EP.Ns*(EP.E0-EP.K*(1-s)/s+EP.A*Math.exp(-EP.B*(1-s)));
+function Ibat(P,s,R){const V=vocv(s),d=V*V-4*R*P/EP.etaC;if(d<=0)return Infinity;return(V-Math.sqrt(d))/(2*R)}
+const ENC=new Map();
+function energyModel(m,Tc){const key=m.name+'|'+Math.round(Tc);let e=ENC.get(key);if(e)return e;
+ const Ad=m.mtow*EP.g/EP.DL,rho=101325/(287.05*(Tc+273.15)),Ph=(mass,r)=>Math.pow(mass*EP.g,1.5)/(Math.sqrt(2*r*Ad)*EP.FM),mref=m.empty+m.pay,Pav=EP.pav*Ph(mref,EP.rho0),
+  Pref=Ph(mref,EP.rho0)+Pav,Iref=Pref/(EP.etaC*vocv(1)),R=EP.sag*vocv(1)/Iref;
+ let integ=0;const n=400;for(let i=0;i<n;i++){const s=1-(1-EP.socMin)*(i+.5)/n;integ+=(1-EP.socMin)/n/Ibat(Pref,s,R)}
+ const Q=m.end*60/(3600*integ);// Ah, calibrada para que a autonomia nominal valha a carga plena, rho0 e SoC de 100% a socMin
+ const leg=(soc,mass,t)=>{let rem=t;while(rem>1e-9){const dt=Math.min(10,rem),I=Ibat(Ph(mass,rho)+Pav,soc,R);soc-=I*dt/(3600*Q);rem-=dt;if(soc<=EP.socMin)return soc}return soc};
+ e={leg,Q,R,Ad,rho,socRes:1-.85*(1-EP.socMin),Pref,Iref};ENC.set(key,e);return e}
+function rothermel(fm,Mf){const sig=fm.sigma/M2FT,w0=fm.w0*KG2LB/M2FT**2,del=fm.delta*M2FT,h=fm.h*KJ2BTU/KG2LB,rhop=fm.rho_p*KG2LB/M2FT**3;
+ const rhob=w0/del,beta=rhob/rhop,bop=3.348*sig**-.8189,A=133*sig**-.7913,gmax=sig**1.5/(495+.0594*sig**1.5),ra=beta/bop,gp=gmax*ra**A*Math.exp(A*(1-ra));
+ const mm=Math.min(Mf/fm.Mx,1),eM=Math.max(0,1-2.59*mm+5.11*mm**2-3.52*mm**3),eS=Math.min(1,.174*fm.SE**-.19),IR=gp*w0*(1-fm.ST)*h*eM*eS;
+ const xi=Math.exp((.792+.681*Math.sqrt(sig))*(beta+.1))/(192+.2595*sig),eps=Math.exp(-138/sig),Qig=250+1116*Mf;
+ const C=7.47*Math.exp(-.133*sig**.55),B=.02526*sig**.54,E=.715*Math.exp(-.000359*sig),R0=IR*xi/(rhob*eps*Qig)/M2FT; // m/min
+ return{R0,IR,beta,bop,C,B,E,Ha:IR*(384/sig)*11.3565}} // Ha: kJ/m2 (calor por área, Byram)
+const flameLen=(rt,Rms)=>.0775*Math.pow(Math.max(1e-6,rt.Ha*Rms),.46); // I em kW/m -> m
+function headVec(rt,wind10,waf,wdir,gx,gy){const U=wind10*waf*MS2FTMIN,k=Math.pow(rt.beta/rt.bop,-rt.E),cap=rt.C*Math.pow(.9*rt.IR,rt.B)*k; // limite de vento efetivo 0,9*IR (Andrews 2013)
+ const pw=Math.min(rt.C*Math.pow(U,rt.B)*k,cap),ts=Math.hypot(gx,gy),ps=5.275*Math.pow(rt.beta,-.3)*ts*ts;
+ let vx=pw*Math.cos(wdir)+(ts>0?ps*gx/ts:0),vy=pw*Math.sin(wdir)+(ts>0?ps*gy/ts:0),ph=Math.min(Math.hypot(vx,vy),cap);
+ const hd=ph>1e-9?Math.atan2(vy,vx):wdir,Ue=Math.pow(ph/k/rt.C,1/rt.B)/88,LB=Math.min(8,.936*Math.exp(.2566*Ue)+.461*Math.exp(-.1548*Ue)-.397);
+ return{Rh:rt.R0*(1+ph),hd,e:Math.sqrt(Math.max(0,LB*LB-1))/LB}}
+const rosDir=(Rh,e,th)=>Rh*(1-e)/(1-e*Math.cos(th));
+function noiseField(N,seed,lam){const R=rng(seed),g=Math.ceil(N/lam)+3,v=Array.from({length:g*g},()=>R()*2-1),o=new Float32Array(N*N),s=u=>u*u*(3-2*u);
+ for(let y=0;y<N;y++)for(let x=0;x<N;x++){const fx=x/lam,fy=y/lam,ix=fx|0,iy=fy|0,sx=s(fx-ix),sy=s(fy-iy);o[y*N+x]=(v[iy*g+ix]*(1-sx)+v[iy*g+ix+1]*sx)*(1-sy)+(v[(iy+1)*g+ix]*(1-sx)+v[(iy+1)*g+ix+1]*sx)*sy}return o}
+// ---- mundo (terreno, combustível, ROS por célula, base, ignição) ----
+const WC=new Map();
+function world(p,seed=1){const key=[p.fi,p.area,p.wind,p.wdir,p.slope,p.sdir,p.rh,p.temp,p.cs,p.bdist,p.brel,p.noise,p.w0f||1,seed].join('|');if(WC.has(key))return WC.get(key);
+ const F0=FUELS[p.fi],F=p.w0f&&p.w0f!=1?{...F0,fm:{...F0.fm,w0:F0.fm.w0*p.w0f}}:F0,side=Math.sqrt(p.area*1e4);let cs=p.cs,N=Math.round(side/cs),capped=false;if(N>200){N=200;cs=side/200;capped=true}
+ const Mf=emc(p.rh,p.temp)+F.addMf,rt=rothermel(F.fm,Mf),wd=p.wdir*Math.PI/180,sd=p.sdir*Math.PI/180,tS=Math.tan(p.slope*Math.PI/180),lam=Math.max(3,400/cs);
+ const n1=noiseField(N,seed*7+1,lam),n2=noiseField(N,seed*7+2,lam),n3=noiseField(N,seed*7+3,Math.max(3,250/cs)),nz=p.noise?1:0;
+ const Rh=new Float32Array(N*N),hd=new Float32Array(N*N),ec=new Float32Array(N*N),gX=new Float32Array(N*N),gY=new Float32Array(N*N);let Rmax=0;
+ for(let i=0;i<N*N;i++){const a=nz*.35*n1[i],b=nz*.3*n2[i],gx=tS*(Math.cos(sd)*(1+a)-Math.sin(sd)*b),gy=tS*(Math.sin(sd)*(1+a)+Math.cos(sd)*b),H=headVec(rt,p.wind,F.waf,wd,gx,gy);
+  Rh[i]=H.Rh*Math.exp(nz*.12*n3[i]);hd[i]=H.hd;ec[i]=H.e;gX[i]=gx;gY[i]=gy;if(Rh[i]>Rmax)Rmax=Rh[i]}
+ const c=(N>>1)*N+(N>>1),h0=hd[c],clamp=(v,a,b)=>Math.max(a,Math.min(b,v)),ix=clamp(N/2-.18*N*Math.cos(h0),3,N-4),iy=clamp(N/2-.18*N*Math.sin(h0),3,N-4);
+ const u={bar:[-Math.cos(h0),-Math.sin(h0)],fl:[-Math.sin(h0),Math.cos(h0)],sot:[Math.cos(h0),Math.sin(h0)]}[p.brel]||[-Math.cos(h0),-Math.sin(h0)];
+ const bx=clamp(ix+u[0]*p.bdist/cs,1,N-2),by=clamp(iy+u[1]*p.bdist/cs,1,N-2);
+ const W={N,cs,side,capped,Rh,hd,ec,gX,gY,rt,F,Mf,Rmax:Rmax/60,dt:Math.max(1,Math.min(10,.5*cs/(Rmax/60||1))),ix,iy,bx,by,bdistReal:Math.hypot(bx-ix,by-iy)*cs,h0,wd};
+ if(WC.size>60)WC.clear();WC.set(key,W);return W}
+class Heap{constructor(){this.n=0;this.t=new Float64Array(1<<16);this.a=new Int32Array(1<<16);this.b=new Int32Array(1<<16)}
+ push(t,a,b){if(this.n==this.t.length){const g=this.n*2,t2=new Float64Array(g),a2=new Int32Array(g),b2=new Int32Array(g);t2.set(this.t);a2.set(this.a);b2.set(this.b);this.t=t2;this.a=a2;this.b=b2}
+  let i=this.n++;const T=this.t,A=this.a,B=this.b;while(i>0){const q=(i-1)>>1;if(T[q]<=t)break;T[i]=T[q];A[i]=A[q];B[i]=B[q];i=q}T[i]=t;A[i]=a;B[i]=b}
+ pop(){const T=this.t,A=this.a,B=this.b;this.rt=T[0];this.ra=A[0];this.rb=B[0];const n=--this.n;if(n>0){const t=T[n],a=A[n],b=B[n];let i=0;for(;;){let c=2*i+1;if(c>=n)break;if(c+1<n&&T[c+1]<T[c])c++;if(T[c]>=t)break;T[i]=T[c];A[i]=A[c];B[i]=B[c];i=c}T[i]=t;A[i]=a;B[i]=b}}}
+const wStrip=m=>m.ws?m.ws:(typeof process!=='undefined'&&process.env&&process.env.FD_WS)?+process.env.FD_WS:Math.max(2,Math.min(8,1.5+.04*m.pay)),lMax=m=>m.lmax?m.lmax:2.4+.012*m.pay;
+const TACTICS={direto:'Ataque direto (cabeça)',flancos:'Flancos em pinça (do calcanhar à cabeça)',indireto:'Indireto (barreira à frente)',cercamento:'Cercamento (perímetro, setores)'};
+function simulate(p,m,n,tactic='cercamento',seed=1,o={}){
+ const W=world(p,seed),{N,cs,Rh,hd,ec,rt,F}=W,NN=N*N,TM=o.tstop||8*3600;
+ const st=new Uint8Array(NN),T=new Float32Array(NN).fill(-1),tbE=new Float32Array(NN),smE=new Float32Array(NN),pend=new Int32Array(NN),wet=new Float32Array(NN),wetT=new Float32Array(NN),resv=new Float32Array(NN),mark=new Int32Array(NN),lined=new Uint8Array(NN),cool=new Uint8Array(NN);
+ const q=(p.ratio||RATIO)*F.fm.w0/ETA,Ws=Math.min(cs,wStrip(m)*(p.wsf||1)),thrB=q*Ws*cs,thrS=.6*thrB,Lm=lMax(m)*(p.lmf||1),hl=1500*(.5+p.rh/100),vc=m.v*VC,wd=W.wd,tau=384/(F.fm.sigma/M2FT)*60,dt=W.dt,H=new Heap(),active=[];
+ const smD=F.sm||900,rRe=-Math.log(1-Math.min(.4,.03*Math.sqrt(smD/300)*cs/30))/smD*(p.rrf||1),R2=rng(seed*13+5),delay=Math.max(p.delay||0,m.mob||0);
+ let sx=0,sy=0,sc=0,t=0,stamp=0,esc=false,depotHit=-1,extN=0,nFlame=0,tCont=-1,tExt=-1,nextRe=60;
+ const wetEff=(j,t)=>wet[j]*Math.pow(.5,(t-wetT[j])/hl),thrD=Lf=>thrB*(1+Lf/2),bw=(c,tt)=>wetEff(c,tt)>=thrB;
+ const ros=(i,th)=>Rh[i]/60*(1-ec[i])/(1-ec[i]*Math.cos(th-hd[i]));
+ function ignite(i,tt){st[i]=1;nFlame++;T[i]=tt;const x=i%N,y=(i/N)|0;sx+=x;sy+=y;sc++;tbE[i]=tt+1.5*cs/Math.max(Rh[i]/60,.01)+tau;active.push(i);if(x==0||y==0||x==N-1||y==N-1)esc=true;
+  if(Math.hypot(x-W.bx,y-W.by)<1.5&&depotHit<0)depotHit=tt;
+  for(const[a,b,d,ang]of K16){const X=x+a,Y=y+b;if(X<0||Y<0||X>=N||Y>=N)continue;const k=Y*N+X;if(st[k]!=0)continue;const r=ros(i,ang);if(r<1e-4)continue;H.push(tt+cs*d/r,k,i);pend[i]++}}
+ const r0=Math.sqrt(p.a0*1e4/Math.PI)/cs;for(let y=0;y<N;y++)for(let x=0;x<N;x++)if(Math.hypot(x-W.ix,y-W.iy)<=Math.max(.8,r0)&&st[y*N+x]==0)ignite(y*N+x,0);
+ const dr=[];for(let k=0;k<n;k++)dr.push({s:'idle',load:m.pay,rem:0,route:[],leg:0,px:W.bx,py:W.by,wait:0});
+ const legT=(ax,ay,bx,by)=>{const dx=(bx-ax)*cs,dy=(by-ay)*cs,D=Math.hypot(dx,dy);if(D<1)return 2;const d=Math.atan2(dy,dx)-wd,cr=p.wind*Math.sin(d);if(Math.abs(cr)>=vc*.9)return D/2;return D/Math.max(2,Math.sqrt(vc*vc-cr*cr)+p.wind*Math.cos(d))};
+ const lastF=new Array(n).fill(null),lastM=new Array(n).fill(null);let snapF=null,snapM=null,snapP=null,peakN=-1,litres=0,drops=0,sorties=0,flight=0,rounds=0,lineM=0,hotN=0,lastWork=0;const ser=[0];
+ let cT=-1,cC=null;
+ const rec=o.rec?{dt:30,next:0,frames:[]}:null;
+ const dpos=d=>{if(d.s=='fly'){const z=d.route[d.leg],q=d.tl>0?Math.max(0,Math.min(1,1-d.rem/d.tl)):1;return[d.px+(z.x-d.px)*q,d.py+(z.y-d.py)*q,2]}
+  if(d.s=='ret'){const q=d.tl>0?Math.max(0,Math.min(1,1-d.rem/d.tl)):1;return[d.px+(W.bx-d.px)*q,d.py+(W.by-d.py)*q,3]}return[W.bx,W.by,d.s=='fill'?1:0]};
+ function recFrame(force){if(!rec||(!force&&t<rec.next))return;const c=new Uint8Array(NN);for(let i=0;i<NN;i++)c[i]=st[i]|(lined[i]<<3)|(cool[i]<<4);
+  const dd=new Float32Array(n*3);for(let k=0;k<n;k++){const q=dpos(dr[k]);dd[3*k]=q[0];dd[3*k+1]=q[1];dd[3*k+2]=q[2]}
+  rec.frames.push({t,c,d:dd,burned:sc*cs*cs/1e4,flame:nFlame});rec.next=t+rec.dt;
+  if(rec.frames.length>240){rec.frames=rec.frames.filter((_,i)=>i%2==0);rec.dt*=2;rec.next=t+rec.dt}}
+ // Distância geodésica (m) do fogo ativo até cada célula intacta, sem atravessar linhas molhadas (chanfro 1/√2, 2 varreduras, só na janela do fogo)
+ const dist=new Float32Array(NN),BIG=1e9;let dT=-1e9,bx0=0,bx1=0,by0=0,by1=0,dOK=false;
+ const blockedC=(i)=>wet[i]>=thrB&&wetEff(i,t)>=thrB;
+ function frontDist(){if(t-dT<5)return dOK;dT=t;let x0=N,x1=-1,y0=N,y1=-1;
+  for(const i of active){if(st[i]!=1)continue;const x=i%N,y=(i/N)|0;if(x<x0)x0=x;if(x>x1)x1=x;if(y<y0)y0=y;if(y>y1)y1=y}
+  if(x1<0){dOK=false;return false}const mg=Math.ceil(260/cs);bx0=Math.max(0,x0-mg);bx1=Math.min(N-1,x1+mg);by0=Math.max(0,y0-mg);by1=Math.min(N-1,y1+mg);
+  for(let y=by0;y<=by1;y++)for(let x=bx0;x<=bx1;x++){const i=y*N+x;dist[i]=st[i]==1?0:BIG}
+  const S2=1.41421356,rel=(i,d,x,y,nx,ny,w)=>{if(nx<bx0||nx>bx1||ny<by0||ny>by1)return d;const v=dist[ny*N+nx]+w;return v<d?v:d};
+  for(let it=0;it<2;it++){
+   for(let y=by0;y<=by1;y++)for(let x=bx0;x<=bx1;x++){const i=y*N+x;if(st[i]!=0||blockedC(i))continue;let d=dist[i];d=rel(i,d,x,y,x-1,y,1);d=rel(i,d,x,y,x-1,y-1,S2);d=rel(i,d,x,y,x,y-1,1);d=rel(i,d,x,y,x+1,y-1,S2);dist[i]=d}
+   for(let y=by1;y>=by0;y--)for(let x=bx1;x>=bx0;x--){const i=y*N+x;if(st[i]!=0||blockedC(i))continue;let d=dist[i];d=rel(i,d,x,y,x+1,y,1);d=rel(i,d,x,y,x+1,y+1,S2);d=rel(i,d,x,y,x,y+1,1);d=rel(i,d,x,y,x-1,y+1,S2);dist[i]=d}}
+  dOK=true;return true}
+ // Candidatos: (1) chama p/ ataque direto, (2) brasa p/ rescaldo, (3) linha indireta a distância S = ROS·T_antecedência (em METROS, independente da célula)
+ function cands(){stamp++;const out=[],cx=sx/sc,cy=sy/sc;
+  const add=(j,type,edge)=>{const x=j%N,y=(j/N)|0,ps=Math.atan2(y-cy,x-cx),rel=ps-W.h0,phi=Math.abs(Math.atan2(Math.sin(rel-Math.PI),Math.cos(rel-Math.PI)));
+   const rs=ros(j,ps),Lf=flameLen(rt,rs),need=(type==2?thrS:type?thrD(Lf):(p.nf||1.25)*thrB)-wetEff(j,t)-resv[j];if(need<.05*thrB)return;if(type==1&&Lf>Lm)return;
+   out.push({j,x,y,type,edge,need,Lf,ros:rs,phi,pp:((ps-(W.h0+Math.PI))%(2*Math.PI)+2*Math.PI)%(2*Math.PI)})};
+  for(const i of active){const x=i%N,y=(i/N)|0;if(st[i]==4){let hasU=false;for(const[a,b]of N8){const X=x+a,Y=y+b;if(X>=0&&Y>=0&&X<N&&Y<N&&st[Y*N+X]==0){hasU=true;break}}add(i,2,hasU)}else if(st[i]==1){let hasU=false;for(const[a,b]of N8){const X=x+a,Y=y+b;if(X>=0&&Y>=0&&X<N&&Y<N&&st[Y*N+X]==0){hasU=true;break}}if(hasU)add(i,1,true)}}
+  if(p.adj!==0){for(const i of active){if(st[i]!=1)continue;const x=i%N,y=(i/N)|0;for(const[a,b]of N8){const X=x+a,Y=y+b;if(X<0||Y<0||X>=N||Y>=N)continue;const j=Y*N+X;if(st[j]==0&&mark[j]!=stamp&&wetEff(j,t)<1.25*thrB){mark[j]=stamp;add(j,0,true)}}}}
+  if(frontDist()){const Tl=p.tmar||90,Smin=p.smin||40,hc=cs*(p.bw||.5);
+   for(let y=by0;y<=by1;y++)for(let x=bx0;x<=bx1;x++){const j=y*N+x;if(st[j]!=0)continue;const dm=dist[j]*cs;if(dm>=BIG*.5||dm>260+hc)continue;
+    const ps=Math.atan2(y-cy,x-cx),R=ros(j,ps),S=Math.max(Smin,Math.min(200,R*(Tl+legT(W.bx,W.by,x,y))));if(Math.abs(dm-S)<=hc)add(j,0,true)}}
+  return out}
+ function plan(d,k){if(cT!==t){cC=cands();cT=t}const c=cC;if(!c.length)return null;
+  const tf={direto:z=>z.type==1,flancos:z=>z.phi<=2.09,indireto:z=>z.type==0&&Math.PI-z.phi<=1.75,cercamento:z=>true}[tactic];
+  let pool=c.filter(z=>z.type==2||tf(z));if(!pool.some(z=>z.type<2)&&tactic!='direto')pool=c.slice();if(!pool.length)return null;
+  const sec=2*Math.PI/Math.max(1,n),pen=z=>z.type==2?0:tactic=='cercamento'?(Math.floor(z.pp/sec)==k%Math.max(1,n)?0:100):tactic=='flancos'?((z.pp<Math.PI)==(k%2==0)?0:50):0,
+   key=z=>z.type==2?1e6+(z.edge?0:1e5)+z.pp:(tactic=='direto'||tactic=='indireto'?-z.ros*100:tactic=='flancos'?z.phi:z.pp)+pen(z);
+  pool.sort((a,b)=>key(a)-key(b));const S=pool.slice(0,Math.max(40,Math.round(1200/cs))),route=[];let load=d.load,px=W.bx,py=W.by,tm=0;const maxE=m.end*60*.85,mRef=m.empty+m.pay,fE=l=>p.constEnd?1:Math.pow((m.empty+Math.max(0,l))/mRef,1.5),EM=(m.kind==='heli'||p.simpleE||p.constEnd)?null:energyModel(m,p.temp);let en=0,soc=1;
+  while(load>.05*thrB&&S.length){let bi=-1,bd=1e18;
+   for(let a=0;a<S.length;a++){const z=S[a];if(z.need<=.05*thrB)continue;const dd=route.length?Math.hypot(z.x-px,z.y-py):a;if(dd<bd){bd=dd;bi=a}}
+   if(bi<0)break;const z=S[bi],v=Math.min(load,z.need),tg=legT(px,py,z.x,z.y)+DROPT,tb=legT(z.x,z.y,W.bx,W.by);let ego=0,s1=0;if(EM){s1=EM.leg(soc,m.empty+load,tg);if(EM.leg(s1,m.empty+load-v,tb)<EM.socRes){S.splice(bi,1);if(!route.length)continue;break}}else{ego=tg*fE(load);if(en+ego+tb*fE(load-v)>maxE){S.splice(bi,1);if(!route.length)continue;break}}
+   route.push({j:z.j,x:z.x,y:z.y,vol:v,type:z.type});resv[z.j]+=v;z.need-=v;load-=v;en+=ego;if(EM)soc=s1;px=z.x;py=z.y;if(z.need<=.05*thrB)S.splice(bi,1)}
+  return route.length?route:null}
+ function arrive(z,d){const j=z.j;if(o.dbg){const k=st[j]+(z.type?"t"+z.type:"t0");o.dbg[k]=(o.dbg[k]||0)+1}resv[j]=Math.max(0,resv[j]-z.vol);if(st[j]==2||st[j]==3)return;const e=wetEff(j,t)+z.vol;wet[j]=e;wetT[j]=t;d.load-=z.vol;litres+=z.vol;drops++;lineM+=z.vol/(thrB/cs);lastWork=t;if(e>=thrB)lined[j]=1;
+  if(st[j]==1){const x=j%N,y=(j/N)|0,Lf=flameLen(rt,ros(j,Math.atan2(y-sy/sc,x-sx/sc)));if(e>=thrD(Lf)){st[j]=3;nFlame--;extN++}}
+  else if(st[j]==4&&e>=thrS){st[j]=3;extN++;cool[j]=1}}
+ while(t<TM){t+=dt;
+  while(H.n&&H.t[0]<=t){H.pop();const te=H.rt,k=H.ra,i=H.rb;pend[i]--;if(st[k]!=0||st[i]==3)continue;
+   const xi=i%N,yi=(i/N)|0,dx=(k%N)-xi,dy=((k/N)|0)-yi,sxn=Math.sign(dx),syn=Math.sign(dy);let blk=bw(k,te);
+   if(!blk){if(Math.abs(dx)==1&&Math.abs(dy)==1)blk=bw(i+dx,te)||bw(i+dy*N,te);else if(Math.abs(dx)==2)blk=bw(i+sxn,te)||bw(i+sxn+syn*N,te);else if(Math.abs(dy)==2)blk=bw(i+syn*N,te)||bw(i+sxn+syn*N,te)}
+   if(blk){if(st[i]==1&&te<tbE[i]){H.push(te+20,k,i);pend[i]++}continue}if(o.leak&&te>delay+120){const w=wetEff(k,te)/thrB,c=(w<.01?'seca':w<.5?'<50%':'50-100%')+(st[i]==1?'':'/fonte-nao-chama');o.leak[c]=(o.leak[c]||0)+1;if(!o.leak.t0)o.leak.t0=Math.round(te);if(o.leakT){const b=Math.floor(te/300);o.leakT[b]=(o.leakT[b]||0)+1}}if(o.ign&&te>1200&&o.ign.length<10)o.ign.push({te:Math.round(te),src:[xi,yi],srcSt:st[i],srcT:Math.round(T[i]),dst:[k%N,(k/N)|0],d:Math.hypot(dx,dy).toFixed(1),wetDst:wetEff(k,te).toFixed(2),thrB:thrB.toFixed(2),lined:lined[k]});ignite(k,te)}
+  if(t>=nextRe){nextRe=t+30;const pr=1-Math.exp(-rRe*30);for(let a=0;a<active.length;a++){const i=active[a];if(st[i]!=4||R2()>pr)continue;const x=i%N,y=(i/N)|0;
+    for(const[aa,bb]of N8){const X=x+aa,Y=y+bb;if(X<0||Y<0||X>=N||Y>=N)continue;const j=Y*N+X;if(st[j]==0&&!bw(j,t)){ignite(j,t);break}}}}
+  let w=0;hotN=0;for(let a=0;a<active.length;a++){const i=active[a];
+   if(st[i]==1&&pend[i]<=0&&t>=tbE[i]){st[i]=4;nFlame--;smE[i]=t+smD}
+   if(st[i]==4&&t>=smE[i])st[i]=2;
+   if(st[i]==1||st[i]==4)active[w++]=i}active.length=w;
+  if(nFlame==0&&!H.n){if(tCont<0)tCont=t}else tCont=-1;
+  if(t%60<dt)ser.push(sc*cs*cs/1e4);
+  if(o.fast&&(tCont>=0||sc*cs*cs/1e4>3*p.maxloss))break;
+  if(nFlame==0&&!H.n&&!active.length){tExt=t;break}
+  for(let k=0;k<n;k++){const d=dr[k];if(t<delay)break;
+   if(d.s=='idle'){if(t<d.wait)continue;const r=plan(d,k);if(!r){d.wait=t+20;continue}d.route=r;d.leg=0;d.s='fly';d.rem=legT(W.bx,W.by,r[0].x,r[0].y)+DROPT;d.tl=d.rem;d.px=W.bx;d.py=W.by;
+    const rr=r.map(z=>({x:z.x,y:z.y,type:z.type}));if(r[0].type<2&&nFlame>0){lastF[k]=rr;snapF={t,st:st.slice(),lined:lined.slice(),cool:cool.slice()};if(nFlame>=peakN){peakN=nFlame;snapP={t,st:st.slice(),lined:lined.slice(),cool:cool.slice(),routes:lastF.map(z=>z&&z.slice())}}}else{lastM[k]=rr;snapM={t,st:st.slice(),lined:lined.slice(),cool:cool.slice()}}rounds++}
+   if(d.s=='fly'||d.s=='ret'){d.rem-=dt;flight+=dt;
+    while(d.rem<=0){if(d.s=='fly'){const z=d.route[d.leg];arrive(z,d);d.px=z.x;d.py=z.y;d.leg++;if(d.leg<d.route.length){const nz=d.route[d.leg],L=legT(d.px,d.py,nz.x,nz.y)+DROPT;d.rem+=L;d.tl=L}else{d.s='ret';const L=legT(d.px,d.py,W.bx,W.by);d.rem+=L;d.tl=L}}
+     else{d.s='fill';d.rem=m.rf;sorties++;break}}}
+   else if(d.s=='fill'){d.rem-=dt;if(d.rem<=0){d.load=m.pay;d.s='idle'}}}
+  if(rec)recFrame(false)}
+ if(rec)recFrame(true);
+ let bu=0;for(let i=0;i<NN;i++)if(T[i]>=0)bu++;
+ const burnedHa=bu*cs*cs/1e4,frontOut=nFlame==0&&!H.n,done=o.fast?frontOut:tExt>=0;
+ let head=0;const hx=Math.cos(W.h0),hy=Math.sin(W.h0);for(let i=0;i<NN;i++)if(T[i]>=0){const d=((i%N)-W.ix)*hx+(((i/N)|0)-W.iy)*hy;if(d>head)head=d}
+ return{st,T,lined,cool,N,cs,W,ser,burnedHa,extHa:extN*cs*cs/1e4,contained:frontOut,extinct:tExt>=0,tCont:tCont>=0?tCont:null,tExt:tExt>=0?tExt:null,tEnd:t,tWork:lastWork,esc,depotHit,litres,drops,sorties,rounds,flightH:flight/3600,lineM,
+  routes:lastF,routesM:lastM,snapF,snapM,snapP,rec:rec?{frames:rec.frames,dt:rec.dt}:null,nDr:n,tactic,headM:head*cs,ok:depotHit<0&&!esc&&burnedHa<=p.maxloss&&done,thrB,thrS,Ws,Lm,dt}}
+function bestTactic(p,m,n,seed=1,o={}){let b=null;for(const t of Object.keys(TACTICS)){const r=simulate(p,m,n,t,seed,o);if(!b||(r.ok&&!b.ok)||(r.ok==b.ok&&r.burnedHa<b.burnedHa))b=r}return b}
+// Custo por operação da FROTA INTEIRA = termo de capital + operação. Capital: preço·n/(vida·operações/ano) (compra diluída) ou, p/ aeronave tripulada em modo 'contrato', contrato anual·n/operações por ano (tudo incluso: sem custo por hora de voo).
+// Aeronaves usam, se informados, operações/ano (opsyrA), vida útil (lifeA), logística por aeronave (logdA) e fator de preço (cxfA).
+const capDil=(p,m,n)=>{const A=m.kind==='heli',ops=Math.max(1,(A&&p.opsyrA)||p.opsyr);return A&&p.acMode==='contract'?(p.contractA||0)*n/ops:m.cx*(A?(p.cxfA||1):1)*n/(((A&&p.lifeA)||p.life)*ops)};
+const costs=(p,m,n,r)=>{const A=m.kind==='heli',cx=capDil(p,m,n),ox=(A&&p.acMode==='contract'?0:m.ox*r.flightH)+p.wcost*r.litres/1000+p.fixop+((A&&p.logdA!=null?p.logdA:(p.logd||0)))*n;return{capex:m.cx*(A?(p.cxfA||1):1)*n,opex:ox,tot:cx+ox}};
+// ---- análise por setores (fogo × drone) ----
+function sectorsA(p,m){const W=world(p,1),{N,cs,Rh,hd,ec,rt,F}=W,c=(W.iy|0)*N+(W.ix|0),q=(p.ratio||RATIO)*F.fm.w0/ETA,Ws=Math.min(cs,wStrip(m)*(p.wsf||1)),thrB=q*Ws*cs,Lm=lMax(m)*(p.lmf||1),r00=Math.sqrt(p.a0*1e4/Math.PI),Tc=p.tc||1800,vc=m.v*VC,wd=W.wd;
+ return Array.from({length:8},(_,k)=>{const th=k*Math.PI/4,R=rosDir(Rh[c],ec[c],th-hd[c])/60,Lf=flameLen(rt,R),direct=Lf<=Lm,thr=direct?thrB*(1+Lf/2):thrB,r0=r00+R*(p.delay||0);
+  let rA=r0,dd=0,fly=0,tA=0;for(let it=0;it<3;it++){const x=W.ix+rA/cs*Math.cos(th),y=W.iy+rA/cs*Math.sin(th),dx=(x-W.bx)*cs,dy=(y-W.by)*cs;dd=Math.max(cs,Math.hypot(dx,dy));const a=Math.atan2(dy,dx)-wd,cr=p.wind*Math.sin(a),
+    g1=Math.max(2,Math.sqrt(Math.max(1,vc*vc-cr*cr))+p.wind*Math.cos(a)),g2=Math.max(2,Math.sqrt(Math.max(1,vc*vc-cr*cr))-p.wind*Math.cos(a));tA=dd/g1;fly=dd/g1+dd/g2;rA=r0+R*tA}
+  const C1=m.pay/(fly+m.rf+2*DROPT),Wl=(thr/cs)*(Math.PI/4)*(r0+R*(tA+Tc)),D=Wl/Tc,feas=fly<=m.end*60*.85,N_=feas?D/C1:Infinity;
+  return{l:['L','NE','N','NO','O','SO','S','SE'][k],R:R*60,Lf,direct,D,C1,N:N_,feas,Fl:Lf}})}
+function summ(p,m,n){const s=sectorsA(p,m),sum=s.reduce((t,x)=>t+x.N,0),Nt=isFinite(sum)?Math.max(1,Math.ceil(sum)):Infinity;return{s,Nt,ratio:isFinite(Nt)?n/Nt:0}}
+function rank(p,n){const r=MODELS.map(m=>{const q=summ(p,m,n);return{m,...q,viable:q.Nt<=n,cost:q.Nt*m.cx}});const v=r.filter(x=>x.viable).sort((a,b)=>a.cost-b.cost);return{r,best:v[0]||null,v}}
+// ---- resolução espacial/temporal automática: convergência de malha no próprio cenário (sem drones, sem ruído) ----
+function convergence(p,list=[50,30,20,15,10]){const side=Math.sqrt(p.area*1e4),rows=[];
+ for(const cs of list){const q={...p,cs,noise:0,a0:.02},W0=world(q,1),c=(W0.iy|0)*W0.N+(W0.ix|0),tmin=Math.max(5,Math.min(30,.35*side/W0.Rh[c])),t0=Date.now(),
+  r=simulate(q,{pay:1,v:10,end:1,rf:1},0,'direto',1,{tstop:tmin*60}),W=r.W,th=W.Rh[c]*tmin;rows.push({cs:W.cs,N:W.N,dt:W.dt,tmin,burned:r.burnedHa,head:r.headM,theo:th,err:(r.headM-th)/th,ms:Date.now()-t0})}
+ return rows}
+const RC=new Map();
+function resolve(p,force){const key=[p.fi,p.area,p.wind,p.wdir,p.slope,p.sdir,p.rh,p.temp,p.a0].join('|');if(!force&&RC.has(key))return RC.get(key);
+ const side=Math.sqrt(p.area*1e4),r0=Math.sqrt(p.a0*1e4/Math.PI),all=[50,30,20,15,10].filter(c=>side/c<=200);let list=all.filter(c=>c<=Math.max(10,r0/1.5));if(!list.length)list=[Math.max(10,Math.ceil(side/200))];
+ const rows=convergence(p,list),fine=rows[rows.length-1],Rhd=rows[0].theo/rows[0].tmin,MINC=Rhd>=5?20:0; // fogos lentos (< 5 m/min) podem usar malha fina
+ // acoplamento com drones: deriva e altura de lançamento dão incerteza de 10–20 m na posição da água
+ const elig=rows.filter(r=>r.cs>=MINC);let pick=elig.length?elig[elig.length-1]:fine,why=elig.length?(MINC?'malha mais fina com ≥ 20 m (limite de precisão de lançamento)':'malha mais fina permitida (fogo lento)'):'foco inicial pequeno exige malha < 20 m (resultado do combate menos confiável)';
+ for(const r of elig){if(Math.abs(r.err)<=.04&&Math.abs(r.burned-fine.burned)/Math.max(1e-6,fine.burned)<=.08){pick=r;why='célula mais grossa (≥ 20 m) com erro de avanço ≤ 4% e área ≤ 8% da malha mais fina';break}}
+ const out={cs:pick.cs,N:pick.N,dt:pick.dt,why,rows,limits:{N200:side/200,ign:r0/1.5}};RC.set(key,out);return out}
+// ================= OTIMIZAÇÃO DE FROTA (modelo × nº de drones × tática) =================
+// min J(m,n,τ)  s.a.  contenção (área ≤ A_max, base e borda intactas) em simulação (malha escolhida, semente 1),
+// robustez (contém nas malhas mais finas e em ≥ 2 de 3 réplicas), n ≤ n_max; autonomia/ciclo e limite de chama valem dentro da simulação.
+const OBJ={custo:(c,m,n)=>c.tot,capex:(c,m,n)=>m.cx*n,drones:(c,m,n)=>n+1e-9*c.tot};
+const tick=()=>new Promise(r=>setTimeout(r,0));
+function bestOf(p,m,n,seed,tacs,o){let b=null;for(const t of tacs){const r=simulate(p,m,n,t,seed,o);if(!b||(r.ok&&!b.ok)||(r.ok==b.ok&&r.burnedHa<b.burnedHa))b=r}return b}
+function robustFleet(p,m,n0,nMax,tacs){let n=n0,capped=false;const side=Math.sqrt(p.area*1e4),okAt=(c,nn,sd)=>bestOf({...p,cs:c},m,nn,sd,tacs,{fast:1}).ok;
+ for(const c of [30,20,15,10].filter(c=>c<p.cs&&side/c<=200)){let ok=okAt(c,n,1);while(!ok&&n<nMax){n=Math.min(nMax,Math.ceil(n*1.25)+1);ok=okAt(c,n,1)}if(!ok){capped=true;break}}
+ for(let it=0;it<3&&!capped;it++){let pass=0;for(const sd of [2,3,4])if(okAt(p.cs,n,sd))pass++;if(pass>=2)break;if(n>=nMax){capped=true;break}n=Math.min(nMax,Math.ceil(n*1.15)+1)}
+ return{n,capped}}
+async function optimizeFleet(p,nMax,objKey='custo',tacs=['indireto','cercamento'],prog=()=>{}){const J=OBJ[objKey]||OBJ.custo,rows=[];
+ for(let mi=0;mi<MODELS.length;mi++){const m=MODELS[mi];prog(`Otimização · triagem ${mi+1}/${MODELS.length}: ${m.name}`);await tick();
+  const ev=n=>bestOf(p,m,n,1,tacs,{fast:1}),top=ev(nMax);if(!top.ok){rows.push({m,mi,nMin:null});continue}
+  let lo=1,hi=nMax,best=top;while(lo<hi){const mid=(lo+hi)>>1,r=ev(mid);if(r.ok){hi=mid;best=r}else lo=mid+1}
+  const cc=costs(p,m,hi,best);rows.push({m,mi,nMin:hi,score:J(cc,m,hi),tot:cc.tot,tactic:best.tactic})}
+ const feas=rows.filter(r=>r.nMin!=null).sort((a,b)=>a.score-b.score),K=Math.min(4,feas.length);
+ for(let k=0;k<K;k++){const r=feas[k];prog(`Otimização · robustez ${k+1}/${K}: ${r.m.name}`);await tick();const rb=robustFleet(p,r.m,r.nMin,nMax,tacs);r.nRob=rb.n;r.capped=rb.capped;
+  const sim=bestOf(p,r.m,rb.n,1,tacs,{fast:1}),cc=costs(p,r.m,rb.n,sim);r.tacticRob=sim.tactic;r.scoreRob=J(cc,r.m,rb.n);r.totRob=cc.tot}
+ const ref=feas.slice(0,K).sort((a,b)=>(a.capped-b.capped)||(a.scoreRob-b.scoreRob));
+ return{best:ref[0]||null,refined:ref,rows:rows.sort((a,b)=>(a.nMin==null)-(b.nMin==null)||((a.score||0)-(b.score||0)))}}
+
+// ================= NÚCLEO COMPARTILHADO: incerteza (Monte Carlo), otimização com risco, tornado, operações p/ workers =================
+// Roda igual no navegador (Web Workers), no Node (worker_threads) e em thread única (fallback). Sem DOM.
+// ---- incertezas padrão: meia-largura de uma distribuição uniforme em torno do valor-base ----
+const UNC_INFO=[
+ {k:'wind',lab:'Velocidade do vento',un:'± %',mul:1,def:.20,eng:1,src:'Previsão de vento a 10 m tem erro típico de 15–30% (INMET/modelos numéricos)'},
+ {k:'wdir',lab:'Direção do vento',un:'± °',mul:0,def:15,eng:1,src:'Erro típico de direção em previsão de superfície: 10–20°'},
+ {k:'rh',lab:'Umidade relativa',un:'± p.p.',mul:0,def:5,eng:1,src:'Erro de previsão/sensor de UR: 3–8 p.p.'},
+ {k:'delay',lab:'Tempo de resposta (detecção+despacho)',un:'± %',mul:1,def:.30,eng:1,src:'Variabilidade operacional; sem série pública'},
+ {k:'w0',lab:'Carga de combustível',un:'± %',mul:1,def:.15,eng:1,src:'Variação espacial de carga em campo: 15–30%'},
+ {k:'ratio',lab:'Água por kg de combustível (razão de molhamento)',un:'± %',mul:1,def:.25,eng:1,src:'ESTIMADO (calibração do modelo de linha molhada)'},
+ {k:'lmax',lab:'Limite de chama p/ ataque direto',un:'± %',mul:1,def:.20,eng:1,src:'ESTIMADO (chama máx. ≈ 2,4 m + 0,012·carga)'},
+ {k:'rf',lab:'Tempo de recarga/troca de bateria',un:'± %',mul:1,def:.25,eng:1,src:'ESTIMADO (120 s + 1,2 s/L)'},
+ {k:'speed',lab:'Velocidade de cruzeiro dos drones',un:'± %',mul:1,def:.10,eng:1,src:'Fabricante vs. vento/carga real'},
+ {k:'rrf',lab:'Taxa de reignição de brasas',un:'± %',mul:1,def:.50,eng:1,src:'ESTIMADO (sem dado de campo)'},
+ {k:'cx',lab:'Preço dos drones (CapEx)',un:'± %',mul:1,def:.25,eng:0,src:'Preços ESTIMADOS (exceto modelos com tabela pública)'},
+ {k:'ws',lab:'Largura da faixa molhada por lançamento',un:'± %',mul:1,def:.25,eng:1,src:'ESTIMADO (largura = 1,5 m + 0,04 m/L de carga; define quanto a carga extra rende em metros de linha)'},
+ {k:'logd',lab:'Custo logístico por drone por operação',un:'± %',mul:1,def:.50,eng:0,src:'ESTIMADO (piloto/auxiliar, baterias, transporte e montagem por drone)'},
+ {k:'ox',lab:'Custo operacional por hora de voo',un:'± %',mul:1,def:.40,eng:0,src:'ESTIMADO (manutenção, baterias, pessoal)'},
+ {k:'wcost',lab:'Custo da água',un:'± %',mul:1,def:.50,eng:0,src:'ESTIMADO (transporte e captação)'}];
+const UNC0=Object.fromEntries(UNC_INFO.map(x=>[x.k,x.def]));
+const UKEYS=UNC_INFO.map(x=>x.k);
+// Amostragem: hipercubo latino por blocos de LB réplicas. Em cada bloco, cada parâmetro tem exatamente uma amostra por faixa de 1/LB (marginais perfeitas),
+// com permutações aleatórias reprodutíveis entre os parâmetros. Blocos sucessivos são independentes, então K pode crescer de 10 em 10 sem perder a estratificação.
+// (A sequência de Halton usada antes tinha, em janelas de ~20 réplicas, marginais enviesadas nas bases altas; isso distorcia P.)
+const LB=10;
+function uvec(k,keys=UKEYS,seed=777){const b=Math.floor(k/LB),j=k%LB,u={};
+ keys.forEach((key,d)=>{const R=rng(seed+1000003*b+7919*(d+1)),perm=Array.from({length:LB},(_,i)=>i);
+  for(let i=LB-1;i>0;i--){const t=Math.floor(R()*(i+1));[perm[i],perm[t]]=[perm[t],perm[i]]}
+  let jit=0;for(let i=0;i<=j;i++)jit=R();   // sorteio de posição dentro do estrato, por réplica
+  u[key]=2*((perm[j]+jit)/LB)-1});return u}
+const clampN=(v,a,b)=>Math.max(a,Math.min(b,v));
+function applyU(p,m,unc,u){const f=k=>1+(u[k]||0)*(unc[k]||0);
+ const p2={...p,wind:Math.max(.3,p.wind*f('wind')),wdir:p.wdir+(u.wdir||0)*(unc.wdir||0),rh:clampN(p.rh+(u.rh||0)*(unc.rh||0),5,95),delay:Math.max(0,(p.delay||0)*f('delay')),w0f:f('w0'),ratio:(p.ratio||RATIO)*f('ratio'),lmf:f('lmax'),wsf:f('ws'),logd:(p.logd||0)*f('logd'),rrf:f('rrf'),wcost:p.wcost*f('wcost')};
+ const m2={...m,rf:m.rf*f('rf'),v:m.v*f('speed'),cx:m.cx*f('cx'),ox:m.ox*f('ox')};return{p2,m2}}
+const sumR=(r,c)=>({ok:r.ok,burned:r.burnedHa,tactic:r.tactic,litres:r.litres,flightH:r.flightH,tCont:r.tCont,tExt:r.tExt,tEnd:r.tEnd,esc:r.esc,depot:r.depotHit>=0,contained:r.contained,extinct:r.extinct,drops:r.drops,sorties:r.sorties,rounds:r.rounds,lineM:r.lineM,headM:r.headM,tot:c.tot,capex:c.capex,opex:c.opex});
+function wilson(k,n,z=1.96){if(!n)return[0,1];const ph=k/n,d=1+z*z/n,c=ph+z*z/(2*n),a=z*Math.sqrt(ph*(1-ph)/n+z*z/(4*n*n));return[Math.max(0,(c-a)/d),Math.min(1,(c+a)/d)]}
+function pct(a,q){if(!a.length)return NaN;const s=[...a].sort((x,y)=>x-y),i=(s.length-1)*q,l=Math.floor(i),h=Math.ceil(i);return s[l]+(s[h]-s[l])*(i-l)}
+// ---- operações executadas nos workers (entrada e saída serializáveis) ----
+const OPS={
+ eval(a){const{p,m,n,seed=1,tacs,fast=1,rep=null,unc,keys}=a;let p2=p,m2=m,sd=seed;if(rep!=null){({p2,m2}=applyU(p,m,unc||UNC0,uvec(rep,keys||UKEYS)));sd=seed+rep}
+  const r=bestOf(p2,m2,n,sd,tacs,{fast}),c=costs(p2,m2,n,r);return sumR(r,c)},
+ minFleet(a){const{p,m,nMax,tacs,seed=1}=a,ev=n=>bestOf(p,m,n,seed,tacs,{fast:1}),top=ev(nMax);if(!top.ok)return{nMin:null};
+  let lo=1,hi=nMax,best=top;while(lo<hi){const mid=(lo+hi)>>1,r=ev(mid);if(r.ok){hi=mid;best=r}else lo=mid+1}const c=costs(p,m,hi,best);return{nMin:hi,tactic:best.tactic,tot:c.tot,capex:c.capex}},
+ // menor n que contém em ≥ 3 de 5 sementes (usado no tornado: mais estável que 1 semente)
+ minN3(a){const{p,m,nMax,tacs,u}=a;let p2=p,m2=m;if(u)({p2,m2}=applyU(p,m,a.unc||UNC0,u));
+  const ok=n=>{let k=0,f=0;for(const sd of[1,2,3,4,5]){if(bestOf(p2,m2,n,sd,tacs,{fast:1}).ok)k++;else f++;if(k>=3)return true;if(f>=3)return false}return false};
+  if(!ok(nMax))return{n:null};let lo=1,hi=nMax;while(lo<hi){const mid=(lo+hi)>>1;if(ok(mid))hi=mid;else lo=mid+1}
+  if(a.cost===false)return{n:hi};
+  // custo = média de 5 execuções COMPLETAS (variação entre sementes é ±15%: uma só semente deixaria o tornado ruidoso)
+  let tot=0,fl=0,li=0,tc={};for(const sd of[1,2,3,4,5]){const r=bestOf(p2,m2,hi,sd,tacs,{fast:0}),c=costs(p2,m2,hi,r);tot+=c.tot/5;fl+=r.flightH/5;li+=r.litres/5;tc[r.tactic]=(tc[r.tactic]||0)+1}
+  return{n:hi,flightH:fl,litres:li,tot,capex:m2.cx*hi,tactic:Object.entries(tc).sort((a,b)=>b[1]-a[1])[0][0]}},
+ // simulação completa para exibição (mantém campos espaciais)
+ // simulação completa p/ exibição; rec=true grava quadros p/ a animação
+ full(a){const{p,m,n,tactic,seed=1,tacs,rec=false}=a,o={rec};if(tactic&&tactic!=='auto')return simulate(p,m,n,tactic,seed,o);
+  const b=bestOf(p,m,n,seed,tacs||Object.keys(TACTICS),{fast:1});return simulate(p,m,n,b.tactic,seed,o)},
+ // variação de um parâmetro (sensibilidade): resultado resumido + ROS da cabeça
+ sens(a){const{p,m,n,tactic,seed=1}=a,rr=simulate(p,m,n,tactic,seed,{fast:1}),W=world(p,1),c=(W.iy|0)*W.N+(W.ix|0);return{burned:rr.burnedHa,ok:rr.ok,ros:W.Rh[c]}},
+ // análise mecanicista do rankeamento de drones por simulação completa de um (modelo, n)
+ cost(a){const{p,m,n,tactic}=a,r=simulate(p,m,n,tactic,1,{}),c=costs(p,m,n,r);return{tot:c.tot,opex:c.opex,capex:c.capex,ok:r.ok,burned:r.burnedHa}},
+ ping(){return 1},
+ // fogo sem drones (referência) e resumo por tática, p/ a interface
+ bare(a){const r=simulate(a.p,a.m,0,'cercamento',1,{tstop:4*3600});return{ser:r.ser,burnedHa:r.burnedHa}},
+ tact(a){const r=simulate(a.p,a.m,a.n,a.tactic,1,{fast:1});return{tactic:r.tactic,burnedHa:r.burnedHa,extHa:r.extHa,lineM:r.lineM,litres:r.litres,sorties:r.sorties,ok:r.ok}},
+ conv(a){return resolve(a.p,true)},
+ resolve(a){return resolve(a.p)}
+};
+// ---- orquestração (pool: {size, run(op,args)->Promise}) ----
+const J_OBJ=OBJ;
+async function mcFleet(pool,p,m,n0,nMax,tacs,o,prog=()=>{}){ // menor n com P(conter) ≥ α sob incerteza
+ const K=o.K,alpha=o.alpha,need=Math.ceil(alpha*K-1e-9),allow=K-need,unc=o.unc||UNC0;let n=n0,capped=false,reps=[],iter=0;
+ const side=Math.sqrt(p.area*1e4);
+ for(;;){reps=[];let fails=0,succ=0,i=0;
+  while(i<K&&fails<=allow&&succ<need){const b=Math.min(pool.size,K-i),idx=Array.from({length:b},(_,j)=>i+j),rs=await Promise.all(idx.map(r=>pool.run('eval',{p,m,n,seed:1,tacs,fast:1,rep:r,unc})));for(const s of rs){reps.push(s);s.ok?succ++:fails++}i+=b}
+  let pass=succ>=need;prog(`n=${n}: ${succ}/${reps.length} réplicas contiveram`);
+  if(pass&&o.validate!==false){ // validação em malha mais fina (incerteza numérica): ≥ 2 de 3 réplicas
+   const cf=[20,15].find(c=>c<p.cs&&side/c<=200);if(cf){const rs=await Promise.all([0,1,2].map(r=>pool.run('eval',{p:{...p,cs:cf},m,n,seed:1,tacs,fast:1,rep:r,unc})));if(rs.filter(s=>s.ok).length<2)pass=false}}
+  if(pass)break;if(n>=nMax){capped=true;break}n=Math.min(nMax,Math.max(n+1,Math.ceil(n*1.12)));if(++iter>40){capped=true;break}}
+ return{n,capped,reps}}
+// Confirmação com réplicas NOVAS (índices ≥ 1000, nunca usadas na busca). A busca escolhe o menor n que passou, o que superestima P (viés do vencedor);
+// aqui n sobe (+10%) até a meta valer nas réplicas independentes.
+async function confirmFleet(pool,p,m,n,nMax,tacs,o,prog=()=>{}){const Kc=o.confirmK||20,alpha=o.alpha,unc=o.unc||UNC0;let it=0,D;
+ for(;;){D=await mcDistribution(pool,p,m,n,tacs,Kc,unc,t=>prog(`n=${n}: ${t}`),1000);
+  if(D.P>=alpha-1e-9)return{n,D,capped:false,it};
+  if(n>=nMax||++it>12)return{n,D,capped:true,it};
+  n=Math.min(nMax,Math.max(n+1,Math.ceil(n*1.1)))}}
+async function optimizeFleetPar(pool,p,models,nMax,objKey='custo',tacs=['indireto','cercamento'],o={},prog=()=>{}){
+ o={mode:'mc',alpha:.9,K:10,unc:UNC0,topK:4,...o};const J=J_OBJ[objKey]||J_OBJ.custo,rows=new Array(models.length);let done=0;
+ await Promise.all(models.map(async(m,mi)=>{const r=await pool.run('minFleet',{p,m,nMax,tacs});done++;prog(`Triagem ${done}/${models.length}: ${m.name}`);
+  if(r.nMin==null){rows[mi]={m,mi,nMin:null};return}const cc={tot:r.tot,capex:r.capex};rows[mi]={m,mi,nMin:r.nMin,score:J(cc,m,r.nMin),tot:r.tot,tactic:r.tactic}}));
+ const all=rows.filter(r=>r.nMin!=null).sort((a,b)=>a.score-b.score),isH=r=>r.m.kind==='heli',feas=[...new Set([...all.filter(r=>!isH(r)).slice(0,o.topK),...all.filter(isH).slice(0,o.heliK||2),...all.filter(r=>r.m.ref)])].sort((a,b)=>a.score-b.score),K=feas.length;
+ await Promise.all(feas.map(async(r,k)=>{
+  if(o.mode==='det'){r.nRob=r.nMin;r.capped=false;r.tacticRob=r.tactic;r.P=null;const fr=await pool.run('eval',{p,m:r.m,n:r.nMin,seed:1,tacs,fast:0});r.totRob=fr.tot;r.scoreRob=J({tot:fr.tot,capex:r.m.cx*r.nMin},r.m,r.nMin);return}
+  const f=await mcFleet(pool,p,r.m,r.nMin,nMax,tacs,o,t=>prog(`Risco ${r.m.name}: ${t}`));r.nRob=f.n;r.capped=f.capped;r.mc=f.reps;
+  const okc=f.reps.filter(s=>s.ok).length,n=f.reps.length;r.P=n?okc/n:0;r.Pci=wilson(okc,n);
+  // custo com simulações COMPLETAS (até a extinção): 3 réplicas; as rápidas param na contenção e subestimam voo e água
+  const mean=a=>a.reduce((s,x)=>s+x,0)/Math.max(1,a.length),fr=await Promise.all([0,1,2].map(rp=>pool.run('eval',{p,m:r.m,n:f.n,seed:1,tacs,fast:0,rep:rp,unc:o.unc}))),tot=mean(fr.map(s=>s.tot));r.totRob=tot;
+  const tc={};f.reps.forEach(s=>tc[s.tactic]=(tc[s.tactic]||0)+1);r.tacticRob=Object.entries(tc).sort((a,b)=>b[1]-a[1])[0][0];
+  r.scoreRob=J({tot,capex:r.m.cx*f.n},r.m,f.n)}));
+ let ref=feas.slice().sort((a,b)=>(a.capped-b.capped)||(a.scoreRob-b.scoreRob));
+ if(o.mode==='mc'&&o.confirm!==false){ // confirma os 2 melhores em réplicas independentes e reordena
+  const nc=ref.filter(r=>!r.capped),top=[...new Set([...nc.slice(0,o.confirmTop||2),...['heli',undefined].map(k=>nc.find(r=>r.m.kind===k)).filter(Boolean),...nc.filter(r=>r.m.ref)])];
+  await Promise.all(top.map(async r=>{const c=await confirmFleet(pool,p,r.m,r.nRob,nMax,tacs,o,t=>prog(`Confirmação ${r.m.name}: ${t}`));
+   r.nSearch=r.nRob;r.nRob=c.n;r.capped=c.capped;r.P=c.D.P;r.Pci=c.D.ci;r.confirmed=true;r.Kconf=c.D.K;r.confIters=c.it;
+   const mean=a=>a.reduce((s,x)=>s+x,0)/Math.max(1,a.length),fr=await Promise.all([0,1,2].map(rp=>pool.run('eval',{p,m:r.m,n:c.n,seed:1,tacs,fast:0,rep:1000+rp,unc:o.unc})));
+   r.totRob=mean(fr.map(x=>x.tot));r.scoreRob=J({tot:r.totRob,capex:r.m.cx*c.n},r.m,c.n);
+   const tc={};c.D.reps.forEach(x=>tc[x.tactic]=(tc[x.tactic]||0)+1);r.tacticRob=Object.entries(tc).sort((a,b)=>b[1]-a[1])[0][0];r.mcConf=c.D}));
+  ref=ref.sort((a,b)=>(a.capped-b.capped)||(a.scoreRob-b.scoreRob))}
+ // métricas operacionais de cada finalista: réplicas com incerteza (as da confirmação, quando existem; senão K novas, índices ≥ 3000)
+ if(o.ops!==false){const Kop=o.mode==='det'?4:10;await Promise.all(ref.map(async r=>{const reps=r.mcConf?r.mcConf.reps:(await mcDistribution(pool,p,r.m,r.nRob,tacs,Kop,o.unc,()=>{},3000)).reps;r.op=opSummary(reps)}))}
+ return{best:ref[0]||null,refined:ref,rows:rows.filter(Boolean).sort((a,b)=>(a.nMin==null)-(b.nMin==null)||((a.score||0)-(b.score||0))),opts:{mode:o.mode,alpha:o.alpha,K:o.K,confirmK:o.confirmK||20,confirm:o.confirm!==false}}}
+function opSummary(reps){const n=reps.length,M=a=>{const v=a.filter(x=>x!=null&&isFinite(x));return v.length?pct(v,.5):null},mean=a=>a.reduce((s,x)=>s+x,0)/Math.max(1,a.length);
+ return{n,P:reps.filter(s=>s.ok).length/Math.max(1,n),burned:M(reps.map(s=>s.burned)),tCont:M(reps.map(s=>s.tCont)),nCont:reps.filter(s=>s.tCont!=null).length,tExt:M(reps.map(s=>s.tExt)),nExt:reps.filter(s=>s.tExt!=null).length,litres:mean(reps.map(s=>s.litres)),flightH:mean(reps.map(s=>s.flightH)),drops:mean(reps.map(s=>s.drops)),sorties:mean(reps.map(s=>s.sorties)),lineM:mean(reps.map(s=>s.lineM)),depot:reps.filter(s=>s.depot).length,esc:reps.filter(s=>s.esc).length}}
+// distribuição do resultado para um (modelo, n): K réplicas com incerteza, sem parada antecipada
+async function mcDistribution(pool,p,m,n,tacs,K,unc,prog=()=>{},off=0){const idx=Array.from({length:K},(_,i)=>i),res=[];
+ for(let i=0;i<K;i+=pool.size){const rs=await Promise.all(idx.slice(i,i+pool.size).map(r=>pool.run('eval',{p,m,n,seed:1,tacs,fast:0,rep:off+r,unc})));res.push(...rs);prog(`Monte Carlo ${res.length}/${K}`)}
+ const ok=res.filter(s=>s.ok).length,B=res.map(s=>s.burned),T=res.map(s=>s.tot);
+ return{K,ok,P:ok/K,ci:wilson(ok,K),burned:{p10:pct(B,.1),p50:pct(B,.5),p90:pct(B,.9),max:Math.max(...B)},cost:{p10:pct(T,.1),p50:pct(T,.5),p90:pct(T,.9)},tExt:res.filter(s=>s.tExt!=null).map(s=>s.tExt),reps:res}}
+// tornado: efeito de cada incerteza (nos extremos −/+) na frota necessária e no custo por operação, p/ o modelo escolhido
+async function tornado(pool,p,m,nMax,tacs,unc,prog=()=>{}){
+ // Parâmetros de MOTOR: efeito na frota necessária n (maioria 3 de 5 sementes). O custo é recalculado com o consumo (horas de voo, água) da simulação-base,
+ // porque o consumo de uma execução varia ±15% só por semente e mascararia o efeito. Parâmetros ECONÔMICOS: efeito analítico sobre o custo da base.
+ const base=await pool.run('minN3',{p,m,nMax,tacs});if(base.n==null)return{base:null,rows:[]};
+ const rows=[];let done=0;const cons={flightH:base.flightH,litres:base.litres};
+ await Promise.all(UNC_INFO.map(async x=>{const w=unc[x.k]||0;if(!w)return;const out=[];
+  for(const s of[-1,1]){
+   if(x.eng){const r=await pool.run('minN3',{p,m,nMax,tacs,u:{[x.k]:s},unc,cost:false});out.push(r.n==null?{n:null}:{n:r.n,tot:costs(p,m,r.n,cons).tot,capex:m.cx*r.n})}
+   else{const{p2,m2}=applyU(p,m,unc,{[x.k]:s}),c=costs(p2,m2,base.n,cons);out.push({n:base.n,tot:c.tot,capex:c.capex})}}
+  done++;prog(`Tornado ${done}/${UNC_INFO.length}: ${x.lab}`);rows.push({k:x.k,lab:x.lab,un:x.un,w,eng:x.eng,lo:out[0],hi:out[1]})}));
+ const bc=costs(p,m,base.n,cons);base.totRef=bc.tot;
+ rows.forEach(r=>{const d=s=>s.n==null?null:s.tot-bc.tot,dn=s=>s.n==null?null:s.n-base.n;r.dLo=d(r.lo);r.dHi=d(r.hi);r.dnLo=dn(r.lo);r.dnHi=dn(r.hi);r.swing=Math.max(Math.abs(r.dLo??1e9),Math.abs(r.dHi??1e9))});
+ rows.sort((a,b)=>b.swing-a.swing);return{base,rows}}
+// pool de thread única (fallback): mesma interface, cede o laço de eventos entre tarefas
+function inlinePool(){let chain=Promise.resolve();return{size:4,inline:true,run(op,args){const t=chain.then(()=>new Promise(r=>setTimeout(r,0))).then(()=>OPS[op](args));chain=t.catch(()=>{});return t},close(){}}}
+
+</script>
+<script>
+const $=id=>document.getElementById(id);
+const f=(x,d=0)=>(+x).toLocaleString('pt-BR',{maximumFractionDigits:d});
+// ===================== EXTENSÕES DE INTERFACE v6 (carregado ANTES de ui.js) =====================
+// ---- pool de Web Workers: o mesmo núcleo (data+engine+opt) roda em N threads; se Worker/Blob forem bloqueados, cai em thread única ----
+let _pool=null;
+function prog(v,t){const b=document.getElementById('pbar');if(b)b.style.width=Math.round(Math.max(0,Math.min(1,v))*100)+'%';if(t!=null)$('status').textContent=t}
+async function getPool(){if(_pool)return _pool;let ws=[];
+ try{if(typeof Worker==='undefined'||typeof Blob==='undefined')throw new Error('sem Worker');
+  const src=document.getElementById('core').textContent+"\nonmessage=e=>{const{id,op,args}=e.data;try{postMessage({id,res:OPS[op](args)})}catch(err){postMessage({id,err:String(err&&err.stack||err)})}};";
+  const url=URL.createObjectURL(new Blob([src],{type:'text/javascript'})),hc=navigator.hardwareConcurrency||4,size=Math.max(1,Math.min(8,hc<=2?hc:hc-1)),q=[],pend=new Map();let nid=1;
+  const pump=()=>{for(const w of ws){if(w.busy||!q.length)continue;const t=q.shift();w.busy=t.id;w.postMessage({id:t.id,op:t.op,args:t.args})}};
+  for(let i=0;i<size;i++){const w=new Worker(url);w.busy=null;
+   w.onmessage=e=>{const m=e.data,p=pend.get(m.id);pend.delete(m.id);w.busy=null;if(p){m.err?p.rej(new Error(m.err)):p.res(m.res)}pump()};
+   w.onerror=e=>{const id=w.busy;w.busy=null;if(id&&pend.has(id)){pend.get(id).rej(new Error(e.message||'erro no worker'));pend.delete(id)}};ws.push(w)}
+  const pool={size,workers:true,run(op,args){return new Promise((res,rej)=>{const id=nid++;pend.set(id,{res,rej});q.push({id,op,args});pump()})}};
+  await Promise.race([pool.run('ping',{}),new Promise((_,r)=>setTimeout(()=>r(new Error('tempo esgotado')),5000))]);
+  _pool=pool;$('thr').textContent=size>1?'⚙ '+size+' threads em paralelo (Web Workers)':'⚙ 1 Web Worker (a tela não trava; núcleos insuficientes para paralelizar)'}
+ catch(e){console.warn('Web Workers indisponíveis, usando thread única:',e);ws.forEach(w=>w.terminate());_pool=inlinePool();_pool.size=1;$('thr').textContent='⚙ thread única (Web Workers indisponíveis neste ambiente)'}
+ return _pool}
+const tacsOf=t=>t=='auto'?['indireto','cercamento']:[t];
+// Em ambientes que bloqueiam downloads (artefato publicado, alguns navegadores embutidos) o conteúdo abre numa janela interna para copiar.
+function showText(name,text){let d=document.getElementById('txtdlg');if(!d){d=document.createElement('div');d.id='txtdlg';d.style.cssText='position:fixed;inset:0;z-index:99;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:16px';
+  d.innerHTML='<div style="background:var(--card);color:var(--fg);border:1px solid var(--bd);border-radius:12px;max-width:760px;width:100%;max-height:90%;display:flex;flex-direction:column;gap:8px;padding:14px"><b id="txtdlg_t"></b><p class="note" style="margin:0">Este ambiente bloqueia downloads. Copie o conteúdo e salve em um arquivo com este nome (ou abra o index.html direto no navegador, onde o download funciona).</p><textarea id="txtdlg_a" readonly style="flex:1;min-height:240px;font:12px/1.4 ui-monospace,monospace;background:var(--in);color:var(--fg);border:1px solid var(--bd);border-radius:8px;padding:8px"></textarea><div><button class="btn" id="txtdlg_c">Copiar</button> <button class="btn s" id="txtdlg_x">Fechar</button></div></div>';document.body.appendChild(d);
+  $('txtdlg_x').onclick=()=>{d.style.display='none'};$('txtdlg_c').onclick=async()=>{const a=$('txtdlg_a');a.select();try{await navigator.clipboard.writeText(a.value);$('txtdlg_c').textContent='Copiado'}catch(e){document.execCommand&&document.execCommand('copy');$('txtdlg_c').textContent='Selecionado: use Ctrl+C'}}}
+ d.style.display='flex';$('txtdlg_t').textContent=name;$('txtdlg_a').value=text;$('txtdlg_c').textContent='Copiar'}
+const SANDBOX=typeof window!=='undefined'&&!!window.claude;
+function download(name,text,type='text/plain'){if(SANDBOX){showText(name,text);return}
+ try{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},800)}catch(e){showText(name,text)}}
+// ---- incertezas: tabela editável ----
+function buildUnc(def){$('utab').innerHTML='<tr><th>Parâmetro</th><th>Faixa (±)</th><th>Unid.</th><th>Origem</th></tr>'+UNC_INFO.map(x=>{const v=def?(x.mul?x.def*100:x.def):(window._uncSaved&&window._uncSaved[x.k]!=null?(x.mul?window._uncSaved[x.k]*100:window._uncSaved[x.k]):(x.mul?x.def*100:x.def)),est=x.src.startsWith('ESTIMADO');
+  return `<tr><td>${x.lab}</td><td><input id="u_${x.k}" type="number" min="0" step="${x.mul?1:.5}" value="${v}"></td><td>${x.un.replace('± ','')}</td><td class="src"><span class="tag ${est?'e':'m'}">${est?'E':'M'}</span> ${x.src.replace('ESTIMADO ','').replace(/^\(|\)$/g,'')}</td></tr>`}).join('')}
+function readUnc(){const u={};UNC_INFO.forEach(x=>{const el=document.getElementById('u_'+x.k),v=el?+el.value:(x.mul?x.def*100:x.def);u[x.k]=Math.max(0,x.mul?v/100:v)});return u}
+buildUnc(true);
+$('uzero').onclick=()=>{UNC_INFO.forEach(x=>$('u_'+x.k).value=0)};$('udef').onclick=()=>buildUnc(true);
+// ---- Monte Carlo + tornado ----
+function histBins(vals,nb,lo,hi){const w=(hi-lo)/nb||1,c=new Array(nb).fill(0);vals.forEach(v=>{c[Math.max(0,Math.min(nb-1,Math.floor((v-lo)/w)))]++});return{c,w}}
+async function runMC(){const R=LAST;if(!R){$('mcst').textContent='Execute uma simulação antes (aba Cenário → ▶).';return}
+ const pool=await getPool(),unc=readUnc(),K=Math.max(8,+$('kdist').value),tacs=tacsOf($('tactic').value),{p,m,nUse}=R,t0=performance.now();$('mcgo').disabled=true;
+ try{prog(.05,'Monte Carlo…');const D=await mcDistribution(pool,p,m,nUse,tacs,K,unc,s=>{$('mcst').textContent=s;prog(.05+.5*parseInt(s.split(' ')[2])/K)},2000);R.mcD=D;renderMC(D,R);
+  const T=await tornado(pool,p,m,Math.max(+$('n').value,nUse*2),tacs,unc,s=>{$('mcst').textContent=s;prog(.6+.38*parseInt(s.split(' ')[1])/UNC_INFO.length)});R.tor=T;renderTornado(T,R);
+  prog(1,'Pronto.');$('mcst').textContent=`Concluído em ${((performance.now()-t0)/1000).toFixed(0)} s (${pool.size} thread${pool.size>1?'s':''}).`}
+ catch(e){$('mcst').textContent='Erro: '+e.message;console.error(e)}$('mcgo').disabled=false}
+function renderMC(D,R){const{p,m,nUse}=R,al=+$('alpha').value/100;$('mccard').hidden=false;const ci=D.ci.map(x=>f(x*100)+'%').join('–');
+ const te=D.tExt.map(x=>x/60),tq=q=>te.length?f(pct(te,q)):'—';
+ $('mcstat').innerHTML=[['Prob. de contenção',f(D.P*100)+'%','IC 95%: '+ci],['Área queimada P10 / P50 / P90',f(D.burned.p10,1)+' / '+f(D.burned.p50,1)+' / '+f(D.burned.p90,1)+' ha','pior réplica '+f(D.burned.max,1)+' ha (limite '+f(p.maxloss)+')'],['Custo/op. P10 / P50 / P90','US$ '+f(D.cost.p10)+' / '+f(D.cost.p50)+' / '+f(D.cost.p90),'média ponderada pelas réplicas'],['Extinção P50 / P90',tq(.5)+' / '+tq(.9)+' min',te.length+' de '+D.K+' réplicas extinguiram']].map(a=>`<div><span>${a[0]}</span><b>${a[1]}</b><span>${a[2]}</span></div>`).join('');
+ const okk=D.P>=al-1e-9;$('mcmsg').className='msg '+(okk?'ok':D.P>=.5?'warn':'bad');
+ $('mcmsg').innerHTML=`${nUse} × ${m.name}: contém o fogo em <b>${f(D.P*100)}%</b> das ${D.K} réplicas (meta ${f(al*100)}%). ${okk?'A frota atende à restrição de risco.':'<b>Abaixo da meta:</b> aumente a frota ou relaxe a meta; o ponto de otimização usa menos réplicas por teste e pode ficar ligeiramente abaixo desta estimativa maior.'}`;
+ const B=D.reps.map(s=>s.burned),hi=Math.max(...B,p.maxloss*1.1),bn=histBins(B,10,0,hi);
+ bars('mchist',null,bn.c.map((c,i)=>({l:f(i*bn.w)+'–'+f((i+1)*bn.w),v:[c],c:[(i+.5)*bn.w>p.maxloss?'#dc2626':'#4f9d5a']})),['Réplicas'],['#4f9d5a'],{rot:1,h:260,bw:26});
+ if(te.length){const b2=histBins(te,8,Math.min(...te),Math.max(...te)+1e-6);bars('mcext',null,b2.c.map((c,i)=>({l:f(Math.min(...te)+i*b2.w),v:[c]})),['Réplicas'],['#2f80c9'],{h:260,bw:26})}else $('mcext').innerHTML='<p class="note">Nenhuma réplica chegou à extinção total.</p>'}
+function renderTornado(T,R){$('tocard').hidden=false;if(!T.base){$('tochart').innerHTML='<p class="note">A frota máxima não contém o fogo no caso-base: não há tornado.</p>';$('totab').innerHTML='';return}
+ const rows=T.rows,mx=Math.max(1,...rows.flatMap(r=>[Math.abs(r.dLo||0),Math.abs(r.dHi||0)])),W=760,L=270,Rg=W-L-20,cx=L+Rg/2,rh=26,H=rows.length*rh+34,X=v=>cx+Rg/2*v/mx;
+ let s=`<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" style="max-width:none;font:11px system-ui;fill:currentColor"><line x1="${cx}" x2="${cx}" y1="10" y2="${H-18}" stroke="currentColor" opacity=".5"/>`;
+ rows.forEach((r,i)=>{const y=14+i*rh;s+=`<text x="${L-8}" y="${y+12}" text-anchor="end">${r.lab.length>40?r.lab.slice(0,38)+'…':r.lab} (±${r.eng&&r.un.includes('%')?f(r.w*100):f(r.w*(r.un.includes('%')?100:1))}${r.un.replace('± ','')})</text>`;
+  [[r.dLo,'#2f80c9','−',r.lo],[r.dHi,'#f4a259','+',r.hi]].forEach(([d,c,sg,o],k)=>{if(d==null){s+=`<text x="${cx+(k?6:-6)}" y="${y+(k?20:8)}" text-anchor="${k?'start':'end'}" fill="#dc2626">não contém</text>`;return}
+   const x0=Math.min(cx,X(d)),w=Math.abs(X(d)-cx);s+=`<rect x="${x0}" y="${y+(k?11:1)}" width="${Math.max(1,w)}" height="9" fill="${c}" rx="2"><title>${r.lab} ${sg}: n = ${o.n}; Δ custo = US$ ${f(d)}</title></rect>`;
+   s+=`<text x="${d>=0?x0+w+4:x0-4}" y="${y+(k?19:9)}" text-anchor="${d>=0?'start':'end'}" font-size="10" opacity=".85">n=${o.n}</text>`})});
+ s+=`<text x="${cx}" y="${H-4}" text-anchor="middle" opacity=".7">Δ custo por operação (US$) · base: n = ${T.base.n}, US$ ${f(T.base.totRef)}</text></svg>`;$('tochart').innerHTML=s;
+ $('lgt').innerHTML='<span><i style="background:#2f80c9"></i>extremo inferior (−)</span><span><i style="background:#f4a259"></i>extremo superior (+)</span>';
+ $('totab').innerHTML=`<table><tr><th>Parâmetro</th><th>Tipo</th><th>Faixa</th><th>Frota (−/+)</th><th>Δ frota</th><th>Δ CapEx (US$)</th><th>Δ custo/op. (US$)</th></tr>`+rows.map(r=>{const cxm=R.m.cx,dc=(a,b)=>a==null?'✗':(a>=0?'+':'')+f(a*cxm);return `<tr><td>${r.lab}</td><td>${r.eng?'motor':'econômico'}</td><td>±${r.un.includes('%')?f(r.w*100)+'%':f(r.w)+r.un.replace('± ','').replace('%','')}</td><td>${r.lo.n??'✗'} / ${r.hi.n??'✗'}</td><td>${r.dnLo==null?'✗':(r.dnLo>=0?'+':'')+r.dnLo} / ${r.dnHi==null?'✗':(r.dnHi>=0?'+':'')+r.dnHi}</td><td>${r.eng?(r.dnLo==null?'✗':(r.dnLo>=0?'+':'')+f(r.dnLo*cxm))+' / '+(r.dnHi==null?'✗':(r.dnHi>=0?'+':'')+f(r.dnHi*cxm)):(r.k=='cx'?(r.dLo==null?'✗':f(r.lo.capex-T.base.n*cxm))+' / '+f(r.hi.capex-T.base.n*cxm):'—')}</td><td>${r.dLo==null?'✗':(r.dLo>=0?'+':'')+f(r.dLo)} / ${r.dHi==null?'✗':(r.dHi>=0?'+':'')+f(r.dHi)}</td></tr>`}).join('')+'</table>'}
+$('mcgo').onclick=runMC;
+// ---- animação do combate ----
+const AN={frames:null,i:0,play:false,last:0,acc:0,r:null,V:null,raf:0};
+function setupAnim(r){AN.r=r;AN.frames=r.rec?r.rec.frames:null;AN.i=0;AN.play=false;AN.V=viewBox(r,r.routes);$('aplay').textContent='▶ Reproduzir';$('aseek').max=Math.max(0,(AN.frames||[]).length-1);$('aseek').value=0;
+ if(AN.frames&&AN.frames.length)drawFrame(AN.i);else{const g=$('cvan').getContext('2d');g.clearRect(0,0,760,760);$('atime').textContent='Sem quadros gravados.'}}
+function drawFrame(i){const r=AN.r,fr=AN.frames[i],cv=$('cvan'),g=cv.getContext('2d'),N=r.N,S=cv.width,V=AN.V,px=S/V.S;
+ const img=cellsToCanvas(N,k=>{const c=fr.c[k];return stCol(c&7,(c>>3)&1,(c>>4)&1)});g.imageSmoothingEnabled=false;g.fillStyle='#4f6b55';g.fillRect(0,0,S,S);g.drawImage(img,V.a,N-V.b-V.S,V.S,V.S,0,0,S,S);
+ const X=x=>(x-V.a)*px+px/2,Y=y=>S-((y-V.b)*px+px/2);tri(g,X(r.W.bx),Y(r.W.by),10);let fly=0,ret=0;
+ for(let k=0;k<r.nDr;k++){const x=fr.d[3*k],y=fr.d[3*k+1],s=fr.d[3*k+2];if(s>=2){s==2?fly++:ret++;g.beginPath();g.arc(X(x),Y(y),4.5,0,7);g.fillStyle=s==2?'#2f80c9':'#9bd0ff';g.fill();g.lineWidth=1.2;g.strokeStyle='#fff';g.stroke()}}
+ g.fillStyle='rgba(0,0,0,.55)';g.fillRect(8,8,176,50);g.fillStyle='#fff';g.font='13px system-ui';g.textAlign='left';g.fillText('t = '+f(fr.t/60,1)+' min',16,26);g.fillText('queimada: '+f(fr.burned,1)+' ha',16,46);
+ g.fillStyle='#fff';g.fillRect(12,S-22,100/r.cs*px,5);g.fillText('100 m',12,S-28);
+ $('aseek').value=i;$('atime').textContent=`quadro ${i+1}/${AN.frames.length} · t = ${f(fr.t/60,1)} min`;
+ $('astat').innerHTML=[['Tempo',f(fr.t/60,1)+' min'],['Área queimada',f(fr.burned,1)+' ha'],['Frente em chamas',f(fr.flame*r.cs*r.cs/1e4,2)+' ha'],['Drones em voo',fly+ret+' de '+r.nDr+' ('+fly+' carregados)']].map(a=>`<div><span>${a[0]}</span><b>${a[1]}</b></div>`).join('')}
+function animLoop(ts){if(!AN.play)return;const fps=12*+$('aspd').value;AN.acc+=(ts-AN.last)/1000*fps;AN.last=ts;const adv=Math.floor(AN.acc);if(adv>0){AN.acc-=adv;AN.i=Math.min(AN.frames.length-1,AN.i+adv);drawFrame(AN.i);if(AN.i>=AN.frames.length-1){AN.play=false;$('aplay').textContent='↺ Repetir';return}}AN.raf=requestAnimationFrame(animLoop)}
+$('aplay').onclick=()=>{if(!AN.frames||!AN.frames.length)return;if(AN.play){AN.play=false;$('aplay').textContent='▶ Reproduzir';return}if(AN.i>=AN.frames.length-1)AN.i=0;AN.play=true;AN.last=performance.now();AN.acc=0;$('aplay').textContent='⏸ Pausar';AN.raf=requestAnimationFrame(animLoop)};
+$('aseek').oninput=()=>{if(!AN.frames)return;AN.i=+$('aseek').value;drawFrame(AN.i)};
+// ---- salvar / abrir cenário ----
+const SAVE_IDS=['fuel','area','a0','wind','wdir','slope','sdir','rh','temp','resp','bdist','brel','maxloss','model','n','tactic','obj','rigor','alpha','kmc','cmp','opsyr','life','fixop','logd','acmode','opsA','lifeA','contractA','logdA','cxfA','wcost','lat','lon','kdist'];
+$('bsave').onclick=()=>{const o={app:'FireDrone',versao:7,campos:{},modelos_adicionados:MODELS.filter(m=>m.src==='U'),incertezas:readUnc()};SAVE_IDS.forEach(i=>{const e=$(i);if(e)o.campos[i]=e.type==='checkbox'?e.checked:e.value});download('cenario_firedrone.json',JSON.stringify(o,null,1),'application/json')};
+$('bload').onclick=()=>$('fload').click();
+$('fload').onchange=async e=>{const fl=e.target.files[0];if(!fl)return;try{const o=JSON.parse(await fl.text());if(o.app!=='FireDrone')throw new Error('arquivo não é um cenário do FireDrone');
+ for(let i=MODELS.length-1;i>=0;i--)if(MODELS[i].src==='U')MODELS.splice(i,1);(o.modelos_adicionados||[]).forEach(m=>MODELS.push(m));refreshModels();
+ for(const[k,v]of Object.entries(o.campos||{})){const el=$(k);if(!el)continue;if(el.type==='checkbox')el.checked=!!v;else el.value=(k==='maxloss'&&(o.versao||0)<7)?Math.round(v/(+o.campos.a0||1)*100):v}mlHa();
+ if(o.incertezas){window._uncSaved=o.incertezas;buildUnc(false)}update()}catch(err){$('status').textContent='Não foi possível abrir: '+err.message}e.target.value=''};
+// ---- clima real (Open-Meteo) ----
+$('wx').onclick=async()=>{const la=+$('lat').value,lo=+$('lon').value;$('wxst').textContent='Buscando…';
+ try{const r=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${la}&longitude=${lo}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,wind_direction_10m&wind_speed_unit=ms&timezone=auto`);if(!r.ok)throw new Error('HTTP '+r.status);
+  const c=(await r.json()).current;$('temp').value=Math.round(c.temperature_2m);$('rh').value=Math.round(c.relative_humidity_2m);$('wind').value=+(+c.wind_speed_10m).toFixed(1);$('wdir').value=Math.round(((270-c.wind_direction_10m)%360+360)%360);
+  $('wxst').textContent=`Clima em ${c.time}: ${f(c.temperature_2m)} °C · UR ${f(c.relative_humidity_2m)}% · vento ${f(c.wind_speed_10m,1)} m/s de ${f(c.wind_direction_10m)}° (compasso). Campos atualizados; clique em ▶ para simular.`}
+ catch(e){$('wxst').textContent='Não foi possível buscar o clima ('+e.message+'). Sem internet ou o ambiente bloqueia a rede; preencha manualmente.'}};
+// ---- histórico / comparação de execuções ----
+const HIST=[];
+function storeRun(){const R=LAST;if(!R)return;const{p,m,r,r0,c}=R;HIST.push({id:HIST.length+1,cen:FUELS[p.fi].name.replace(/^\d+ · /,''),model:m.name,n:R.nUse,tac:TACTICS[r.tactic].split(' (')[0],wind:p.wind,rh:p.rh,area:p.area,cs:r.cs,burned:r.burnedHa,burned0:r0.burnedHa,ok:r.ok,tCont:r.tCont,tExt:r.tExt,capex:c.capex,opex:c.opex,tot:c.tot,litres:r.litres,P:R.Pc?R.Pc.P:null});renderHist();$('status').textContent='Execução #'+HIST.length+' guardada (aba Execuções).'}
+function renderHist(){if(!HIST.length){$('hist').innerHTML='<p class="note">Nenhuma execução guardada.</p>';$('hch1').innerHTML='';$('hch2').innerHTML='';return}
+ $('hist').innerHTML='<table><tr><th>#</th><th>Cenário</th><th>Vento</th><th>UR</th><th>Modelo × n</th><th>Tática</th><th>Área (ha)</th><th>Sem drones</th><th>Contido</th><th>P(cont.)</th><th>Extinção (min)</th><th>CapEx (US$)</th><th>Custo/op. (US$)</th></tr>'+HIST.map(h=>`<tr><td>${h.id}</td><td>${h.cen}</td><td>${f(h.wind,1)}</td><td>${f(h.rh)}%</td><td>${h.model} × ${h.n}</td><td>${h.tac}</td><td>${f(h.burned,1)}</td><td>${f(h.burned0)}</td><td>${badge(h.ok,'sim','não')}</td><td>${h.P==null?'—':f(h.P*100)+'%'}</td><td>${h.tExt==null?'—':f(h.tExt/60)}</td><td>${f(h.capex)}</td><td>${f(h.tot)}</td></tr>`).join('')+'</table>';
+ const lab=h=>'#'+h.id+' '+h.cen.slice(0,18);
+ bars('hch1','lgh1',HIST.map(h=>({l:lab(h),v:[h.burned0,h.burned],c:[null,h.ok?'#4f9d5a':'#dc2626']})),['Sem drones (ha)','Com drones (ha)'],['#a8a29e','#4f9d5a'],{rot:1,h:300,bw:20});
+ bars('hch2','lgh2',HIST.map(h=>({l:lab(h),v:[h.tot-h.opex,h.opex]})),['CapEx diluído/operação (US$)','Operação (US$)'],['#2f80c9','#f4a259'],{rot:1,h:300,bw:20})}
+$('bstore').onclick=storeRun;$('hclr').onclick=()=>{HIST.length=0;renderHist()};
+$('hcsv').onclick=()=>{if(!HIST.length)return;const k=Object.keys(HIST[0]);download('execucoes_firedrone.csv','﻿'+k.join(';')+'\n'+HIST.map(h=>k.map(x=>String(h[x]==null?'':h[x]).replace('.',',')).join(';')).join('\n'),'text/csv')};
+$('bprint').onclick=()=>window.print();if(SANDBOX)$('bprint').hidden=true;renderHist();
+// ---- relatório ----
+$('brep').onclick=()=>{const R=LAST;if(!R){$('status').textContent='Execute uma simulação antes.';return}const{p,m,r,r0,c,nUse}=R,img=id=>{try{return $(id).toDataURL('image/png')}catch(e){return ''}},svg=id=>$(id)?$(id).innerHTML:'';
+ const dt=new Date().toLocaleString('pt-BR'),F=FUELS[p.fi],mes=c.tot*p.opsyr/12;
+ const P_=(a,b)=>`<tr><td>${a}</td><td>${b}</td></tr>`;
+ const html=`<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Relatório FireDrone</title><style>body{font:14px/1.5 system-ui,Segoe UI,Arial;max-width:980px;margin:24px auto;padding:0 16px;color:#222}h1{color:#15301f}h2{border-bottom:2px solid #e4572e;padding-bottom:3px;margin-top:26px}table{border-collapse:collapse;width:100%;font-size:12.5px;margin:8px 0}th,td{border-bottom:1px solid #ddd;padding:4px 8px;text-align:right}th:first-child,td:first-child{text-align:left}img{max-width:48%;border:1px solid #ccc;border-radius:8px}.row{display:flex;gap:12px;flex-wrap:wrap}.n{color:#666;font-size:12px}.best td{background:#e6f4e8;font-weight:700}.pill{border-radius:9px;padding:0 8px;color:#fff}.win{background:#4f9d5a}.lose{background:#dc2626}.hm{text-align:center}button{padding:8px 14px;margin:6px 0}@media print{button{display:none}}</style></head><body>
+<button onclick="window.print()">🖨 Imprimir / salvar como PDF</button><h1>🔥 FireDrone · Relatório de simulação</h1><p class="n">Gerado em ${dt}. Simulador de combate a incêndios com enxame de drones (modelo de Rothermel, propagação por tempo de chegada, combate por linha molhada).</p>
+<h2>1. Cenário</h2><table>${P_('Combustível / cenário',F.name)}${P_('Área da janela / foco inicial',f(p.area)+' ha / '+f(p.a0,1)+' ha')}${P_('Vento (10 m) / direção',f(p.wind,1)+' m/s / '+f(p.wdir)+'° (sopra para)')}${P_('Declividade / aclive para',f(p.slope,1)+'° / '+f(p.sdir)+'°')}${P_('UR / temperatura',f(p.rh)+'% / '+f(p.temp)+' °C')}${P_('Tempo de resposta',f(p.delay/60)+' min')}${P_('Base: distância ao foco',f(r.W.bdistReal)+' m ('+{bar:'barlavento',fl:'flanco',sot:'sotavento'}[p.brel]+')')}${P_('Perda máxima aceitável',f(p.maxloss)+' ha')}${P_('Resolução (definida pelo código)',f(r.cs,1)+' m · grade '+r.W.N+'×'+r.W.N+' · Δt '+f(r.W.dt,1)+' s')}</table>
+<div class="row"><img src="${img('cv1')}"><img src="${img('cv')}"></div>
+<h2>2. Resultado</h2><table>${P_('Modelo × frota',m.name+' × '+nUse+' ('+m.pay+' L por recarga)')}${P_('Tática',TACTICS[r.tactic])}${P_('Fogo contido?',r.ok?'<span class="pill win">sim</span>':'<span class="pill lose">não</span>')}${P_('Área queimada (com / sem drones)',f(r.burnedHa,1)+' ha / '+f(r0.burnedHa,1)+' ha')}${P_('Contenção da frente / extinção total',(r.tCont!=null?f(r.tCont/60)+' min':'não')+' / '+(r.tExt!=null?f(r.tExt/60)+' min':'não extinto'))}${P_('Água lançada / linha molhada',f(r.litres/1000,1)+' m³ em '+r.drops+' lançamentos / '+f(r.lineM)+' m')}${P_('Probabilidade de contenção (otimização)',R.Pc?f(R.Pc.P*100)+'% (IC95% '+R.Pc.ci.map(x=>f(x*100)).join('–')+'%) com '+R.Pc.K+' réplicas, meta '+f(R.Pc.alpha*100)+'%':'não calculada (modelo escolhido manualmente ou modo determinístico)')}${P_('CapEx da frota',' US$ '+f(c.capex))}${P_('Custo por operação / mensal','US$ '+f(c.tot)+' / US$ '+f(mes))}</table>
+<div class="row"><img src="${img('cva')}"><div style="flex:1;min-width:260px">${svg('ev')}</div></div>
+<h2>3. Táticas</h2>${svg('tacts')}<h2>4. Otimização da frota</h2>${svg('optab')}
+${R.mcD?`<h2>5. Incerteza (Monte Carlo)</h2><div>${svg('mcstat').replace(/class="stat"/g,'')}</div><p>${svg('mcmsg')}</p><div class="row"><div>${svg('mchist')}</div><div>${svg('mcext')}</div></div>`:''}
+${R.tor&&R.tor.base?`<h2>6. Parâmetros incertos (tornado)</h2>${svg('tochart')}${svg('totab')}`:''}
+<h2>Premissas e limitações</h2><ul class="n"><li>Modelo de camada única de combustível (Rothermel 1972 com correção de Qig); sem modelo digital de terreno real, sem lançamento de fagulhas (spotting) e vento constante.</li><li>Preços (exceto tabelas públicas), recarga, custo operacional, razão de molhamento, limite de chama e reignição são <b>estimativas</b>: veja a faixa de incerteza na aba Incerteza.</li><li>Frotas homogêneas (um único modelo). O resultado de combate é um fenômeno de limiar: pequenas mudanças podem fazer o fogo escapar; por isso a frota é escolhida por probabilidade de contenção.</li><li>Validação contra um único evento real (Serra do Cipó, ago/2024), apenas na fase de ataque inicial.</li><li>Não substitui avaliação operacional nem regras de aviação (altura, BVLOS, separação de aeronaves tripuladas).</li></ul></body></html>`;
+ download('relatorio_firedrone.html',html,'text/html');$('status').textContent='Relatório gerado (abra o arquivo e use Imprimir → Salvar como PDF).'};
+
+// ===================== UI v6 (pool de Workers, Monte Carlo, animação, execuções) =====================
+const TABS=[['cenario','Cenário','🗺'],['drones','Drones','🚁'],['simulacao','Simulação','▶'],['ataque','Ataque','🎯'],['fogodrone','Fogo × Drone','⚔'],['comparacao','Comparação','⚖'],['economia','Economia','💰'],['sensibilidade','Sensibilidade','📈'],['incerteza','Incerteza','🎲'],['resolucao','Resolução','🔬'],['resultados','Resultados','📋'],['execucoes','Execuções','📌']];
+$('nav').innerHTML=TABS.map(t=>`<button data-t="${t[0]}"><span>${t[2]}</span>${t[1]}</button>`).join('');
+$('pills').innerHTML=TABS.map((t,i)=>`<button data-t="${t[0]}"><b>${i+1}</b>${t[1]}</button>`).join('');
+function go(t){document.querySelectorAll('.panel').forEach(e=>e.hidden=e.id!='p_'+t);document.querySelectorAll('[data-t]').forEach(e=>e.classList.toggle('on',e.dataset.t==t))}
+document.querySelectorAll('[data-t]').forEach(e=>e.onclick=()=>go(e.dataset.t));go('cenario');
+$('theme').onclick=()=>{const r=document.documentElement;r.dataset.theme=r.dataset.theme=='dark'?'light':'dark'};
+$('fuel').innerHTML=FUELS.map((s,i)=>`<option value="${i}">${s.name}</option>`).join('');
+function refreshModels(){$('model').innerHTML='<option value="-1" selected>— Nenhum (comparar todos) —</option>'+MODELS.map((m,i)=>`<option value="${i}">${m.name} · ${m.pay} L</option>`).join('');
+ $('cat').innerHTML='<table><tr><th>Modelo</th><th>Carga (L)</th><th>Vel. (m/s)</th><th>Aut. (min)</th><th>MTOW (kg)</th><th>Recarga (s)</th><th>Preço (US$)</th><th>Fonte</th></tr>'+MODELS.map(m=>`<tr><td>${m.name}</td><td>${m.pay}</td><td>${m.v}</td><td>${m.end}</td><td>${m.mtow||'—'}</td><td>${f(m.rf)}</td><td>${f(m.cx)}</td><td>${m.src}</td></tr>`).join('')+'</table>'}
+refreshModels();
+function mlHa(){const e=$('maxlossha');if(e)e.textContent='= '+f(+$('a0').value*+$('maxloss').value/100,1)+' ha (contém o próprio foco inicial; se o fogo já começa grande, o limite cresce junto)'}
+function applyFuel(i){const d=FUELS[i].d;for(const k of ['area','a0','wind','wdir','slope','sdir','rh','temp','bdist','n'])$(k).value=d[k];$('maxloss').value=Math.round(d.maxloss/d.a0*100);mlHa();$('resp').value=d.resp/60;$('brel').value=d.brel}
+function P(){return{fi:+$('fuel').value,area:+$('area').value,a0:+$('a0').value,wind:+$('wind').value,wdir:+$('wdir').value,slope:+$('slope').value,sdir:+$('sdir').value,rh:+$('rh').value,temp:+$('temp').value,bdist:Math.max(300,+$('bdist').value),brel:$('brel').value,delay:+$('resp').value*60,maxloss:+$('a0').value*+$('maxloss').value/100,noise:1,tc:1800,lead:240,opsyr:+$('opsyr').value,life:+$('life').value,fixop:+$('fixop').value,logd:+$('logd').value,acMode:$('acmode').value,opsyrA:+$('opsA').value,lifeA:+$('lifeA').value,contractA:+$('contractA').value,logdA:+$('logdA').value,cxfA:+$('cxfA').value,wcost:+$('wcost').value}}
+function bars(id,lg,groups,names,cols,o={}){const H=o.h||250,pad=46,bw=o.bw||15,gw=names.length*bw+14,W=Math.max(480,pad+groups.length*gw+10),bot=H-(o.rot?78:30),top=16,
+ mx=Math.max(1e-9,...groups.flatMap(g=>g.v),o.ref||0)*1.12,Y=v=>bot-(bot-top)*v/mx,fm=v=>v>=100?f(v):v>=1?f(v,1):f(v,2);
+ let s=`<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" style="max-width:none;font:10px system-ui;fill:currentColor">`;
+ for(let k=0;k<=4;k++){const v=mx*k/4;s+=`<line x1="${pad}" x2="${W}" y1="${Y(v)}" y2="${Y(v)}" stroke="currentColor" opacity=".13"/><text x="${pad-5}" y="${Y(v)+3}" text-anchor="end" opacity=".7">${fm(v)}</text>`}
+ groups.forEach((g,i)=>{const x0=pad+i*gw+7;g.v.forEach((v,j)=>{s+=`<rect x="${x0+j*bw}" y="${Y(v)}" width="${bw-2}" height="${bot-Y(v)}" rx="2" fill="${(g.c&&g.c[j])||cols[j]}" ${g.star?'stroke="#facc15" stroke-width="2.5"':''}><title>${g.t||g.l}: ${names[j]} = ${fm(v)}</title></rect>`});
+  const cx=x0+g.v.length*bw/2;s+=o.rot?`<text transform="translate(${cx},${bot+10}) rotate(-45)" text-anchor="end">${g.star?'★ ':''}${g.l}</text>`:`<text x="${cx}" y="${bot+14}" text-anchor="middle">${g.l}</text>${g.mk?`<text x="${cx}" y="${bot+27}" text-anchor="middle" font-size="12">${g.mk}</text>`:''}`});
+ if(o.ref!=null)s+=`<line x1="${pad}" x2="${W}" y1="${Y(o.ref)}" y2="${Y(o.ref)}" stroke="#facc15" stroke-width="2" stroke-dasharray="6 4"/><text x="${W-4}" y="${Y(o.ref)-4}" text-anchor="end" fill="#ca8a04">${o.refl||'limite'}</text>`;
+ $(id).innerHTML=s+'</svg>';if(lg)$(lg).innerHTML=names.map((n,j)=>`<span><i style="background:${cols[j]}"></i>${n}</span>`).join('')}
+function line(id,ser){const W=560,H=230,pl=56,pb=34,pt=12,pr=10,mx=Math.max(1e-9,...ser.flatMap(s=>s.pts.map(p=>p[1])))*1.1,xm=Math.max(1,...ser.flatMap(s=>s.pts.map(p=>p[0]))),X=x=>pl+(W-pl-pr)*x/xm,Y=y=>H-pb-(H-pb-pt)*y/mx;
+ let s=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:${W}px;font:10px system-ui;fill:currentColor">`;
+ for(let k=0;k<=4;k++){const v=mx*k/4;s+=`<line x1="${pl}" x2="${W-pr}" y1="${Y(v)}" y2="${Y(v)}" stroke="currentColor" opacity=".13"/><text x="${pl-5}" y="${Y(v)+3}" text-anchor="end" opacity=".7">${f(v,1)}</text>`;s+=`<text x="${X(xm*k/4)}" y="${H-pb+14}" text-anchor="middle" opacity=".7">${f(xm*k/4)}</text>`}
+ s+=`<text x="${(W+pl)/2}" y="${H-4}" text-anchor="middle">Tempo (min)</text><text x="10" y="${H/2}" transform="rotate(-90 10 ${H/2})" text-anchor="middle">Área atingida (ha)</text>`;
+ ser.forEach(q=>{const d=q.pts.map((p,i)=>(i?'L':'M')+X(p[0])+','+Y(p[1])).join(' ');s+=`<path d="${d} L${X(q.pts[q.pts.length-1][0])},${Y(0)} L${X(0)},${Y(0)}Z" fill="${q.c}" opacity=".13"/><path d="${d}" fill="none" stroke="${q.c}" stroke-width="2.5"/>`});
+ $(id).innerHTML=s+'</svg><div class="leg">'+ser.map(q=>`<span><i style="background:${q.c}"></i>${q.n}</span>`).join('')+'</div>'}
+// ---- desenhos em canvas ----
+const mkCanvas=(w,h)=>{const c=document.createElement('canvas');c.width=w;c.height=h;return c};
+function cellsToCanvas(N,colorFn){const c=mkCanvas(N,N),g=c.getContext('2d'),im=g.createImageData(N,N);for(let y=0;y<N;y++)for(let x=0;x<N;x++){const k=colorFn((N-1-y)*N+x);im.data.set([k[0],k[1],k[2],255],(y*N+x)*4)}g.putImageData(im,0,0);return c}
+function tri(g,x,y,s){g.beginPath();g.moveTo(x,y-s);g.lineTo(x+s,y+s*.8);g.lineTo(x-s,y+s*.8);g.closePath();g.fillStyle='#facc15';g.fill();g.lineWidth=1.5;g.strokeStyle='#000';g.stroke()}
+function arrow(g,x0,y0,x1,y1,col,w){g.strokeStyle=col;g.fillStyle=col;g.lineWidth=w;g.beginPath();g.moveTo(x0,y0);g.lineTo(x1,y1);g.stroke();const a=Math.atan2(y1-y0,x1-x0),h=5+w*2;g.beginPath();g.moveTo(x1,y1);g.lineTo(x1-h*Math.cos(a-.4),y1-h*Math.sin(a-.4));g.lineTo(x1-h*Math.cos(a+.4),y1-h*Math.sin(a+.4));g.closePath();g.fill()}
+function drawScenario(W,p){const cv=$('cv1'),g=cv.getContext('2d'),N=W.N,S=cv.width,px=S/N,mx=W.Rmax*60;let mn=1e9;for(let i=0;i<N*N;i++)mn=Math.min(mn,W.Rh[i]);
+ const img=cellsToCanvas(N,i=>{const v=Math.max(0,Math.min(1,(W.Rh[i]-mn)/((mx-mn)||1))),h=(1-v)*120,c=hsl(h);return c});g.imageSmoothingEnabled=false;g.drawImage(img,0,0,S,S);
+ const k=Math.max(4,Math.ceil(N/14));for(let y=k>>1;y<N;y+=k)for(let x=k>>1;x<N;x+=k){const i=y*N+x,L=px*k*.42*(.4+.6*Math.min(1,W.Rh[i]/(mx||1))),X=x*px+px/2,Y=S-(y*px+px/2);arrow(g,X,Y,X+L*Math.cos(W.hd[i]),Y-L*Math.sin(W.hd[i]),'rgba(0,0,0,.65)',1.2)}
+ const iX=W.ix*px+px/2,iY=S-(W.iy*px+px/2),bX=W.bx*px+px/2,bY=S-(W.by*px+px/2);g.setLineDash([6,5]);g.strokeStyle='#fff';g.lineWidth=2;g.beginPath();g.moveTo(iX,iY);g.lineTo(bX,bY);g.stroke();g.setLineDash([]);
+ g.beginPath();g.arc(iX,iY,9,0,7);g.fillStyle='#e4572e';g.fill();g.strokeStyle='#fff';g.lineWidth=2;g.stroke();g.font='15px system-ui';g.fillStyle='#fff';g.fillText('🔥',iX-8,iY+5);tri(g,bX,bY,10);
+ g.font='bold 13px system-ui';g.fillStyle='#fff';g.strokeStyle='#000';g.lineWidth=3;const lb=f(W.bdistReal)+' m';g.strokeText(lb,(iX+bX)/2+6,(iY+bY)/2-6);g.fillText(lb,(iX+bX)/2+6,(iY+bY)/2-6);
+ const wa=W.wd;g.fillStyle='rgba(0,0,0,.45)';g.fillRect(S-130,8,122,64);arrow(g,S-100,50,S-100+40*Math.cos(wa),50-40*Math.sin(wa),'#f4a259',4);g.fillStyle='#fff';g.font='12px system-ui';g.fillText('Vento '+f($('wind').value,1)+' m/s',S-124,22);
+ g.fillStyle='#fff';g.fillRect(12,S-22,100/(W.cs)*px,5);g.fillText('100 m',12,S-28);
+ $('lgmap').innerHTML='<span><i style="background:hsl(120,70%,45%)"></i>ROS baixa</span><span><i style="background:hsl(60,70%,45%)"></i>média</span><span><i style="background:hsl(0,70%,45%)"></i>alta ('+f(mx)+' m/min; mín. '+f(mn)+')</span><span>➜ direção da frente</span><span>▲ base</span><span>🔥 ignição</span>'}
+function hsl(h){const s=.7,l=.45,a=s*Math.min(l,1-l),fn=n=>{const k=(n+h/30)%12;return l-a*Math.max(-1,Math.min(k-3,9-k,1))};return[fn(0)*255,fn(8)*255,fn(4)*255]}
+function viewBox(r,routes){const N=r.N,W=r.W;let x0=W.bx,x1=W.bx,y0=W.by,y1=W.by;const ext=(x,y)=>{x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y)};
+ for(let i=0;i<N*N;i++)if(r.T[i]>=0||r.lined[i])ext(i%N,(i/N)|0);(routes||[]).forEach(rt=>rt&&rt.forEach(z=>ext(z.x,z.y)));
+ const m=Math.max(6,.12*Math.max(x1-x0,y1-y0)),S=Math.min(N,Math.max(24,Math.max(x1-x0,y1-y0)+2*m)),cx=(x0+x1)/2,cy=(y0+y1)/2;let a=Math.round(cx-S/2),b=Math.round(cy-S/2);a=Math.max(0,Math.min(N-S,a));b=Math.max(0,Math.min(N-S,b));return{a,b,S:Math.round(S)}}
+function drawState(r,id){const cv=$(id),g=cv.getContext('2d'),N=r.N,S=cv.width,V=viewBox(r,r.routes),px=S/V.S;
+ const img=cellsToCanvas(N,i=>stCol(r.st[i],r.lined[i],r.cool&&r.cool[i]));g.imageSmoothingEnabled=false;g.fillStyle='#4f6b55';g.fillRect(0,0,S,S);g.drawImage(img,V.a,N-V.b-V.S,V.S,V.S,0,0,S,S);
+ tri(g,(r.W.bx-V.a)*px+px/2,S-((r.W.by-V.b)*px+px/2),10);g.fillStyle='#fff';g.font='12px system-ui';g.fillRect(12,S-22,100/r.cs*px,5);g.fillText('100 m',12,S-28)}
+const stCol=(s,l,c)=>s==3&&c?[78,92,106]:s==3||(l&&s==0)?[66,165,245]:s==1?[232,116,59]:s==4?[170,72,36]:s==2?[85,85,85]:[79,107,85];
+const PAL=['#1f77b4','#ff7f0e','#2ca02c','#d62728','#9467bd','#8c564b','#e377c2','#7f7f7f','#bcbd22','#17becf'];
+function drawAttack(r){const sel=$('rsel').value,sn=(sel=='p'?r.snapP:sel=='m'?r.snapM:r.snapF)||r.snapP||r.snapF||r.snapM||{t:r.tEnd,st:r.st,lined:r.lined,cool:r.cool},routes=(sel=='p'&&r.snapP?r.snapP.routes:sel=='m'?r.routesM:r.routes);
+ const cv=$('cva'),g=cv.getContext('2d'),N=r.N,W=r.W,S=cv.width,ox=70,oy=30,A=S-ox-20,V=viewBox(r,routes),px=A/V.S;g.clearRect(0,0,S,S);g.fillStyle='#fff';g.fillRect(0,0,S,S);
+ const img=cellsToCanvas(N,i=>stCol(sn.st[i],sn.lined[i],sn.cool&&sn.cool[i]));g.imageSmoothingEnabled=false;g.fillStyle='#4f6b55';g.fillRect(ox,oy,A,A);g.drawImage(img,V.a,N-V.b-V.S,V.S,V.S,ox,oy,A,A);
+ const X=x=>ox+(x-V.a+.5)*px,Y=y=>oy+A-(y-V.b+.5)*px;g.fillStyle='#222';g.font='12px system-ui';g.textAlign='center';
+ for(let k=0;k<=5;k++){const c=V.S*k/5;g.fillText(f((V.a+c)*r.cs),ox+c*px,oy+A+18);g.textAlign='right';g.fillText(f((V.b+c)*r.cs),ox-6,oy+A-c*px+4);g.textAlign='center'}
+ g.fillText('x (m)',ox+A/2,oy+A+36);g.save();g.translate(16,oy+A/2);g.rotate(-Math.PI/2);g.fillText('y (m)  · N ↑',0,0);g.restore();
+ g.save();g.beginPath();g.rect(ox,oy,A,A);g.clip();
+ routes.forEach((rt,k)=>{if(!rt)return;const c=PAL[k%PAL.length];g.strokeStyle=c;g.fillStyle=c;g.lineWidth=2.2;g.globalAlpha=.92;g.beginPath();g.moveTo(X(W.bx),Y(W.by));rt.forEach(z=>g.lineTo(X(z.x),Y(z.y)));g.stroke();
+  g.setLineDash([4,4]);g.globalAlpha=.5;g.beginPath();g.moveTo(X(rt[rt.length-1].x),Y(rt[rt.length-1].y));g.lineTo(X(W.bx),Y(W.by));g.stroke();g.setLineDash([]);g.globalAlpha=1;
+  rt.forEach(z=>{g.beginPath();if(z.type)g.rect(X(z.x)-3.5,Y(z.y)-3.5,7,7);else g.arc(X(z.x),Y(z.y),3.5,0,7);g.fill()})});g.restore();
+ tri(g,X(W.bx),Y(W.by),11);
+ const act=routes.map((rt,k)=>rt?k:-1).filter(k=>k>=0),show=act.slice(0,8),lg=['Base',...show.map(k=>'Drone '+k),...(act.length>8?['… +'+(act.length-8)+' drones']:[])];
+ g.fillStyle='rgba(255,255,255,.88)';g.fillRect(ox+8,oy+8,112,10+lg.length*17);g.textAlign='left';g.font='11px system-ui';
+ lg.forEach((t,i)=>{if(i==0)tri(g,ox+22,oy+25,6);else if(i<=show.length){g.strokeStyle=PAL[show[i-1]%PAL.length];g.lineWidth=2.5;g.beginPath();g.moveTo(ox+14,oy+25+i*17);g.lineTo(ox+30,oy+25+i*17);g.stroke()}g.fillStyle='#000';g.fillText(t,ox+38,oy+29+i*17)});
+ $('lga').innerHTML='<span><i style="background:#4f6b55"></i>vegetação</span><span><i style="background:#e8743b"></i>fogo ativo</span><span><i style="background:#555"></i>queimado</span><span><i style="background:#aa4824"></i>brasa</span><span><i style="background:#42a5f5"></i>linha molhada / extinto em chama</span><span>● barreira à frente · ■ extinção direta / brasa</span><span>Instantâneo: t = '+f(sn.t/60,1)+' min · '+act.length+' rotas</span>'}
+// ---- cálculo (tudo pesado roda no pool de Workers) ----
+let LAST=null;
+async function compute(opts={}){const p=P(),n=+$('n').value,sel=+$('model').value,cmp=$('cmp').checked,tac=$('tactic').value,tacs=tacsOf(tac),pool=await getPool();
+ prog(.02,'Resolução espacial e temporal…');const rs=await pool.run('resolve',{p});p.cs=rs.cs;const rk=rank(p,n);
+ const mode=opts.quick?'det':$('rigor').value,alpha=Math.min(.99,Math.max(.5,(+$('alpha').value||90)/100)),K=Math.max(4,+$('kmc').value||10);
+ let m,nUse,nMin,capped=false,optR=null,Pc=null;
+ if(sel>=0&&!cmp){m=MODELS[sel];nUse=n;nMin=n}
+ else{let k=0;optR=await optimizeFleetPar(pool,p,MODELS,n,$('obj').value,tacs,{mode,alpha,K,unc:readUnc()},t=>{k++;prog(.05+.55*Math.min(1,k/70),t)});
+  if(optR.best){const b=optR.best;m=b.m;nUse=b.nRob;nMin=b.nMin;capped=b.capped;if(mode==='mc'&&b.P!=null)Pc={P:b.P,ci:b.Pci,K:b.Kconf||K,alpha,confirmed:!!b.confirmed}}
+  else{m=rk.r.slice().sort((a,b)=>a.Nt-b.Nt)[0].m;nUse=n;nMin=n;capped=true}}
+ prog(.62,'Simulação final, táticas e malhas…');
+ const ths=[30,20,15,10].filter(c=>c!=rs.cs&&Math.sqrt(p.area*1e4)/c<=200);
+ const[r,r0,tl,rb]=await Promise.all([pool.run('full',{p,m,n:nUse,tactic:tac,tacs,rec:true}),pool.run('bare',{p,m}),
+  Promise.all(Object.keys(TACTICS).map(t=>pool.run('tact',{p,m,n:nUse,tactic:t}))),
+  Promise.all(ths.map(c2=>pool.run('eval',{p:{...p,cs:c2},m,n:nUse,seed:1,tacs,fast:1}).then(x=>({cs:c2,burned:x.burned,ok:x.ok,tac:x.tactic}))))]);
+ if(!r.W||!r.W.Rh)r.W=world(p,1);
+ let mH=null,nH=0,rH=null,cH=null;if(optR){const y=optR.refined.find(z=>z.m.ref&&z.nRob!=null&&z.m!==m);if(y){mH=y.m;nH=y.nRob;prog(.9,'Simulação final do AS350 B3…');rH=await pool.run('full',{p,m:mH,n:nH,tactic:'auto',tacs,rec:false});cH=costs(p,mH,nH,rH)}}
+ const rob=[{cs:rs.cs,burned:r.burnedHa,ok:r.ok,cur:true},...rb];
+ return{p,rk,m,nUse,nMin,capped,optR,Pc,mH,nH,rH,cH,r,r0,tacts:tl,rs,rob,c:costs(p,m,nUse,r),n,sel,cmp,tac,mode}}
+const badge=(ok,a,b)=>`<span class="pill ${ok?'win':'lose'}">${ok?a:b}</span>`;
+function renderHeli(R){const o=R.optR,e=$('heli'),p=R.p;if(!o){e.innerHTML='<p class="note">Selecione “Nenhum (comparar todos)” ou marque “Comparar todos os drones” para comparar.</p>';return}
+ const fin=o.refined.filter(y=>y.nRob!=null),isH=y=>y.m.kind==='heli',dil=y=>capDil(p,y.m,y.nRob),mon=x=>'US$ '+f(x),mn=x=>x==null?'—':f(x/60),
+  bd=fin.filter(y=>!isH(y)&&!y.capped).sort((a,b)=>a.scoreRob-b.scoreRob)[0],hs=fin.filter(isH).sort((a,b)=>(b.m.ref?1:0)-(a.m.ref?1:0)||a.scoreRob-b.scoreRob),ref=hs.find(y=>y.m.ref),refRow=o.rows.find(x=>x.m.ref);
+ if(!bd){e.innerHTML='<p class="note">Nenhum drone viável dentro do limite de frota.</p>';return}
+ const dl=y=>Math.max(p.delay||0,y.m.mob||0),ct=y=>y.op&&y.op.nCont?mn(y.op.tCont)+(y.op.nCont<y.op.n?' ('+y.op.nCont+'/'+y.op.n+')':''):'não contém',ex=y=>y.op&&y.op.nExt?mn(y.op.tExt)+(y.op.nExt<y.op.n?' ('+y.op.nExt+'/'+y.op.n+')':''):'—',
+  rowO=(y,k)=>`<tr class="${y.m.ref?'best':''}"><td>${k}</td><td>${y.m.name}</td><td>${y.nRob}${y.capped?' (limite)':''}</td><td>${y.op?f(y.op.P*100)+'%':'—'}</td><td>${y.op?f(y.op.burned,1):'—'}</td><td>${y.op?ct(y):'—'}</td><td>${y.op?ex(y):'—'}</td><td>${y.op?f(y.op.litres/1000,1):'—'}</td><td>${y.op?f(y.op.flightH,1):'—'}</td><td>${y.op?f(y.op.drops):'—'}</td><td>${f(dl(y)/60)}</td></tr>`,
+  rowE=(y,k)=>`<tr class="${y.m.ref?'best':''}"><td>${k}</td><td>${y.m.name}</td><td>${y.nRob}</td><td>${mon(y.m.cx*y.nRob)}</td><td>${mon(y.totRob-dil(y))}</td><td>${mon(y.totRob)}</td></tr>`,
+  lab=y=>isH(y)?(y.m.ref?'★ Referência MG':'Tripulada'):'Drone (menor custo)',all=[bd,...hs];
+ let msg;const detN=o.opts.mode==='det'?'<div class="msg warn"><b>Modo determinístico:</b> a frota de cada modelo é o mínimo de 1 réplica, sem folga de risco, então a probabilidade de contenção pode ficar baixa. Para uma comparação justa, use “Com risco: Monte Carlo”.</div>':'';
+ if(ref){const cmpRow=(l,a,b)=>`<tr><td>${l}</td><td>${a}</td><td>${b}</td></tr>`,oa=bd.op,ob=ref.op,P=y=>y.op?f(y.op.P*100)+'%':'—';
+  msg='<h3 style="font-size:13px;margin:6px 0 4px">Resumo: melhor frota de drones × AS350 B3 (aeronave usada em MG)</h3><table><tr><th></th><th>Drones</th><th>AS350 B3</th></tr>'+
+  cmpRow('Modelo × frota',bd.nRob+' × '+bd.m.name,ref.nRob+' × AS350 B3')+cmpRow('1ª saída após',f(dl(bd)/60)+' min',f(dl(ref)/60)+' min')+cmpRow('P(contenção)',P(bd),P(ref))+
+  cmpRow('Área queimada (mediana)',oa?f(oa.burned,1)+' ha':'—',ob?f(ob.burned,1)+' ha':'—')+cmpRow('Frente contida (mediana)',oa?(oa.nCont?ct(bd)+' min':ct(bd)):'—',ob?(ob.nCont?ct(ref)+' min':ct(ref)):'—')+
+  cmpRow('Custo por operação',mon(bd.totRob),mon(ref.totRob))+cmpRow('Custo sem capital/contrato',mon(bd.totRob-dil(bd)),mon(ref.totRob-dil(ref)))+'</table><p class="note">“(n/N)” nos tempos: a frente foi contida em apenas n de N réplicas, e a mediana vale só para elas.</p>'}
+ else msg=`<div class="msg bad"><b>AS350 B3:</b> ${refRow&&refRow.nMin==null?'não contém o fogo dentro do limite de '+f(R.n)+' aeronaves neste cenário (atraso de mobilização de '+f((refRow.m.mob||0)/60)+' min e carga de '+refRow.m.pay+' L).':'sem resultado.'}</div>`;
+ e.innerHTML=detN+msg+'<h3 style="font-size:13px;margin:12px 0 4px">Operação (mediana de réplicas com incerteza)</h3><div class="scroll"><table><tr><th>Classe</th><th>Modelo</th><th>Frota</th><th>P(contenção)</th><th>Área queimada (ha)</th><th>Contenção (min)</th><th>Extinção (min)</th><th>Água lançada (m³)</th><th>Horas de voo (aeronave·h)</th><th>Lançamentos</th><th>1ª saída (min)</th></tr>'+all.map(y=>rowO(y,lab(y))).join('')+'</table></div>'+
+ '<h3 style="font-size:13px;margin:12px 0 4px">Economia</h3><div class="scroll"><table><tr><th>Classe</th><th>Modelo</th><th>Frota</th><th>CapEx (compra)</th><th>Custo/op. sem capital/contrato</th><th>Custo/op. total</th></tr>'+all.map(y=>rowE(y,lab(y))).join('')+'</table></div>'+
+ '<h3 style="font-size:13px;margin:12px 0 4px">Características operacionais (qualitativo, Tabela 4 do artigo CBA)</h3><div class="scroll"><table><tr><th></th><th>Aeronave tripulada (AS350 B3)</th><th>Enxame de drones</th></tr><tr><td>Ataque</td><td>Descarga concentrada, até ~1.200 kg</td><td>Descargas distribuídas em vários focos</td></tr><tr><td>Operação noturna</td><td>Restrita pelo risco humano</td><td>Possível com sensores termais e LiDAR (não validado sob fumaça densa)</td></tr><tr><td>Risco à tripulação</td><td>Tripulação a bordo</td><td>Sem pessoas a bordo</td></tr></table></div>'+
+ '<p class="note">As colunas de operação vêm das mesmas simulações do ranking (10 réplicas com incerteza, ou as 20 da confirmação quando existem; “n/N” indica em quantas réplicas houve contenção ou extinção). Dados das aeronaves: Tabela 2 do artigo CBA (carga, velocidade, mobilização, recarga, OpEx/h e CapEx); <b>estimados</b>: largura da faixa, limite de chama e autonomia. A mobilização vale como atraso mínimo até a primeira saída. O CapEx é diluído por vida útil e operações/ano (aba Economia), como o dos drones. A simulação <b>não inclui</b> limites de vento, voo noturno, risco à tripulação nem disponibilidade; as linhas qualitativas acima são do artigo, não saída do simulador. O AS350 B3 é sempre simulado por ser a aeronave usada em Minas Gerais.</p>'}
+function tieNote(o,R){const fin=o.refined.filter(y=>y.totRob!=null&&!y.capped),b=fin.reduce((a,y)=>y.totRob<a?y.totRob:a,Infinity);if(fin.length<2)return'';
+ const near=fin.filter(y=>y.totRob<=b*1.10);if(near.length<2)return'';
+ return '<div class="msg warn"><b>Empate técnico:</b> '+near.map(y=>y.m.name+' ('+y.nRob+' drones, US$ '+f(y.totRob)+')').join(' · ')+' ficam a menos de 10% do menor custo. Essa diferença é menor que o erro das estimativas (preços, logística por drone, largura da faixa molhada): não trate o primeiro colocado como vencedor definitivo. A ordem muda com o custo logístico por drone (aba Economia) e com a largura da faixa (aba Incerteza).</div>'}
+function render(R){const{p,m,r,r0,c,rk,nUse}=R,W=r.W,q=summ(p,m,nUse),s=q.s,mes=c.tot*p.opsyr/12,cov=r0.burnedHa>0?Math.max(0,1-r.burnedHa/r0.burnedHa):0;
+ $('ttl').textContent=FUELS[p.fi].name.includes('REAL')?'Serra do Cipó / APA Morro da Pedreira (ago/2024)':FUELS[p.fi].name;
+ $('side').innerHTML=`<div><b>Área da janela</b><br>${f(p.area)} ha</div><div><b>Resolução espacial</b><br>${f(r.cs,1)} m · ${W.N}×${W.N} células${W.capped?' (limitada a 200)':''}</div><div><b>Resolução temporal</b><br>Δt = ${f(W.dt,1)} s (CFL 0,5)</div><div><b>Vegetação</b><br>${FUELS[p.fi].name.replace(/^\d+ · /,'')}</div><div><b>Clima</b><br>Vento ${f(p.wind,1)} m/s · UR ${f(p.rh)}% · ${f(p.temp)} °C<br>Umidade do combustível ${f(W.Mf*100,1)}%</div><div><b>Base</b><br>${f(W.bdistReal)} m do foco</div>`;
+ LAST=R;drawScenario(W,p);drawState(r,'cv');drawAttack(r);
+ // mensagem da base
+ const c0=(W.iy|0)*W.N+(W.ix|0),ang=Math.atan2(W.by-W.iy,W.bx-W.ix),Rb=rosDir(W.Rh[c0],W.ec[c0],ang-W.hd[c0])/60,tb=W.bdistReal/Math.max(Rb,1e-6)/60;
+ const risk=tb<60;$('basemsg').className='msg '+(risk?'warn':'ok');$('basemsg').innerHTML=`Base a <b>${f(W.bdistReal)} m</b> do foco (${{bar:'barlavento',fl:'flanco',sot:'sotavento'}[p.brel]}). Sem combate, o fogo levaria ~<b>${tb>600?'>10 h':f(tb)+' min'}</b> para chegar nela (ROS nessa direção ${f(Rb*60,1)} m/min)${risk?' — <b>zona de risco</b>: aumente a distância ou use barlavento.':'.'}${r.depotHit>=0?' <b>A base foi atingida a '+f(r.depotHit/60)+' min na simulação.</b>':''}`;
+ $('kpi').innerHTML=[['🚁','Drones',nUse],['💧','Por recarga',m.pay+' L'],['🎯','Tática',TACTICS[r.tactic].split(' (')[0]],['🔥','Área queimada',f(r.burnedHa,1)+' ha'],['🛡','Contenção vs. sem drones',f(cov*100,1)+'%'],['📏','Linha molhada',f(r.lineM)+' m'],['💦','Água lançada',f(r.litres/1000,1)+' m³ ('+r.drops+' lançamentos)'],['🚧','Frente contida',r.tCont!=null?f(r.tCont/60)+' min':'não'],['🧯','Extinção total',r.tExt!=null?f(r.tExt/60)+' min':'não extinto'],['🚁','Drones atuaram até',f(r.tWork/60)+' min'],['💰','Custo mensal','US$ '+f(mes)],['📦','Modelo',m.name]].map(a=>`<div><i>${a[0]}</i><span>${a[1]}</span><b>${a[2]}</b></div>`).join('');
+ $('vb').innerHTML=badge(r.ok,'✔ Viável','✖ Não viável');$('msg').className='msg '+(r.ok?'ok':'bad');
+ const bf=rk.r.slice().sort((a,b)=>a.Nt-b.Nt)[0];
+ $('msg').innerHTML=r.ok?`Fogo contido em ${f(r.burnedHa,1)} ha (limite ${f(p.maxloss)} ha = ${f($('maxloss').value)}% da área inicial) com ${nUse} × ${m.name} usando a tática “${TACTICS[r.tactic]}”. Sem drones: ${f(r0.burnedHa,0)} ha.${R.Pc?` Probabilidade de contenção sob incerteza: <b>${f(R.Pc.P*100)}%</b> (IC 95% ${R.Pc.ci.map(x=>f(x*100)).join('–')}%, ${R.Pc.K} réplicas; meta ${f(R.Pc.alpha*100)}%).`:''}${R.nUse>R.nMin?` Frota mínima determinística: ${R.nMin}; ampliada para ${R.nUse} para atender a meta de probabilidade sob incerteza e conter também em malhas mais finas.`:''}${R.capped?' <b>Atenção:</b> mesmo no limite da frota a meta de probabilidade não foi atingida.':''}`:`O enxame não contém o fogo dentro do limite de ${f(p.maxloss)} ha (${f(r.burnedHa,1)} ha${r.esc?', o fogo atingiu a borda da janela':''}). ${isFinite(bf.Nt)?`A análise indica ≥ ${bf.Nt} × ${bf.m.name}; teste uma frota maior.`:'Nenhum modelo é viável por autonomia/chegada.'}`;
+ line('ev',[{n:'Sem drones',c:'#e4572e',pts:r0.ser.map((v,i)=>[i,v])},{n:'Com drones',c:'#4f9d5a',pts:r.ser.map((v,i)=>[i,v])}]);
+ $('tacts').innerHTML='<table><tr><th>Tática</th><th>Área queimada (ha)</th><th>Extinta direta (ha)</th><th>Linha molhada (m)</th><th>Água (m³)</th><th>Saídas</th><th>Resultado</th></tr>'+R.tacts.map(t=>`<tr class="${t.tactic===r.tactic?'best':''}"><td>${TACTICS[t.tactic]}</td><td>${f(t.burnedHa,1)}</td><td>${f(t.extHa,2)}</td><td>${f(t.lineM)}</td><td>${f(t.litres/1000,1)}</td><td>${t.sorties}</td><td>${badge(t.ok,'contido','falhou')}</td></tr>`).join('')+'</table><p class="note">Direto: extingue células em chamas na cabeça (limitado pelo comprimento de chama que o drone suporta). Flancos: ancora no calcanhar e fecha pelos flancos até a cabeça (pinça). Indireto: barreira molhada à frente da cabeça. Cercamento: cada drone fecha um arco do perímetro.</p>';
+ // fogo x drone
+ bars('ch1','lg1',s.map(x=>({l:x.l,v:[W.rt.R0,x.R]})),['ROS base R0 (m/min)','ROS na direção (m/min)'],['#a8a29e','#e4572e']);
+ bars('ch1b','lg1b',s.map(x=>({l:x.l,v:[x.Lf]})),['Comprimento de chama (m)'],['#f4a259'],{ref:lMax(m),refl:'limite do drone '+f(lMax(m),1)+' m'});
+ const mx=s.reduce((a,b)=>b.R>a.R?b:a);$('tx1').innerHTML=`Umidade do combustível ${f(W.Mf*100,1)}% (UR ${f(p.rh)}%) · R0 = ${f(W.rt.R0,1)} m/min · direção crítica: <b>${mx.l}</b> (${f(mx.R,1)} m/min, chama ${f(mx.Lf,1)} m). Setores com chama acima do limite recebem ataque indireto.`;
+ const cap=s.map(x=>nUse/8*x.C1);
+ bars('ch2','lg2',s.map((x,i)=>({l:x.l,v:[x.D,isFinite(x.N)?cap[i]:0],c:[null,cap[i]>=x.D&&isFinite(x.N)?'#4f9d5a':'#2f80c9'],mk:(cap[i]>=x.D&&isFinite(x.N)?'✓':'✗')+(x.direct?' D':' I')})),['Demanda do fogo (L/s)','Capacidade dos drones (L/s)'],['#e4572e','#2f80c9']);
+ const bad=s.filter((x,i)=>!(cap[i]>=x.D&&isFinite(x.N))).map(x=>x.l);$('tx2').innerHTML=`<b>${m.name}</b> × ${nUse} (divisão igual): ${bad.length?'abaixo da demanda em <b>'+bad.join(', ')+'</b>':'supera o fogo em todos os setores'}. Limite inferior teórico (alocação ótima): <b>${isFinite(q.Nt)?q.Nt:'∞'}</b> drones; a simulação precisou de <b>${nUse}</b>, porque o modelo analítico ignora o tempo de resposta, buracos na linha e reignição. D = ataque direto, I = indireto.`;
+ // comparação
+ bars('ch3',null,rk.r.map(x=>({l:x.m.name,v:[Math.min(x.ratio,6)],c:[x.viable?'#4f9d5a':'#dc2626'],star:rk.best&&x===rk.best,t:x.m.name+' (necessita '+(isFinite(x.Nt)?x.Nt:'∞')+')'})),['Capacidade ÷ demanda'],['#4f9d5a'],{rot:1,h:320,ref:1,refl:'limite = fogo',bw:22});
+ $('rank').innerHTML='<table><tr><th>Modelo</th><th>Cap. (L)</th><th>Nº mín.</th><th>CapEx (US$)</th><th>Razão</th><th>Status</th></tr>'+rk.r.slice().sort((a,b)=>(b.viable-a.viable)||(a.cost-b.cost)).map(x=>`<tr class="${rk.best===x?'best':''}"><td>${x.m.name}</td><td>${x.m.pay}</td><td>${isFinite(x.Nt)?x.Nt:'—'}</td><td>${isFinite(x.cost)?f(x.cost):'—'}</td><td>${f(x.ratio,2)}</td><td>${badge(x.viable,'Viável','Não supera')}</td></tr>`).join('')+'</table>';
+ renderMatrix(p,+$('n').value);
+ if(!R.optR)renderHeli(R);if(R.optR){const o=R.optR,mon=x=>x==null?'—':'US$ '+f(x),det=o.opts.mode==='det';renderHeli(R);$('optab').innerHTML='<table><tr><th>Modelo</th><th>Carga (L)</th><th>Nº mín. (1 réplica)</th><th>CapEx mín.</th><th>Custo/op. mín.</th><th>'+(det?'Nº final':'Nº com risco (P ≥ meta)')+'</th><th>P(contenção)</th><th>CapEx final</th><th>Custo/op. final</th><th>Escolhido</th></tr>'+o.rows.map(x=>{const rb=o.refined.find(y=>y.m===x.m);return `<tr class="${x.m===R.m?'best':''}"><td>${x.m.name}</td><td>${x.m.pay}</td><td>${x.nMin==null?'inviável':x.nMin}</td><td>${x.nMin==null?'—':mon(x.m.cx*x.nMin)}</td><td>${x.nMin==null?'—':mon(x.tot)}</td><td>${rb?rb.nRob+(rb.capped?' (limite)':''):'—'}</td><td>${rb&&rb.P!=null?f(rb.P*100)+'%'+(rb.confirmed?' ✓':''):'—'}</td><td>${rb?mon(rb.nRob*x.m.cx):'—'}</td><td>${rb?mon(rb.totRob):'—'}</td><td>${x.m===R.m?'★':''}</td></tr>`}).join('')+'</table><p class="note">Triagem: os 20 modelos, menor frota que contém o fogo em 1 réplica (táticas indireto e cercamento). Os 4 melhores pelo objetivo seguem para a frota <b>com risco</b>: menor n tal que a probabilidade de contenção sob incerteza (Monte Carlo com hipercubo latino, '+o.opts.K+' réplicas por teste) seja ≥ '+f(o.opts.alpha*100)+'%, validada em malha mais fina. Os 2 melhores são <b>confirmados (✓)</b> com '+o.opts.confirmK+' réplicas novas, nunca usadas na busca: a busca escolhe o menor n que passou e por isso superestima P; se a confirmação falha, n sobe até a meta valer. Objetivo: '+({custo:'menor custo por operação',capex:'menor CapEx da frota',drones:'menor nº de drones'}[$('obj').value])+'. Modo: '+(det?'determinístico (1 réplica)':'Monte Carlo com incerteza explícita')+'.</p>'+tieNote(o,R)}else $('optab').innerHTML='<p class="note">Selecione “Nenhum (comparar todos)” ou marque “Comparar todos os drones” para otimizar.</p>';
+ // economia
+ $('eco').innerHTML=[['CapEx da frota','US$ '+f(c.capex)],['Custo/operação','US$ '+f(c.tot)],['Custo mensal','US$ '+f(mes)],['Custo/ha poupado','US$ '+f(c.tot/Math.max(.1,r0.burnedHa-r.burnedHa),1)]].map(a=>`<div><span>${a[0]}</span><b>${a[1]}</b></div>`).join('');
+ renderEco(R);setupAnim(r);
+ // resolução
+ const rt=W.rt,rsx=R.rs;$('reskpi').innerHTML=[['📐','Célula (escolhida)',f(r.cs,1)+' m'],['🧱','Grade',W.N+'×'+W.N+' ('+f(W.N*W.N)+' células)'],['⏱','Δt (CFL 0,5)',f(W.dt,1)+' s'],['🌡','Umidade do combustível',f(W.Mf*100,1)+' %'],['🔥','R0 (sem vento/declive)',f(rt.R0,2)+' m/min'],['💨','ROS cabeça (ignição)',f(W.Rh[c0],1)+' m/min'],['🧭','Excentricidade',f(W.ec[c0],2)],['🏃','ROS máx.',f(W.Rmax*60,1)+' m/min']].map(a=>`<div><i>${a[0]}</i><span>${a[1]}</span><b>${a[2]}</b></div>`).join('');
+ $('reswhy').innerHTML='<b>Critério:</b> '+rsx.why+'.';
+ $('restab').innerHTML='<table><tr><th>Célula (m)</th><th>Grade</th><th>Δt (s)</th><th>Teste (min)</th><th>Área (ha)</th><th>Avanço cabeça (m)</th><th>Teórico (m)</th><th>Erro</th><th>Tempo (ms)</th></tr>'+rsx.rows.map(x=>`<tr class="${x.cs==rsx.cs?'best':''}"><td>${f(x.cs,1)}${x.cs==rsx.cs?' ★':''}</td><td>${x.N}×${x.N}</td><td>${f(x.dt,1)}</td><td>${f(x.tmin)}</td><td>${f(x.burned,1)}</td><td>${f(x.head)}</td><td>${f(x.theo)}</td><td>${f(x.err*100,1)}%</td><td>${x.ms}</td></tr>`).join('')+'</table>';
+ $('robtab').innerHTML='<table><tr><th>Célula (m)</th><th>Área queimada (ha)</th><th>Contido? (melhor tática)</th></tr>'+R.rob.map(x=>`<tr class="${x.cur?'best':''}"><td>${f(x.cs,1)}${x.cur?' ★ (usada)':''}</td><td>${f(x.burned,1)}</td><td>${badge(x.ok,'sim','não')}</td></tr>`).join('')+'</table>';
+ // resultados
+ const blk=(t,mm,nn,rr,cc,u,cvr)=>`<h3 style="font-size:13px;margin:10px 0 4px">${t}</h3><p><b>Modelo:</b> ${mm.name} · <b>Frota:</b> ${nn} · <b>Tática:</b> ${TACTICS[rr.tactic]} · <b>Água:</b> ${f(rr.litres/1000,1)} m³ em ${f(rr.drops)} lançamentos · <b>Linha molhada:</b> ${f(rr.lineM)} m · <b>Voo:</b> ${f(rr.flightH,1)} ${u} · <b>Rodadas de replanejamento:</b> ${f(rr.rounds)}.</p><p><b>Área queimada:</b> ${f(rr.burnedHa,1)} ha (${f(cvr*100,1)}% de contenção) · <b>Frente contida:</b> ${rr.tCont!=null?f(rr.tCont/60)+' min':'não'} · <b>Extinção total:</b> ${rr.tExt!=null?f(rr.tExt/60)+' min':'não extinto'} · <b>1ª saída:</b> ${f(Math.max(p.delay||0,mm.mob||0)/60)} min · <b>Custo por operação:</b> US$ ${f(cc.tot)} · <b>Resultado:</b> ${badge(rr.ok,'✔ viável','✖ não viável')}</p>`;
+ $('resumo').innerHTML=`<p>Sem combate o fogo queimaria <b>${f(r0.burnedHa,1)} ha</b>.</p>`+blk(m.kind==='heli'?'Aeronave tripulada (escolhida)':'Enxame de drones',m,nUse,r,c,m.kind==='heli'?'aeronave·h':'drone·h',cov)+(R.rH?blk('Aeronave tripulada de referência em MG (AS350 B3)',R.mH,R.nH,R.rH,R.cH,'aeronave·h',r0.burnedHa>0?Math.max(0,1-R.rH.burnedHa/r0.burnedHa):0):'');
+ const real=FUELS[p.fi].name.includes('REAL');$('real').hidden=!real;
+ $('realtab').innerHTML=`<table><tr><th></th><th>Evento real (ago/2024)</th><th>Simulação (ataque inicial)</th></tr><tr><td>Área</td><td>6.357 ha (IEF) a 8.500 ha (imprensa)</td><td>${f(r0.burnedHa,1)} ha sem drones / ${f(r.burnedHa,1)} ha com drones (janela de ${f(p.area)} ha)</td></tr><tr><td>Tempo até controle</td><td>~4 dias</td><td>${r.contained?f(r.tEnd/60)+' min':'não contido'}</td></tr><tr><td>Meios</td><td>51 brigadistas, 2 Air Tractor, 1 helicóptero</td><td>${nUse} × ${m.name}</td></tr></table><p class="note">Vento 7 m/s a 45°, campo rupestre e w0 = 0,6 kg/m² vêm do estudo de caso do framework. Declive 15°, UR 20%, T 28 °C, ponto de ignição e base são suposições. A simulação cobre a fase de ataque inicial, não os 4 dias do evento.</p>`}
+async function renderEco(R){const{p,r,rk}=R,vv=rk.v.slice(0,6);$('ch4').innerHTML='';$('lg4').innerHTML='';
+ if(!vv.length){$('ch4').innerHTML='<p class="note">Nenhum modelo viável para comparar custos.</p>';return}
+ $('ch4').innerHTML='<p class="note">Calculando custos…</p>';const pool=await getPool();
+ const rows=await Promise.all(vv.map(x=>pool.run('cost',{p,m:x.m,n:x.Nt,tactic:r.tactic}).then(c=>({l:x.m.name,v:[c.tot-c.opex,c.opex]}))));
+ if(LAST===R)bars('ch4','lg4',rows,['CapEx diluído/operação','Operação (voo+água+fixo)'],['#2f80c9','#f4a259'],{rot:1,h:320,bw:20})}
+function renderMatrix(p,n){let h='<table><tr><th>Modelo</th>'+FUELS.map((s,i)=>`<th title="${s.name}">${i+1}</th>`).join('')+'</tr>';
+ MODELS.forEach(m=>{h+=`<tr><td>${m.name}</td>`;FUELS.forEach((s,i)=>{const q=summ({...p,fi:i,...s.d,cs:30,delay:s.d.resp},m,n),ok=q.Nt<=n;h+=`<td class="hm" style="background:hsl(${ok?125:Math.max(0,Math.min(60,60*q.ratio))},45%,${ok?34:42}%)">${isFinite(q.Nt)?q.Nt:'✗'}</td>`});h+='</tr>'});
+ $('mat').innerHTML=h+'</table><p class="note">Drones necessários (análise) em cada cenário, com as condições típicas dele; verde = cabe na frota máxima.</p>'}
+let busy=false;
+function lock(v){busy=v;$('run').disabled=v;$('mcgo').disabled=v}
+function update(opts={}){if(busy)return;lock(true);prog(0,'Simulando…');setTimeout(async()=>{try{const R=await compute(opts);render(R);prog(1,opts.quick?'Pronto (execução rápida determinística; use ▶ para a análise com risco).':'Pronto.')}catch(e){$('status').textContent='Erro: '+e.message;console.error(e)}lock(false)},15)}
+// ao editar um campo: só atualiza o mapa do cenário (a otimização pesada roda no botão ▶)
+let pvT=0;function preview(){clearTimeout(pvT);pvT=setTimeout(async()=>{if(busy)return;try{const p=P(),pool=await getPool(),rs=await pool.run('resolve',{p});p.cs=rs.cs;drawScenario(world(p,1),p);$('status').textContent='Parâmetros alterados. Clique em ▶ Executar simulação.'}catch(e){console.error(e)}},250)}
+$('run').onclick=()=>{go('simulacao');update()};
+$('fuel').onchange=()=>{applyFuel(+$('fuel').value);preview()};
+['model','cmp','tactic','obj','rigor','alpha','kmc','n','brel','resp','area','a0','wind','wdir','slope','sdir','rh','temp','bdist','maxloss','opsyr','life','fixop','logd','acmode','opsA','lifeA','contractA','logdA','cxfA','wcost'].forEach(i=>$(i).onchange=preview);
+$('rsel').onchange=()=>{if(LAST)drawAttack(LAST.r)};
+['a0','maxloss'].forEach(i=>$(i).addEventListener('input',mlHa));
+$('addm').onclick=()=>{const cx=+$('m_cx').value;MODELS.push({name:$('m_name').value,pay:+$('m_pay').value,v:+$('m_v').value,end:+$('m_end').value,rf:+$('m_rf').value,cx,ox:Math.max(15,cx*.0025),src:'U'});refreshModels();$('model').value=MODELS.length-1;$('cmp').checked=false;_pool=null;preview()};
+$('reeval').onclick=async()=>{const p=P(),pool=await getPool();await pool.run('conv',{p});update()};
+$('sens').onclick=async()=>{const R=LAST;if(!R||busy)return;const{p,m,nUse,r}=R,tac=r.tactic,pool=await getPool();lock(true);
+ const V=[['Vento a 10 m','−30%','+30%',{p:{wind:p.wind*.7}},{p:{wind:p.wind*1.3}}],['Umidade relativa','−10 pp','+10 pp',{p:{rh:Math.max(5,p.rh-10)}},{p:{rh:Math.min(95,p.rh+10)}}],['Temperatura','−5 °C','+5 °C',{p:{temp:p.temp-5}},{p:{temp:p.temp+5}}],
+ ['Declividade','−5°','+5°',{p:{slope:Math.max(0,p.slope-5)}},{p:{slope:p.slope+5}}],['Distância da base','×0,5','×2',{p:{bdist:Math.max(300,p.bdist*.5)}},{p:{bdist:p.bdist*2}}],['Tempo de resposta','0 min','×2 (mín. 10 min)',{p:{delay:0}},{p:{delay:Math.max(600,p.delay*2)}}],
+ ['Nº de drones','−30%','+30%',{n:Math.max(1,Math.round(nUse*.7))},{n:Math.round(nUse*1.3)+1}],['Área inicial do fogo','×0,5','×2',{p:{a0:p.a0*.5}},{p:{a0:p.a0*2}}],['Carga útil do drone','−30%','+30%',{m:{pay:m.pay*.7}},{m:{pay:m.pay*1.3}}],
+ ['Tempo de recarga','×0,5','×2',{m:{rf:m.rf*.5}},{m:{rf:m.rf*2}}],['Velocidade do drone','−20%','+20%',{m:{v:m.v*.8}},{m:{v:m.v*1.2}}],['Autonomia do drone','−30%','+30%',{m:{end:m.end*.7}},{m:{end:m.end*1.3}}],
+ ['Água por kg de combustível','+30% (pior)','−30% (melhor)',{p:{ratio:(p.ratio||RATIO)*1.3}},{p:{ratio:(p.ratio||RATIO)*.7}}]];
+ let done=0;const total=V.length*2+8,tk=x=>{done++;prog(done/total,`Sensibilidade ${done}/${total} (${pool.size} thread${pool.size>1?'s':''})`);$('sensst').textContent=`Simulação ${done}/${total}…`;return x};
+ const job=mod=>pool.run('sens',{p:{...p,...(mod.p||{})},m:{...m,...(mod.m||{})},n:mod.n||nUse,tactic:tac}).then(tk);
+ try{const rows=await Promise.all(V.map(async v=>({v,lo:await job(v[3]),hi:await job(v[4])}))),
+  mc=await Promise.all([1,2,3,4,5,6,7,8].map(sd=>pool.run('sens',{p,m,n:nUse,tactic:tac,seed:sd}).then(tk).then(x=>({b:x.burned,ok:x.ok}))));
+  const base=r.burnedHa;rows.sort((a,b)=>Math.max(b.lo.burned,b.hi.burned)-Math.max(a.lo.burned,a.hi.burned));
+  bars('sensch','lgs',rows.map(x=>({l:x.v[0],v:[x.lo.burned,x.hi.burned],c:[x.lo.ok?'#4f9d5a':'#2f80c9',x.hi.ok?'#4f9d5a':'#f4a259']})),['Valor baixo (ha)','Valor alto (ha)'],['#2f80c9','#f4a259'],{rot:1,h:340,bw:18,ref:base,refl:'base '+f(base,1)+' ha'});
+  $('senstab').innerHTML='<table><tr><th>Variável</th><th>Baixo</th><th>Área (ha)</th><th>Contido?</th><th>ROS cabeça (m/min)</th><th>Alto</th><th>Área (ha)</th><th>Contido?</th><th>ROS cabeça (m/min)</th></tr>'+rows.map(x=>`<tr><td>${x.v[0]}</td><td>${x.v[1]}</td><td>${f(x.lo.burned,1)}</td><td>${badge(x.lo.ok,'sim','não')}</td><td>${f(x.lo.ros,1)}</td><td>${x.v[2]}</td><td>${f(x.hi.burned,1)}</td><td>${badge(x.hi.ok,'sim','não')}</td><td>${f(x.hi.ros,1)}</td></tr>`).join('')+'</table>';
+  const bs=mc.map(x=>x.b).sort((a,b)=>a-b),pc=q=>bs[Math.min(bs.length-1,Math.floor(q*bs.length))],ok=mc.filter(x=>x.ok).length;
+  $('mcrob').innerHTML=`<div class="msg ${ok>=6?'ok':ok>=3?'warn':'bad'}"><b>Sementes de ruído (8 réplicas, sem incerteza de parâmetros):</b> probabilidade de contenção ${f(ok/8*100)}% · área P10/P50/P90 = ${f(pc(.1),1)} / ${f(pc(.5),1)} / ${f(pc(.9),1)} ha (limite ${f(p.maxloss)} ha). Para incerteza de parâmetros, use a aba Incerteza.</div>`;$('sensst').textContent='Concluído.';prog(1,'Pronto.')}
+ catch(e){$('sensst').textContent='Erro: '+e.message;console.error(e)}lock(false)};
+$('fuel').value=1;applyFuel(1);update({quick:true});
+
+</script></body></html>

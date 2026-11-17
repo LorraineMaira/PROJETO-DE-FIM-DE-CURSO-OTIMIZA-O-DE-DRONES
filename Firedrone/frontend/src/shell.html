@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FireDrone · Simulador de combate a incêndios com enxame de drones</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f6f1e7;--card:#fffdf8;--fg:#2a2b26;--mu:#76786c;--bd:#e6dcc8;--side:#15301f;--sidefg:#d9e6d3;--ac:#e4572e;--ac2:#f4a259;--moss:#4f9d5a;--water:#2f80c9;--in:#fbf6ea}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111a14;--card:#1a261e;--fg:#ece9dc;--mu:#a1ac9b;--bd:#2e4033;--side:#0c1810;--in:#15201a}}
+:root[data-theme="dark"]{--bg:#111a14;--card:#1a261e;--fg:#ece9dc;--mu:#a1ac9b;--bd:#2e4033;--side:#0c1810;--in:#15201a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.app{display:grid;grid-template-columns:240px minmax(0,1fr);min-height:100vh}
+@media(max-width:900px){.app{grid-template-columns:1fr}aside{position:static!important;height:auto!important}#nav{display:none}}
+aside{background:linear-gradient(180deg,var(--side),#1f4a2c);color:var(--sidefg);padding:18px 14px;position:sticky;top:0;height:100vh;overflow:auto;box-sizing:border-box}
+.logo{display:flex;gap:10px;align-items:center;margin-bottom:16px}.logo i{font-style:normal;font-size:34px;filter:drop-shadow(0 0 8px #e4572e)}.logo b{font-size:20px;color:#fff;display:block}.logo small{font-size:11px;opacity:.75}
+#nav button{display:flex;gap:10px;width:100%;align-items:center;background:none;border:0;color:var(--sidefg);padding:8px 10px;border-radius:10px;font:inherit;cursor:pointer;margin:1px 0;text-align:left}
+#nav button.on{background:rgba(244,162,89,.2);color:#ffd7a8;font-weight:700}
+aside h4{margin:16px 0 6px;font-size:12px;text-transform:uppercase;letter-spacing:.06em;opacity:.7}#side div{font-size:12.5px;margin:6px 0}
+.run{width:100%;background:linear-gradient(135deg,#e4572e,#f4a259);color:#fff;border:0;border-radius:12px;padding:12px;font:inherit;font-weight:800;cursor:pointer;margin-top:12px}
+.main{padding:16px 20px;min-width:0}.top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.top small{color:var(--mu)}h1{margin:0;font-size:22px}
+.pills{display:flex;gap:6px;flex-wrap:wrap}.pills button{border:1px solid var(--bd);background:var(--card);color:var(--fg);border-radius:99px;padding:5px 11px;font:inherit;cursor:pointer;display:flex;gap:6px;align-items:center}
+.pills button b{background:var(--bd);border-radius:50%;width:18px;height:18px;font-size:11px;display:inline-flex;align-items:center;justify-content:center}
+.pills button.on{background:var(--ac);color:#fff;border-color:var(--ac)}.pills button.on b{background:#fff;color:var(--ac)}
+#theme{background:var(--card);border:1px solid var(--bd);border-radius:50%;width:36px;height:36px;cursor:pointer;color:var(--fg);font-size:17px;line-height:1;padding:0}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px;margin-bottom:14px}
+.g2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}@media(max-width:1000px){.g2{grid-template-columns:1fr}}
+h2{font-size:15px;margin:0 0 4px}.sub{color:var(--mu);font-size:12.5px;margin:0 0 10px}
+label{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:6px 0;font-size:13px}
+input,select{width:150px;max-width:58%;background:var(--in);color:var(--fg);border:1px solid var(--bd);border-radius:8px;padding:5px 7px;font:inherit}
+select.w{width:100%;max-width:100%}
+.btn{background:linear-gradient(135deg,#2f80c9,#4f9d5a);color:#fff;border:0;border-radius:10px;padding:8px 14px;font:inherit;font-weight:700;cursor:pointer;margin:6px 6px 0 0}.btn.s{background:transparent;color:var(--fg);border:1px solid var(--bd)}
+canvas{width:100%;aspect-ratio:1;border-radius:12px;display:block;border:3px solid var(--bd);background:#243528}
+.leg span{display:inline-flex;gap:4px;align-items:center;margin-right:10px;font-size:12px}.leg i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:9px}.kpi div{background:var(--in);border:1px solid var(--bd);border-radius:12px;padding:9px;display:grid}
+.kpi i{font-style:normal;font-size:17px}.kpi span{font-size:11.5px;color:var(--mu)}.kpi b{font-size:16px}
+.eco{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:9px}.eco div{background:linear-gradient(135deg,#2f80c9,#4f9d5a);color:#fff;border-radius:12px;padding:12px}.eco span{font-size:12px;opacity:.9;display:block}.eco b{font-size:18px}
+.msg{border-radius:10px;padding:10px 12px;margin-top:10px;font-size:13px}.msg.ok{background:#4f9d5a22;border:1px solid #4f9d5a}.msg.bad{background:#e4572e1f;border:1px solid #e4572e}.msg.warn{background:#f4a25922;border:1px solid #f4a259}
+.pill{display:inline-block;border-radius:99px;padding:1px 10px;font-size:11px;font-weight:700;color:#fff}.win{background:#4f9d5a}.lose{background:#dc2626}
+.scroll{overflow:auto;max-height:430px}table{border-collapse:collapse;width:100%;font-size:12.5px}th{position:sticky;top:0;background:var(--card);z-index:1}
+th,td{padding:6px 8px;border-bottom:1px solid var(--bd);text-align:right;white-space:nowrap}th:first-child,td:first-child{text-align:left}
+.best td{background:#4f9d5a22;font-weight:700}.hm{color:#fff;text-align:center;font-weight:700}.note{font-size:12px;color:var(--mu)}
+
+.sb{display:flex;gap:6px;margin-top:8px}.sb button{flex:1;background:rgba(255,255,255,.1);color:var(--sidefg);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:7px 4px;font:inherit;font-size:12px;cursor:pointer}
+.sb button:hover{background:rgba(255,255,255,.2)}#thr{font-size:11px;opacity:.75;margin:6px 0 0}
+.bar{height:6px;background:rgba(255,255,255,.15);border-radius:9px;margin-top:8px;overflow:hidden}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#f4a259,#e4572e);transition:width .25s}
+details{margin:8px 0}summary{cursor:pointer;font-weight:700;font-size:13px}
+.ut input{width:78px;text-align:right}.ut td,.ut th{padding:4px 6px}.ut .src{white-space:normal;text-align:left;font-size:11.5px;color:var(--mu);min-width:220px}
+.tag{display:inline-block;border-radius:6px;padding:0 6px;font-size:10.5px;font-weight:700;color:#fff;background:#8c7b5a}.tag.e{background:#c2410c}.tag.m{background:#2f80c9}
+.ctl{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:8px 0}.ctl input[type=range]{flex:1;min-width:160px;width:auto;max-width:none;padding:0}
+.ctl button{background:var(--card);border:1px solid var(--bd);color:var(--fg);border-radius:10px;padding:6px 12px;font:inherit;cursor:pointer;font-weight:700}
+.stat{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:9px;margin:10px 0}.stat div{background:var(--in);border:1px solid var(--bd);border-radius:12px;padding:9px;display:grid}.stat span{font-size:11.5px;color:var(--mu)}.stat b{font-size:17px}
+@media print{aside,.top,.btn,.ctl,#nav{display:none!important}.app{display:block}.panel{display:block!important}.card{break-inside:avoid;border:1px solid #ccc}body{background:#fff;color:#000}}
+</style></head><body>
+<div class="app">
+<aside><div class="logo"><i>🔥</i><div><b>FireDrone</b><small>Simulador de incêndios com enxame de drones</small></div></div>
+<div id="nav"></div><h4>Informações do cenário</h4><div id="side"></div>
+<button class="run" id="run">▶ Executar simulação</button><div class="bar"><i id="pbar"></i></div><p class="note" id="status" style="color:var(--sidefg)"></p><p id="thr"></p><div class="sb"><button id="bsave" title="Salvar parâmetros, modelos adicionados e incertezas em um arquivo .json">💾 Salvar</button><button id="bload" title="Abrir um cenário salvo">📂 Abrir</button></div><input type="file" id="fload" accept=".json,application/json" hidden></aside>
+<section class="main">
+<div class="top"><div><small>Cenário atual</small><h1 id="ttl">Simulação do Incêndio</h1></div><div class="pills" id="pills"></div><button id="theme" title="Alternar tema claro/escuro">🌓</button></div>
+
+<div class="panel" id="p_cenario"><div class="g2">
+<div class="card"><h2>Parâmetros do cenário</h2><p class="sub">Ao escolher o combustível, os demais campos são preenchidos com condições típicas de ataque inicial daquele cenário (editáveis).</p>
+<label>Combustível / cenário<select id="fuel"></select></label><details><summary>🌦 Importar clima real (Open-Meteo)</summary><p class="note">Preenche vento, direção, umidade e temperatura com a condição atual do ponto. Precisa de internet; o vento vem de onde sopra e é convertido para a convenção do simulador.</p><label>Latitude<input id="lat" type="number" step="0.01" value="-19.28"></label><label>Longitude<input id="lon" type="number" step="0.01" value="-43.55"></label><button class="btn s" id="wx">Buscar clima atual</button><p class="note" id="wxst"></p></details>
+<label>Área da janela (ha)<input id="area" type="number"></label>
+<label>Área inicial do fogo (ha)<input id="a0" type="number" step="0.1"></label>
+<label>Vento a 10 m (m/s)<input id="wind" type="number" step="0.5"></label>
+<label>Vento sopra p/ (°, 0=L 90=N)<input id="wdir" type="number"></label>
+<label>Declividade (°)<input id="slope" type="number" step="0.5"></label>
+<label>Aclive aponta p/ (°)<input id="sdir" type="number"></label>
+<label>Umidade relativa (%)<input id="rh" type="number"></label>
+<label>Temperatura (°C)<input id="temp" type="number"></label>
+<label>Tempo de resposta: detecção + despacho (min)<input id="resp" type="number" step="1"></label>
+<label>Distância base → ignição (m, mín. 300)<input id="bdist" type="number"></label>
+<label>Posição da base<select id="brel"><option value="bar">Barlavento (atrás do fogo)</option><option value="fl">Flanco</option><option value="sot">Sotavento (a favor do vento, risco)</option></select></label>
+<label>Área final máx. aceitável (% da área inicial)<input id="maxloss" type="number" step="100"></label><p class="note" id="maxlossha"></p></div>
+<div class="card"><h2>Mapa do cenário</h2><p class="sub">Taxa de propagação (m/min) por célula, direção da frente, vento, ignição e base.</p><canvas id="cv1" width="640" height="640"></canvas>
+<div class="leg" id="lgmap"></div><div class="msg" id="basemsg"></div></div></div></div>
+
+<div class="panel" id="p_drones" hidden><div class="g2"><div class="card"><h2>Frota e tática</h2>
+<label>Modelo<select id="model"></select></label><label>Nº máx. de drones (busca a menor frota)<input id="n" type="number"></label>
+<label>Tática de ataque<select id="tactic"><option value="auto">Automática (testa todas)</option><option value="direto">Ataque direto (cabeça)</option><option value="flancos">Flancos em pinça</option><option value="indireto">Indireto (barreira à frente)</option><option value="cercamento">Cercamento (perímetro)</option></select></label>
+<label>Objetivo da otimização<select id="obj"><option value="custo">Menor custo por operação</option><option value="capex">Menor CapEx da frota</option><option value="drones">Menor nº de drones</option></select></label>
+<label>Rigor da frota<select id="rigor"><option value="mc" selected>Com risco: Monte Carlo (incerteza explícita)</option><option value="det">Mínimo determinístico (1 réplica)</option></select></label><label>Prob. mínima de contenção (%)<input id="alpha" type="number" value="90" min="50" max="99"></label><label>Réplicas Monte Carlo por teste<input id="kmc" type="number" value="10" min="4" max="40"></label>
+<label>Comparar todos os drones<input id="cmp" type="checkbox" style="width:auto" checked></label>
+<p class="note">Com “Nenhum” ou “Comparar todos”, o simulador escolhe o drone viável de menor CapEx e valida a frota por simulação.</p>
+<details><summary>+ Adicionar modelo</summary><label>Nome<input id="m_name" value="Meu drone"></label><label>Carga (L)<input id="m_pay" type="number" value="30"></label><label>Vel. máx. (m/s)<input id="m_v" type="number" value="15"></label><label>Autonomia c/ carga (min)<input id="m_end" type="number" value="12"></label><label>Recarga (s)<input id="m_rf" type="number" value="240"></label><label>Preço (US$)<input id="m_cx" type="number" value="30000"></label><button class="btn s" id="addm">Adicionar</button></details>
+</div>
+<div class="card"><h2>Catálogo (20 drones e 5 aeronaves tripuladas)</h2><div class="scroll" id="cat"></div>
+<p class="note"><b>V</b> verificado no fabricante · <b>P</b> só capacidade verificada · <b>M</b> aproximado, conferir · <b>A</b> artigo CBA (Lorraine) · <b>U</b> usuário. Preços, recarga (120 s + 1,2 s/L) e OpEx (0,25% do preço/h) são estimativas.</p></div></div></div>
+
+<div class="panel" id="p_simulacao" hidden><div class="g2">
+<div class="card"><h2>Mapa da simulação</h2><canvas id="cv" width="640" height="640"></canvas><div class="leg"><span><i style="background:#4f6b55"></i>vegetação</span><span><i style="background:#e8743b"></i>fogo ativo</span><span><i style="background:#555"></i>queimado</span><span><i style="background:#42a5f5"></i>linha molhada / extinto</span></div></div>
+<div><div class="card"><h2>Resultado <span id="vb"></span></h2><div class="kpi" id="kpi"></div><div class="msg" id="msg"></div></div>
+<div class="card"><h2>Evolução do incêndio</h2><p class="sub">Área atingida ao longo do tempo, com e sem drones.</p><div id="ev"></div></div></div></div></div>
+
+<div class="panel" id="p_ataque" hidden><div class="card"><h2>Rotas do enxame na última rodada de replanejamento</h2><label>Rodada exibida<select id="rsel"><option value="p">Pico do combate (maior frente ativa)</option><option value="f">Última rodada de combate à frente</option><option value="m">Última rodada de rescaldo</option></select></label><p class="sub">Cada polilinha é a rota planejada de um drone (base → alvos na frente de fogo). Alvos incluem barreiras molhadas à frente e extinção direta de células em chamas.</p><canvas id="cva" width="900" height="900" style="max-width:820px;margin:auto"></canvas>
+<div class="leg" id="lga" style="margin-top:8px"></div></div>
+<div class="card"><h2>Animação do combate</h2><p class="sub">Reprodução da simulação final: o fogo, a linha molhada e cada drone (cinza = na base, azul = indo carregado, claro = voltando).</p><canvas id="cvan" width="760" height="760" style="max-width:700px;margin:auto"></canvas><div class="ctl"><button id="aplay">▶ Reproduzir</button><input type="range" id="aseek" min="0" max="0" value="0"><select id="aspd"><option value="0.5">0,5×</option><option value="1" selected>1×</option><option value="2">2×</option><option value="4">4×</option></select><span id="atime" class="note"></span></div><div class="stat" id="astat"></div></div>
+<div class="card"><h2>Manobras e táticas</h2><div class="scroll" id="tacts"></div></div></div>
+
+<div class="panel" id="p_fogodrone" hidden>
+<div class="card"><h2>Fogo: velocidade de propagação e comprimento de chama</h2><p class="sub">Rothermel com vento e declive combinados vetorialmente; ROS por direção (elipse de Anderson). Chama acima do limite do drone obriga ataque indireto.</p><div class="g2"><div><div class="leg" id="lg1"></div><div class="scroll" id="ch1"></div></div><div><div class="leg" id="lg1b"></div><div class="scroll" id="ch1b"></div></div></div><p class="note" id="tx1"></p></div>
+<div class="card"><h2>Fogo × Drone por setor</h2><p class="sub">Demanda do fogo = água (L/s) para fechar a linha molhada no perímetro que cresce; capacidade = carga ÷ ciclo (ida, volta com vento, recarga) × drones do setor.</p><div class="leg" id="lg2"></div><div class="scroll" id="ch2"></div><p class="note" id="tx2"></p></div></div>
+
+<div class="panel" id="p_comparacao" hidden>
+<div class="card"><h2>Comparação de drones: curva de contrapartida</h2><p class="sub">Somente os drones cuja capacidade supera a demanda do fogo (razão ≥ 1) são viáveis. ★ = melhor (menor CapEx).</p><div class="scroll" id="ch3"></div></div>
+<div class="card"><h2>Drones × aeronaves tripuladas (AS350 B3 em destaque)</h2><p class="sub">Mesmo cenário e mesmas restrições (contenção com probabilidade ≥ meta sob incerteza): operação (área, tempos, água, horas de voo) e economia, lado a lado.</p><div id="heli"></div></div>
+<div class="card"><h2>Otimização de frota por simulação</h2><div class="scroll" id="optab"></div></div>
+<div class="g2"><div class="card"><h2>Drones no cenário</h2><div class="scroll" id="rank"></div></div>
+<div class="card"><h2>Drones × cenários</h2><div class="scroll" id="mat"></div></div></div></div>
+
+<div class="panel" id="p_economia" hidden>
+<div class="card"><h2>Economia da configuração</h2><div class="eco" id="eco"></div>
+<div class="g2" style="margin-top:12px"><div><label>Operações/ano<input id="opsyr" type="number" value="100"></label><label>Vida útil (anos)<input id="life" type="number" value="5"></label></div>
+<div><label>Infra fixa/operação (US$)<input id="fixop" type="number" value="500"></label><label>Logística por drone/operação (US$)<input id="logd" type="number" value="150"></label><label>Água+logística (US$/m³)<input id="wcost" type="number" value="5"></label></div></div>
+<div class="card" style="margin-top:12px;background:var(--in)"><h3 style="font-size:13px;margin:0 0 6px">Calibração de custos das aeronaves tripuladas</h3><label>Modo de custo<select id="acmode"><option value="buy" selected>Compra diluída (preço ÷ vida útil × operações/ano)</option><option value="contract">Contrato anual (tudo incluso, sem custo por hora)</option></select></label><label>Operações/ano da aeronave<input id="opsA" type="number" value="100"></label><label>Vida útil da aeronave (anos)<input id="lifeA" type="number" value="5"></label><label>Contrato anual por aeronave (US$)<input id="contractA" type="number" value="561000"></label><label>Logística por aeronave/operação (US$)<input id="logdA" type="number" value="150"></label><label>Fator de preço das aeronaves<input id="cxfA" type="number" step="0.1" value="1"></label><p class="note">Referências públicas: contrato do Ministério da Justiça, R$ 364,5 milhões por 5 anos para 26 helicópteros, 45 h de voo/mês cada ≈ R$ 2,8 milhões por aeronave/ano ≈ <b>US$ 561 mil</b> (a US$ 1 = R$ 5,00; mistura de modelos, não é o AS350). O CBMMG pagou R$ 43,5 milhões (≈ US$ 8,7 milhões) pelo AW119Kx, contra US$ 4,5 milhões na tabela do artigo: use o fator de preço se quiser refletir isso. No modo contrato o custo por aeronave é o contrato anual ÷ operações/ano. Troque pelos números reais do seu caso.</p></div>
+<p class="note">Operações/ano e custos fixos são placeholders: calibre com dados reais.</p></div>
+<div class="card"><h2>Custo por operação dos modelos viáveis (top 6)</h2><div class="leg" id="lg4"></div><div class="scroll" id="ch4"></div></div></div>
+
+<div class="panel" id="p_sensibilidade" hidden><div class="card"><h2>Sensibilidade e robustez</h2><p class="sub">Variação de uma variável por vez (baixa/alta) na configuração atual (modelo, frota e tática vencedora) e 8 réplicas Monte Carlo com ruído de combustível e relevo. Simulações até a contenção; áreas limitadas a 3× o limite aceitável.</p><button class="btn" id="sens">▶ Rodar análise</button><p class="note" id="sensst"></p><div class="leg" id="lgs"></div><div class="scroll" id="sensch"></div><div class="scroll" id="senstab"></div><div id="mcrob"></div></div></div>
+
+<div class="panel" id="p_incerteza" hidden>
+<div class="card"><h2>Incerteza explícita: Monte Carlo e parâmetros incertos</h2><p class="sub">Cada réplica sorteia (hipercubo latino em blocos de 10 réplicas, reprodutível) vento, direção, umidade, tempo de resposta, carga de combustível e parâmetros do modelo e econômicos dentro da faixa ± abaixo, além de um novo campo de ruído de relevo/combustível. As faixas são editáveis. <span class="tag e">E</span> = estimado sem fonte pública (maior incerteza), <span class="tag m">M</span> = medido/documentado.</p>
+<div class="scroll"><table class="ut" id="utab"></table></div>
+<label>Réplicas da distribuição<input id="kdist" type="number" value="24" min="8" max="100"></label>
+<button class="btn" id="mcgo">▶ Rodar Monte Carlo + tornado (modelo e frota atuais)</button><button class="btn s" id="uzero">Zerar faixas</button><button class="btn s" id="udef">Restaurar padrão</button><p class="note" id="mcst"></p></div>
+<div class="card" id="mccard" hidden><h2>Distribuição do resultado</h2><div class="stat" id="mcstat"></div><div class="msg" id="mcmsg"></div><div class="g2"><div><h2 style="font-size:13px">Área queimada nas réplicas (ha)</h2><div class="scroll" id="mchist"></div></div><div><h2 style="font-size:13px">Tempo até a extinção (min)</h2><div class="scroll" id="mcext"></div></div></div></div>
+<div class="card" id="tocard" hidden><h2>Tornado: quais incertezas mais mudam a resposta</h2><p class="sub">Para cada parâmetro nos extremos (−/+) da faixa: frota mínima necessária (maioria de 3 de 5 sementes) e custo por operação recalculado com o consumo da simulação-base. Parâmetros econômicos: efeito analítico no custo. Variações de ±1 drone entre extremos podem ser ruído de simulação (o fogo tem comportamento de limiar).</p><div class="leg" id="lgt"></div><div class="scroll" id="tochart"></div><div class="scroll" id="totab"></div></div></div>
+
+<div class="panel" id="p_resolucao" hidden>
+<div class="card"><h2>Resolução espacial e temporal (definida pelo código)</h2><div class="kpi" id="reskpi"></div>
+<p class="note" id="reswhy"></p>
+<p class="note">A resolução não é um parâmetro de entrada. <b>Piso de 20 m no acoplamento com drones</b> (fogos com ROS ≥ 5 m/min): a deriva e a altura de lançamento dão incerteza de 10–20 m na posição da água, e abaixo disso o resultado do combate passou a oscilar entre malhas sem ganho de realismo. Fogos lentos usam a malha fina. O código testa as células permitidas (de 50 a 10 m) no próprio cenário, sem drones, e escolhe a <b>mais grossa</b> cujo avanço da cabeça fica a ≤ 4% da ROS teórica e cuja área queimada difere ≤ 8% da malha mais fina. Limites: grade ≤ 200×200 e raio do foco inicial ≥ 1,5 células. O Δt segue <b>CFL = 0,5</b> (Δt = 0,5·Δx/ROSmáx, entre 1 e 10 s); a propagação por tempo de chegada (16 vizinhos) não depende do Δt. Sem DEM real nem spotting.</p></div>
+<div class="card"><h2>Teste de convergência da malha (fogo sem drones)</h2><div class="scroll" id="restab"></div><button class="btn s" id="reeval">↻ Reavaliar</button></div>
+<div class="card"><h2>Robustez da malha com o enxame</h2><div class="scroll" id="robtab"></div><p class="note">Mesma frota e tática simuladas em outras células. Resultados que mudam entre malhas indicam sensibilidade do combate à discretização (o ataque direto é o mais sensível, pois depende de a célula ainda estar em chamas à chegada do drone).</p></div></div>
+
+<div class="panel" id="p_resultados" hidden><div class="card"><h2>Resumo</h2><div id="resumo"></div><button class="btn" id="brep">📄 Gerar relatório (HTML imprimível / PDF)</button><button class="btn s" id="bstore">📌 Guardar esta execução para comparar</button><button class="btn s" id="bprint">🖨 Imprimir página</button></div>
+<div class="card" id="real"><h2>Comparação com o evento real</h2><div class="scroll" id="realtab"></div></div></div>
+<div class="panel" id="p_execucoes" hidden><div class="card"><h2>Comparar execuções</h2><p class="sub">Use “📌 Guardar esta execução” na aba Resultados após cada simulação. Aqui você compara cenários, drones e frotas lado a lado.</p><div class="scroll" id="hist"></div><button class="btn s" id="hcsv">⬇ Exportar CSV</button><button class="btn s" id="hclr">Limpar</button></div>
+<div class="card"><h2>Comparação gráfica</h2><div class="leg" id="lgh1"></div><div class="scroll" id="hch1"></div><div class="leg" id="lgh2"></div><div class="scroll" id="hch2"></div></div></div>
+</section></div>
